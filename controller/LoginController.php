@@ -22,7 +22,8 @@ class login
 
         if ($this->loginModel->procesarFormularioLogin($email,$password) == 'ok'){
             echo $this->render->render("view/lector.mustache");
-        }else
-            $this->execute();
+        }
+        
+        $this->execute();
     }
 }
