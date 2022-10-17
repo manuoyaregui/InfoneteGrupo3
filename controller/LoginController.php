@@ -13,8 +13,7 @@ class login
 
     public function execute()
     {
-        $data = array("mensaje" => 'hola pepe');
-        echo $this->render->render("view/login.mustache", $data);
+        echo $this->render->render("view/login.mustache");
     }
 
     public function FormularioLogin(){
