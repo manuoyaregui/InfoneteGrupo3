@@ -17,8 +17,8 @@ class login
     }
 
     public function FormularioLogin(){
-        $email = $_GET["email"];
-        $password=$_GET["password"];
+        $email = $_POST["email"];
+        $password = $_POST["password"];
 
         if ($this->loginModel->procesarFormularioLogin($email,$password) == 'ok'){
             echo $this->render->render("view/lector.mustache");
