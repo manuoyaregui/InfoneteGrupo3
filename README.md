@@ -11,10 +11,12 @@ aún mejor que el que poseen los medios físicos, facilitando el análisis del p
 4
 en tiempo real, por ejemplo, la cantidad de personas que observa una noticia, en-
 tre otros reportes e información que sólo la web nos puede facilitar.
+
 Nuestro cliente nos solicita NO utilizar un gestor de contenidos, tal como Drupal o
 Joomla, ya que desea escalar el sistema a lo largo del tiempo y prefiere que el
 mismo sea de código propio. Por lo cual, nos veremos obligados a programar el
 sistema sin utilizar uno de estos frameworks.
+
 Como detalles técnicos extras, el cliente desea que trabajemos sobre servidores
 Linux con lenguaje de programación PHP por parte del servidor y bases de datos
 MySql para almacenar los datos (De más está decir que las claves de los usuarios
