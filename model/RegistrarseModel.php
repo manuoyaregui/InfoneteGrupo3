@@ -25,6 +25,6 @@ class RegistrarseModel
     private function crearUsuario($nombre, $email, $password, $direccion, $rol){
         $sql = "INSERT INTO usuario (id,nombre, email, password, direccion, id_rol) 
              VALUES (null,'".$nombre."','".$email."','".$password."','".$direccion."','".$rol."')";
-        return $this->database->query($sql);
+        return $this->database->execute($sql);
     }
 }

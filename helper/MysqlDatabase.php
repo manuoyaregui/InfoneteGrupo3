@@ -19,9 +19,8 @@ class MysqlDatabase{
 
     public function query($sql){
         $result = mysqli_query($this->connection, $sql);
-        if(gettype($result) != "boolean")
-            return mysqli_fetch_all($result,MYSQLI_ASSOC);
-        return $result;
+
+        return mysqli_fetch_all($result,MYSQLI_ASSOC);
     }
 
     public function execute($sql){
