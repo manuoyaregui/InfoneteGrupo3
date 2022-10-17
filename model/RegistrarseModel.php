@@ -10,9 +10,7 @@ class RegistrarseModel
     public function procesarFormularioRegistarseLector($nombre,$email,$password,$direccion,$rol){
      if ($this->getUsuarioPorEmail($email)==null || !$this->getUsuarioPorEmail($email)){
         $resultado = $this->crearUsuario($nombre, $email, $password, $direccion, $rol);
-        if ($resultado){
-            return $resultado;
-        }
+
         return $resultado;
      }
 
