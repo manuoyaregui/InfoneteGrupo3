@@ -12,7 +12,6 @@ include_once ("controller/RegistrarseController.php");
 include_once ("controller/InicioController.php");
 
 
-
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
 

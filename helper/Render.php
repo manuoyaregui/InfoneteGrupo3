@@ -13,6 +13,10 @@ class Render{
 
     public function render($contentFile , $data = array() ){
         $contentAsString =  file_get_contents($contentFile);
+        if(isset($_SESSION['usuario']) && !empty($_SESSION['usuario']))
+            $data['isLogged'] = true;
+        else
+            $data['isLogged'] = false;
         return  $this->mustache->render($contentAsString, $data);
     }
 }

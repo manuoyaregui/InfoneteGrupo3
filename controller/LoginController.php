@@ -13,17 +13,21 @@ class login
 
     public function execute()
     {
-        $data = array("mensaje" => 'hola pepe');
-        echo $this->render->render("view/login.mustache", $data);
+        echo $this->render->render("view/login.mustache");
     }
 
     public function FormularioLogin(){
-        $email = $_GET["email"];
-        $password=$_GET["password"];
+        $email = $_POST["email"];
+        $password = $_POST["password"];
 
         if ($this->loginModel->procesarFormularioLogin($email,$password) == 'ok'){
-            echo $this->render->render("view/lector.mustache");
-        }else
-            $this->execute();
+            $_SESSION["usuario"] = $email;
+            echo $this->render->render("view/inicio.mustache");
+        }
     }
+    public function Logout(){
+        $_SESSION["usuario"] = "";
+        echo $this->render->render("view/inicio.mustache");
+    }
+
 }

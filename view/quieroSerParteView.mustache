@@ -1,12 +1,30 @@
 {{> header}}
 <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
     <h2 class="w3-wide">Registrate!</h2>
-    <form action="/registrarse/procesarFormularioRegistrarseLector" method="POST">
-        <input type="text" name="nombre" placeholder="nombre"><br><br>
-        <input type="text" name="email" placeholder="email"><br><br>
-        <input type="text" name="password" placeholder="password"><br><br>
-        <input type="text" name="direccion" placeholder="direccion"><br><br>
-        <input type="submit" value="Enviar">
-    </form>
+
+    <div class="w3-margin">
+        <form action="/registrarse/procesarFormularioRegistrarseLector" method="POST">
+
+            <input class="w3-input w3-margin-bottom"
+                   style="width: 50%; margin: auto"
+                   type="text" name="nombre" placeholder="Ingrese su nombre">
+
+            <input class="w3-input w3-margin-bottom"
+                   style="width: 50%; margin: auto"
+                   type="email" name="email" placeholder="Ingrese su email">
+
+            <input class="w3-input w3-margin-bottom"
+                   style="width: 50%; margin: auto"
+                   type="password" name="password" placeholder="Ingrese su contraseña">
+
+            <input class="w3-input w3-margin-bottom"
+                   style="width: 50%; margin: auto"
+                   type="text" name="direccion" placeholder="Ingrese su direccion">
+
+
+            <input class="w3-button w3-green" type="submit" value="Registrar">
+        </form>
+    </div>
+    {{mensaje}}
 </div>
 {{> footer}}
