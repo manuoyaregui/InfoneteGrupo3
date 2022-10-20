@@ -9,6 +9,10 @@ class InicioController
     }
 
     public function execute(){
-        echo $this->render->render("view/inicio.mustache");
+        echo $this->render->render("view/catalogoView.mustache");
+    }
+
+    public function verProducto(){
+        echo $this->render->render("view/verProducto.mustache");
     }
 }
