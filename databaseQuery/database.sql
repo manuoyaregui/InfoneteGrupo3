@@ -116,7 +116,8 @@ CREATE TABLE `rol` (
 INSERT INTO `rol` (`id_rol`, `nombre`) VALUES
                                            (1, 'LECTOR'),
                                            (2, 'ESCRITOR'),
-                                           (3, 'ADMINISTRADOR');
+                                           (3, 'Editor'),
+                                           (4, 'Administrador');
 
 -- --------------------------------------------------------
 
