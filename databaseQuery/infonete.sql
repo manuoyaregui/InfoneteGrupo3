@@ -6,6 +6,8 @@
 -- Tiempo de generación: 17-10-2022 a las 21:18:23
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
+create schema if not exists infonete;
+use infonete;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
