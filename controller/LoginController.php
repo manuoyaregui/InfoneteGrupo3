@@ -22,12 +22,15 @@ class login
 
         if ($this->loginModel->procesarFormularioLogin($email,$password) == 'ok'){
             $_SESSION["usuario"] = $email;
-            echo $this->render->render("view/inicio.mustache");
+            echo $this->render->render("view/catalogoView.mustache");
+        }else{
+            $data["mensaje"] = "Usuario y/o contraseña incorrectos";
+            echo $this->render->render("view/login.mustache", $data) ;
         }
     }
     public function Logout(){
         $_SESSION["usuario"] = "";
-        echo $this->render->render("view/inicio.mustache");
+        echo $this->render->render("view/catalogoView.mustache");
     }
 
 }
