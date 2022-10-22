@@ -6,17 +6,23 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/solar/bootstrap.min.css" integrity="sha384-NCwXci5f5ZqlDw+m7FwZSAwboa0svoPPylIW3Nf+GBDsyVum+yArYnaFLE9UDzLd" crossorigin="anonymous">
+
 <body>
 
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card">
         <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-        <a href="/" class="w3-bar-item w3-button w3-padding-large">La banda</a>
-        <a href="/song" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Canciones</a>
-        <a href="/tour" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Presentaciones</a>
-        <a href="/registrarse" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Quiero Ser Parte</a>
-        <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hide-small">aaa</a>
+        <a href="/" class="w3-bar-item w3-button w3-padding-large">Inicio</a>
+        {{#isLogged}}
+            <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hide-small">*Usuario*</a>
+            <a href="/login/logout" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Log out</a>
+        {{/isLogged}}
+        {{^isLogged}}
+            <a href="/login" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Login</a>
+            <a href="/registrarse" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Registrarse</a>
+        {{/isLogged}}
     </div>
 </div>
 

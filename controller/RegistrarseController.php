@@ -24,9 +24,12 @@ class RegistrarseController
         $rol = 1 ;
         $resultado = $this->registrarseModel->procesarFormularioRegistarseLector($nombre,$email,$password,$direccion,$rol);
         if ($resultado){
-            $data["mensaje"]="registrado";
-            echo $this->render->render("view/login.mustache",$data);
+            $data["mensaje"]="registrado correctamente";
+            echo $this->render->render("view/inicio.mustache",$data);
         }
-        echo $this->execute();
+        else{
+            $data["mensaje"]="Error";
+            echo $this->render->render("view/quieroSerParteView.mustache",$data);
+        }
     }
 }

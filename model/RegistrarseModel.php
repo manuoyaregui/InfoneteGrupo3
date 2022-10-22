@@ -7,14 +7,12 @@ class RegistrarseModel
         $this->database = $database;
     }
 
-    public function procesarFormularioRegistarseLector($nombre, $email, $password, $direccion, $rol){
-     if ($this->getUsuarioPorEmail($email)==null || !$this->getUsuarioPorEmail($email)){
-        $resultado = $this->crearUsuario($nombre, $email, $password, $direccion, $rol);
-        if ($resultado){
+    public function procesarFormularioRegistarseLector($nombre,$email,$password,$direccion,$rol){
+        if ($this->getUsuarioPorEmail($email)==null || !$this->getUsuarioPorEmail($email)){
+            $resultado = $this->crearUsuario($nombre, $email, $password, $direccion, $rol);
+
             return $resultado;
         }
-        return $resultado;
-     }
 
     }
 

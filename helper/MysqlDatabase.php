@@ -24,6 +24,6 @@ class MysqlDatabase{
     }
 
     public function execute($sql){
-        mysqli_query($this->connection, $sql);
+        return mysqli_query($this->connection, $sql);
     }
 }

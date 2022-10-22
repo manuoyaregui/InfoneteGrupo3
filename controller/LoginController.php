@@ -20,9 +20,14 @@ class login
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        if ($this->loginModel->procesarFormularioLogin($email,$password) == "ok"){
-            echo $this->render->render("view/lector.mustache");
+        if ($this->loginModel->procesarFormularioLogin($email,$password) == 'ok'){
+            $_SESSION["usuario"] = $email;
+            echo $this->render->render("view/inicio.mustache");
         }
-        echo $this->execute();
     }
+    public function Logout(){
+        $_SESSION["usuario"] = "";
+        echo $this->render->render("view/inicio.mustache");
+    }
+
 }
