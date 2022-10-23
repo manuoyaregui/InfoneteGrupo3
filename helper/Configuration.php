@@ -6,11 +6,12 @@ include_once("helper/UrlHelper.php");
 
 include_once ("model/LoginModel.php");
 include_once ("model/RegistrarseModel.php");
+include_once("model/ProductoModel.php");
 
 include_once("controller/LoginController.php");
 include_once ("controller/RegistrarseController.php");
 include_once ("controller/InicioController.php");
-include_once ("controller/RevistaController.php");
+include_once("controller/ProductoController.php");
 
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
@@ -67,8 +68,12 @@ class Configuration{
         return new InicioController($this->getRender());
     }
 
-    public function getRevistaController() {
-        return new RevistaController($this->getRender());
+    public function getProductoController() {
+        $productoModel = $this->getProductoModel();
+        return new ProductoController($this->getRender(), $productoModel);
+    }
+    public function getProductoModel() {
+        return new ProductoModel($this->getDatabase());
     }
 
     //------------------------------------------------------------------//
