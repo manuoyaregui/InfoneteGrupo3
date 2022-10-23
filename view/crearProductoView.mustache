@@ -1,0 +1,29 @@
+{{>header}}
+
+<div class="w-50 my-4 mx-auto">
+
+
+
+    <h2 class="mb-4 display-4 text-center">Crear revista o diario</h2>
+
+    <form action="/producto/crearProducto" method="post">
+
+        <div class="mb-3">
+            <label for="nombre-producto" class="form-label">Nombre del producto</label>
+            <input type="text" class="form-control" id="nombre-producto" name="nombre">
+        </div>
+
+        <div class="mb-3">
+            <label for="tipo-producto" class="form-label">Tipo de publicacion</label>
+            <select class="form-select" name="tipoProducto">
+                <option disabled selected>Seleccione tipo de publicacion</option>
+                <option value="1">Revista</option>
+                <option value="2">Diario</option>
+            </select>
+        </div>
+
+        <input type="submit" class="btn btn-outline-dark" value="Crear">
+    </form>
+</div>
+
+{{>footer}}
