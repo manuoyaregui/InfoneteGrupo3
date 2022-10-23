@@ -10,6 +10,7 @@ include_once ("model/RegistrarseModel.php");
 include_once("controller/LoginController.php");
 include_once ("controller/RegistrarseController.php");
 include_once ("controller/InicioController.php");
+include_once ("controller/RevistaController.php");
 
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
@@ -64,6 +65,10 @@ class Configuration{
 
     public function getInicioController(){
         return new InicioController($this->getRender());
+    }
+
+    public function getRevistaController() {
+        return new RevistaController($this->getRender());
     }
 
     //------------------------------------------------------------------//
