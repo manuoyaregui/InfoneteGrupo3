@@ -23,7 +23,7 @@ class Configuration{
         return new MysqlDatabase(
             $config["servername"],
             $config["username"],
-            "",
+            $config["password"],
             $config["dbname"]
         );
     }
