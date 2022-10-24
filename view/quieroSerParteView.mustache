@@ -9,24 +9,25 @@
 
             <input class="w3-input w3-margin-bottom"
                    style="width: 50%; margin: auto"
-                   type="text" name="nombre" placeholder="Ingrese su nombre">
+                   type="text" name="nombre" placeholder="Ingrese su nombre" required>
 
             <input class="w3-input w3-margin-bottom"
                    style="width: 50%; margin: auto"
-                   type="email" name="email" placeholder="Ingrese su email">
+                   type="email" name="email" placeholder="Ingrese su email" required>
 
             <input class="w3-input w3-margin-bottom"
                    style="width: 50%; margin: auto"
-                   type="password" name="password" placeholder="Ingrese su contraseña">
+                   type="password" name="password" placeholder="Ingrese su contraseña" required>
 
             <input class="w3-input w3-margin-bottom"
                    style="width: 50%; margin: auto"
-                   type="text" name="direccion" placeholder="Ingrese su direccion">
-
+                   type="text" name="direccion" placeholder="Ingrese su direccion" required>
 
             <input class="w3-button w3-green" type="submit" value="Registrar">
         </form>
     </div>
-    {{mensaje}}
+    <div class="text-danger">
+        {{mensaje}}
+    </div>
 </div>
 {{> footer}}
