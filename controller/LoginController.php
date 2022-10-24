@@ -35,7 +35,8 @@ class login
     }
     public function Logout(){
         $_SESSION["usuario"] = "";
-        echo $this->render->render("view/catalogoView.mustache");
+        header("Location:/infonete");
+        exit();
     }
 
 }
