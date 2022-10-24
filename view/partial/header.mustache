@@ -11,26 +11,9 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="/public/css/fromTemplates/verProducto.css" rel="stylesheet" />
-
 <body>
 
-<!--&lt;!&ndash; Navbar &ndash;&gt;-->
-<!--<div class="w3-top">-->
-<!--    <div class="w3-bar w3-black w3-card">-->
-<!--        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>-->
-<!--        <a href="/" class="w3-bar-item w3-button w3-padding-large">Inicio</a>-->
-<!--        {{#isLogged}}-->
-<!--            <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hide-small">*Usuario*</a>-->
-<!--            <a href="/login/logout" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Log out</a>-->
-<!--        {{/isLogged}}-->
-<!--        {{^isLogged}}-->
-<!--            <a href="/login" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Login</a>-->
-<!--            <a href="/registrarse" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Registrarse</a>-->
-<!--        {{/isLogged}}-->
-<!--    </div>-->
-<!--&lt;!&ndash;&lt;!&ndash; Page content &ndash;&gt;&ndash;&gt;-->
-<!--<div class="w3-content" style="max-width:2000px;margin-top:46px">-->
-
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
         <a class="navbar-brand" href="/">Infonete</a>
@@ -40,12 +23,6 @@
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Inicio</a></li>
             </ul>
             <form class="d-flex align-items-center">
-<!--                <button class="btn btn-outline-dark" type="submit">-->
-<!--                    <i class="bi-cart-fill me-1"></i>-->
-<!--                    Cart-->
-<!--                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>-->
-<!--                </button>-->
-
                 {{#isLogged}}
                     <a class="btn btn-outline-dark" aria-current="page" href="/login/logout">Log out</a>
                 {{/isLogged}}
@@ -57,14 +34,3 @@
         </div>
     </div>
 </nav>
-
-
-    <!--                <li class="nav-item dropdown">-->
-    <!--                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>-->
-    <!--                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-    <!--                        <li><a class="dropdown-item" href="#!">All Products</a></li>-->
-    <!--                        <li><hr class="dropdown-divider" /></li>-->
-    <!--                        <li><a class="dropdown-item" href="#!">Popular Items</a></li>-->
-    <!--                        <li><a class="dropdown-item" href="#!">New Arrivals</a></li>-->
-    <!--                    </ul>-->
-    <!--                </li>-->

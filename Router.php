@@ -14,9 +14,9 @@ class Router{
     }
 
     private function getControllerFrom($module){
-          $controllerName = "get" . ucfirst($module) . "Controller";
-          $validController = method_exists($this->configuration, $controllerName) ?$controllerName : "getInicioController";
-          return call_user_func(array($this->configuration, $validController));
+        $controllerName = "get" . ucfirst($module) . "Controller";
+        $validController = method_exists($this->configuration, $controllerName) ?$controllerName : "getInicioController";
+        return call_user_func(array($this->configuration, $validController));
     }
 
     private function executeMethodFromController($controller, $method){

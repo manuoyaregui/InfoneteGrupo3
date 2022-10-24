@@ -8,11 +8,12 @@ class RegistrarseModel
     }
 
     public function procesarFormularioRegistarseLector($nombre,$email,$password,$direccion,$rol){
-        $resultado = false;
-     if ($this->getUsuarioPorEmail($email)==null || !$this->getUsuarioPorEmail($email)){
-        $resultado = $this->crearUsuario($nombre, $email, $password, $direccion, $rol);
-     }
-        return $resultado;
+        if ($this->getUsuarioPorEmail($email)==null || !$this->getUsuarioPorEmail($email)){
+            $resultado = $this->crearUsuario($nombre, $email, $password, $direccion, $rol);
+
+            return $resultado;
+        }
+
     }
 
     public function getUsuarioPorEmail($email){
@@ -20,8 +21,8 @@ class RegistrarseModel
         return $this->database->query($sql);
     }
     private function crearUsuario($nombre, $email, $password, $direccion, $rol){
-        $sql = "INSERT INTO usuario (idUsuario,nombre, email, password, direccion, idRol, idEstado) 
-             VALUES (null,'".$nombre."','".$email."','".$password."','".$direccion."','".$rol."','2')";
+        $sql = "INSERT INTO usuario (id,nombre, email, password, direccion, id_rol) 
+             VALUES (null,'".$nombre."','".$email."','".$password."','".$direccion."','".$rol."')";
         return $this->database->execute($sql);
     }
 }

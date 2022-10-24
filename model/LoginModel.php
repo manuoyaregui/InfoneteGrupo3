@@ -11,10 +11,10 @@ class LoginModel
 
     public function procesarFormularioLogin($email,$password): string
     {
-      if ($this->validarUsuarioPorEmailYPassword($email,$password)){
-          return "ok";
-      }
-      return "error";
+        if ($this->validarUsuarioPorEmailYPassword($email,$password)){
+            return "ok";
+        }
+        return "error";
     }
 
     private function validarUsuarioPorEmailYPassword($email,$password){
