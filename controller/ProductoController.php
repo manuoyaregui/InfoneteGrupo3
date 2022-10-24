@@ -29,7 +29,25 @@
             if ($resultado) {
                 echo $this->render->render("view/inicio.mustache");
             }
+        }
 
+        public function vistaPreviaProducto(){
+            if( isset($_GET['idProducto'])  && !empty($_GET['idProducto']) )
+                $idProducto = $_GET['idProducto'];
+            else
+                $idProducto = 1;
+
+            $consulta = $this->productoModel->getProductoPorId($idProducto);
+            if( count($consulta) > 0 )
+                $productoAMostrar = $consulta[0];
+            if( !empty($productoAMostrar) ) {
+
+                //VP = Vista previa
+                $data["productoVP"] = $productoAMostrar;
+                echo $this->render->render("view/vistaPreviaProducto.mustache", $data);
+            }
+            else
+                echo $this->render->render("view/vistaPreviaProducto.mustache");
         }
 
     }
