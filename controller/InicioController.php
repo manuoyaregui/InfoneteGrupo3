@@ -4,15 +4,15 @@ class InicioController
 {
     private $render;
 
-    public function __construct($render){
+    public function __construct($inicioModel,$render){
         $this->render = $render;
+        $this->inicioModel = $inicioModel;
     }
 
     public function execute(){
-        echo $this->render->render("view/catalogoView.mustache");
+        $data["producto"] = $this->inicioModel->getProductos();
+        echo $this->render->render("view/catalogoView.mustache",$data);
     }
 
-    public function verProducto(){
-        echo $this->render->render("view/verProducto.mustache");
-    }
+
 }

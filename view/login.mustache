@@ -6,15 +6,17 @@
 
             <input class="w3-input w3-margin-bottom"
                    style="width: 50%; margin: auto"
-                   type="email" name="email" placeholder="Ingrese su Email">
+                   type="email" name="email" placeholder="Ingrese su Email" required>
 
             <input class="w3-input w3-margin-bottom"
                    style="width: 50%; margin: auto"
-                   type="password" name="password" placeholder="Ingrese su Contraseña">
+                   type="password" name="password" placeholder="Ingrese su Contraseña" required>
 
             <input class="w3-button w3-green" type="submit" value="Ingresar">
         </form>
     </div>
-    {{>mensaje}}
+    <strong class="text-danger">
+        {{mensaje}}
+    </strong>
 </div>
 {{> footer}}

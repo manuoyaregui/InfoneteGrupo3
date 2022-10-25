@@ -7,6 +7,7 @@ include_once("helper/UrlHelper.php");
 include_once ("model/LoginModel.php");
 include_once ("model/RegistrarseModel.php");
 include_once("model/ProductoModel.php");
+include_once("model/InicioModel.php");
 
 include_once("controller/LoginController.php");
 include_once ("controller/RegistrarseController.php");
@@ -25,7 +26,7 @@ class Configuration{
         return new MysqlDatabase(
             $config["servername"],
             $config["username"],
-            "",
+            $config["password"],
             $config["dbname"]
         );
     }
@@ -65,7 +66,13 @@ class Configuration{
     }
 
     public function getInicioController(){
-        return new InicioController($this->getRender());
+        $inicioModel = $this->getInicioModel();
+        return new InicioController($inicioModel,$this->getRender());
+    }
+
+    public function getInicioModel(){
+        $database = $this->getDatabase();
+        return new InicioModel($database);
     }
 
     public function getProductoController() {
