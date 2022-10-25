@@ -18,21 +18,27 @@ class login
 
     public function FormularioLogin(){
         $email = $_POST["email"];
-        $password = $_POST["password"];
+        $passwordCifrada = md5($_POST["password"]);
+
         if ($email==null){
             $data["mensaje"] = "Ingrese un email valido ";
             echo $this->render->render("view/login.mustache", $data) ;
-        }elseif ( $password== null){
+
+        }elseif ($passwordCifrada == null){
             $data["mensaje"] = "Ingrese una contraseña valida ";
             echo $this->render->render("view/login.mustache", $data) ;
-        }else if ($this->loginModel->procesarFormularioLogin($email,$password) == 'ok'){
+
+        }else if ($this->loginModel->procesarFormularioLogin($email,$passwordCifrada) == 'ok'){
             $_SESSION["usuario"] = $email;
-            echo $this->render->render("view/catalogoView.mustache");
+            header("Location:/infonete");
+            exit();
         }else{
             $data["mensaje"] = "Usuario y/o contraseña incorrectos";
             echo $this->render->render("view/login.mustache", $data) ;
         }
     }
+
+
     public function Logout(){
         $_SESSION["usuario"] = "";
         header("Location:/infonete");
