@@ -178,7 +178,7 @@ CREATE TABLE `usuario` (
   `idUsuario` int(11) NOT NULL,
   `nombre` text NOT NULL,
   `email` varchar(40) NOT NULL,
-  `password` varchar(16) NOT NULL,
+  `password` text NOT NULL,
   `direccion` varchar(40) NOT NULL,
   `idRol` int(11) NOT NULL,
   `idEstado` int(11) NOT NULL

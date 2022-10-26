@@ -21,7 +21,7 @@
 
             if (!empty($nombre) && !empty($idTipo)) {
 
-                $nombreEnMayuscula = strtoupper($nombre);
+                $nombreEnMayuscula = mb_strtoupper($nombre,'utf-8');
 
                 $resultado = $this->productoModel->crearProducto($nombreEnMayuscula, $idTipo);
             }
