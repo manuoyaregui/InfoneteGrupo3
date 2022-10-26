@@ -11,6 +11,9 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="/public/css/fromTemplates/verProducto.css" rel="stylesheet" />
 
+<!--W3S -->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <!--JQUERy-->
 <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -31,27 +34,7 @@
 
 
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="/">Infonete</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Inicio</a></li>
-            </ul>
-            <form class="d-flex align-items-center">
-                {{#isLogged}}
-                    <a class="btn btn-outline-dark" aria-current="page" href="/login/logout">Log out</a>
-                {{/isLogged}}
-                {{^isLogged}}
-                    <a class="btn btn-outline-dark me-1" aria-current="page" href="/login">Login</a>
-                    <a class="btn btn-outline-dark" aria-current="page" href="/registrarse">Registrarse</a>
-                {{/isLogged}}
-            </form>
-        </div>
-    </div>
-</nav>
+
 
 <!--<div id="summernote"><p>Hello Summernote</p></div>-->
 <!--<script>-->
