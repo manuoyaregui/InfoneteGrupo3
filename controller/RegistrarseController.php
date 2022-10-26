@@ -25,7 +25,7 @@ class RegistrarseController
         $resultado = $this->registrarseModel->procesarFormularioRegistarseLector($nombre,$email,$passwordMD5,$direccion,$rol);
 
         if ($resultado){
-            $data["mensaje"]="registrado correctamente";
+            $data["mensaje"]="Registrado correctamente";
             echo $this->render->render("view/inicio.mustache",$data);
         } else{
             $data["mensaje"]="Ese mail ya esta registrado";
