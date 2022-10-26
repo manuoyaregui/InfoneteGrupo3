@@ -7,11 +7,14 @@ include_once("helper/UrlHelper.php");
 include_once ("model/LoginModel.php");
 include_once ("model/RegistrarseModel.php");
 include_once("model/ProductoModel.php");
+include_once("model/InicioModel.php");
 
 include_once("controller/LoginController.php");
 include_once ("controller/RegistrarseController.php");
 include_once ("controller/InicioController.php");
 include_once("controller/ProductoController.php");
+include_once("controller/EscritorController.php");
+
 
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
@@ -65,7 +68,13 @@ class Configuration{
     }
 
     public function getInicioController(){
-        return new InicioController($this->getRender());
+        $inicioModel = $this->getInicioModel();
+        return new InicioController($inicioModel,$this->getRender());
+    }
+
+    public function getInicioModel(){
+        $database = $this->getDatabase();
+        return new InicioModel($database);
     }
 
     public function getProductoController() {
@@ -74,6 +83,11 @@ class Configuration{
     }
     public function getProductoModel() {
         return new ProductoModel($this->getDatabase());
+    }
+
+    public function getEscritorController(){
+
+        return new EscritorController($this->getRender());
     }
 
     //------------------------------------------------------------------//

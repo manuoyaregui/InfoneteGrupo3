@@ -20,9 +20,9 @@ class RegistrarseModel
         $sql = "SELECT * FROM usuario WHERE email ='".$email."'" ;
         return $this->database->query($sql);
     }
-    private function crearUsuario($nombre, $email, $password, $direccion, $rol){
-        $sql = "INSERT INTO usuario (id,nombre, email, password, direccion, id_rol) 
-             VALUES (null,'".$nombre."','".$email."','".$password."','".$direccion."','".$rol."')";
+    private function crearUsuario($nombre, $email, $password, $direccion, $idRol){
+        $sql = "INSERT INTO usuario (idUsuario,nombre, email, password, direccion, idRol, idEstado) 
+             VALUES (null,'".$nombre."','".$email."','".$password."','".$direccion."','".$idRol."','2')";
         return $this->database->execute($sql);
     }
 }
