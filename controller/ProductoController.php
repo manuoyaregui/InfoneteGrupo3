@@ -28,6 +28,13 @@
                     $nombreEnMayuscula = mb_strtoupper($nombre,'utf-8');
 
                     $resultado = $this->productoModel->crearProducto($nombreEnMayuscula, $idTipo, $portada);
+
+                    if (!empty($portada)) {
+
+                        move_uploaded_file($_FILES["portada"]["tmp_name"], "public/img/portadasDeProducto/" . $portada);
+
+                    }
+
                 }
 
                 if ($resultado) {
