@@ -27,7 +27,8 @@
             }
 
             if ($resultado) {
-                echo $this->render->render("view/inicio.mustache");
+                header("Location: /");
+                exit();
             }
         }
 
