@@ -134,7 +134,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/producto/crearProducto" method="post">
+                                <form action="/producto/crearProducto" method="post" enctype="multipart/form-data">
 
                                     <div class="mb-3">
                                         <label for="nombre-producto" class="form-label">Nombre del producto</label>
@@ -150,6 +150,11 @@
                                         </select>
                                     </div>
 
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label">Portada del producto</label>
+                                        <input class="form-control" type="file" id="formFile" name="portada">
+                                    </div>
+
                                     <input type="submit" class="btn btn-outline-dark" value="Crear">
                                 </form>
                             </div>
@@ -158,6 +163,7 @@
                 </div>
 
             </div>
+
         </main>
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid px-4">
