@@ -1,7 +1,7 @@
 {{>header}}
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+    <a class="navbar-brand ps-3" href="/escritor">Infonete - Escritor</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
     <!-- Navbar Search-->
@@ -52,10 +52,12 @@
                                     <a class="btn nav-link" data-bs-toggle="modal" data-bs-target="#modalCrearProducto">
                                         Crear
                                     </a>
-
-
-                                    <a class="nav-link" href="register.html">Editar</a>
-                                    <a class="nav-link" href="password.html">Eliminar</a>
+                                    <a class="btn nav-link" data-bs-toggle="modal" data-bs-target="#modalEditarProducto">
+                                        Editar
+                                    </a>
+                                    <a class="btn nav-link" data-bs-toggle="modal" data-bs-target="#modalEliminarProducto">
+                                        Eliminar
+                                    </a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseEdiciones" aria-expanded="false" aria-controls="pagesCollapseAuth">
@@ -64,9 +66,9 @@
                             </a>
                             <div class="collapse" id="pagesCollapseEdiciones" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="login.html">Crear</a>
-                                    <a class="nav-link" href="register.html">Editar</a>
-                                    <a class="nav-link" href="password.html">Eliminar</a>
+                                    <a class="nav-link" href="/escritor">Crear</a>
+                                    <a class="nav-link" href="/escritor">Editar</a>
+                                    <a class="nav-link" href="/escritor">Eliminar</a>
                                 </nav>
                             </div>
 
@@ -76,9 +78,9 @@
                             </a>
                             <div class="collapse" id="pagesCollapseArticulos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="login.html">Crear</a>
-                                    <a class="nav-link" href="register.html">Editar</a>
-                                    <a class="nav-link" href="password.html">Eliminar</a>
+                                    <a class="nav-link" href="/escritor">Crear</a>
+                                    <a class="nav-link" href="/escritor">Editar</a>
+                                    <a class="nav-link" href="/escritor">Eliminar</a>
                                 </nav>
                             </div>
                         </nav>
@@ -96,9 +98,9 @@
                             </a>
                             <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="login.html">Login</a>
-                                    <a class="nav-link" href="register.html">Register</a>
-                                    <a class="nav-link" href="password.html">Forgot Password</a>
+                                    <a class="nav-link" href="/escritor">Login</a>
+                                    <a class="nav-link" href="/escritor">Register</a>
+                                    <a class="nav-link" href="/escritor">Forgot Password</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
@@ -125,7 +127,7 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <!-- Modal -->
+                <!-- Modal Crear Producto -->
                 <div class="modal fade" id="modalCrearProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -157,6 +159,75 @@
                     </div>
                 </div>
 
+                <!-- Modal Editar Producto -->
+                <div class="modal fade" id="modalEditarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/producto/editarProducto" method="post">
+
+                                    <div class="mb-3">
+                                        <label for="producto-a-editar" class="form-label">Producto a Editar</label>
+                                        <select class="form-select" id="producto-a-editar">
+                                            <option disabled selected>Seleccione un producto</option>
+                                            <option>Producto ejemplo 1</option>
+                                            <option>Producto ejemplo 2</option>
+                                            <option>Producto ejemplo 3</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="nombre-producto-nuevo" class="form-label">Editar Nombre</label>
+                                        <input type="text" class="form-control" id="nombre-producto-nuevo" name="nombre" placeholder="ej: Clarín">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="tipo-producto" class="form-label">Editar Tipo de Producto</label>
+                                        <select class="form-select" name="tipoProducto">
+                                            <option disabled selected>Seleccione tipo de publicacion</option>
+                                            <option value="1">Revista</option>
+                                            <option value="2">Diario</option>
+                                        </select>
+                                    </div>
+
+                                    <input type="submit" class="btn btn-outline-dark" value="Guardar Cambios">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Eliminar Producto -->
+                <div class="modal fade" id="modalEliminarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Eliminar Producto</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/producto/eliminarProducto" method="post">
+
+                                    <div class="mb-3">
+                                        <label for="producto-a-eliminar" class="form-label">Producto a Eliminar</label>
+                                        <select class="form-select" id="producto-a-eliminar">
+                                            <option disabled selected>Seleccione un producto</option>
+                                            <option>Producto ejemplo 1</option>
+                                            <option>Producto ejemplo 2</option>
+                                            <option>Producto ejemplo 3</option>
+                                        </select>
+                                    </div>
+
+                                    <input type="submit" class="btn btn-outline-dark" value="Eliminar Producto">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
         <footer class="py-4 bg-light mt-auto">
