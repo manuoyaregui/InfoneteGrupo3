@@ -4,8 +4,6 @@
     <list default="true" id="2b38509c-9227-4b9c-90d7-89fb18eed3c5" name="Changes" comment="Se idento para que quede bonito nada mas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/RegistrarseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/RegistrarseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/RegistrarseModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/RegistrarseModel.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +46,7 @@
       <workItem from="1666564008245" duration="1174000" />
       <workItem from="1666625646784" duration="247000" />
       <workItem from="1666735318720" duration="172000" />
-      <workItem from="1666735547439" duration="280000" />
+      <workItem from="1666735547439" duration="2298000" />
     </task>
     <servers />
   </component>

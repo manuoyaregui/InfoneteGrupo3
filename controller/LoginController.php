@@ -20,7 +20,7 @@ class login
         $email = $_POST["email"];
         $passwordCifrada = md5($_POST["password"]);
 
-        if ($email==null){
+        if ($email == null){
             $data["mensaje"] = "Ingrese un email valido ";
             echo $this->render->render("view/login.mustache", $data) ;
 
