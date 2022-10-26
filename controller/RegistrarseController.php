@@ -22,14 +22,22 @@ class RegistrarseController
         $passwordMD5 = md5($_POST["password"]);
         $direccion = $_POST["direccion"];
         $rol = 1 ;
-        $resultado = $this->registrarseModel->procesarFormularioRegistarseLector($nombre,$email,$passwordMD5,$direccion,$rol);
 
-        if ($resultado){
-            $data["mensaje"]="Registrado correctamente";
-            echo $this->render->render("view/inicio.mustache",$data);
-        } else{
-            $data["mensaje"]="Ese mail ya esta registrado";
-            echo $this->render->render("view/quieroSerParteView.mustache",$data);
+        if (!empty($nombre) && !empty($email) && !empty($passwordMD5) && !empty($direccion) && !empty($rol)) {
+            $resultado = $this->registrarseModel->procesarFormularioRegistarseLector($nombre, $email, $passwordMD5, $direccion, $rol);
+
+            if ($resultado){
+                $data["mensaje"] = "Registrado correctamente";
+                echo $this->render->render("view/inicio.mustache", $data);
+            } else{
+                $data["mensaje"] = "Ese mail ya esta registrado";
+                echo $this->render->render("view/quieroSerParteView.mustache", $data);
+            }
+
+        } else {
+            $data["mensaje"] = "Los campos son obligatorios";
+            echo $this->render->render("view/quieroSerParteView.mustache", $data);
         }
+
     }
 }
