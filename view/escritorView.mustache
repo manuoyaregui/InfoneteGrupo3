@@ -1,16 +1,31 @@
 {{>header}}
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="/escritor">Infonete - Escritor</a>
+    <a class="navbar-brand ps-3" href="/escritor">Infonete</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Inicio</a></li>
+        </ul>
+        <form class="d-flex align-items-center">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            {{#isLogged}}
+                <li class="nav-item "><a class="nav-link active" aria-current="page" href="/login/logout">Log out</a></li>
+            {{/isLogged}}
+            </ul>
+        </form>
+    </div>
+
+
     <!-- Navbar Search-->
-    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+    <!-- <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
         <div class="input-group">
             <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
             <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
         </div>
-    </form>
+    </form> -->
     <!-- Navbar-->
 <!--    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">-->
 <!--        <li class="nav-item dropdown">-->
@@ -49,8 +64,8 @@
                             </a>
                             <div class="collapse" id="pagesCollapseProductos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                 <nav class="nav-link sb-sidenav-menu-nested nav">
-                                    <a class="btn nav-link" data-bs-toggle="modal" data-bs-target="#modalCrearProducto">
-                                        Crear
+                                    <a class="btn nav-link" target="IframeCrearProducto" onclick="toggleIfrm('IfCrearProducto')">
+                                        Crear Producto
                                     </a>
                                     <a class="btn nav-link" data-bs-toggle="modal" data-bs-target="#modalEditarProducto">
                                         Editar
@@ -136,20 +151,25 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="/producto/crearProducto" method="post">
+                                <form action="/producto/crearProducto" method="post" enctype="multipart/form-data">
 
                                     <div class="mb-3">
                                         <label for="nombre-producto" class="form-label">Nombre del producto</label>
-                                        <input type="text" class="form-control" id="nombre-producto" name="nombre">
+                                        <input type="text" class="form-control" id="nombre-producto" name="nombre" required>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="tipo-producto" class="form-label">Tipo de publicacion</label>
-                                        <select class="form-select" name="tipoProducto">
+                                        <select class="form-select" name="tipoProducto" required>
                                             <option disabled selected>Seleccione tipo de publicacion</option>
                                             <option value="1">Revista</option>
                                             <option value="2">Diario</option>
                                         </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label">Portada del producto</label>
+                                        <input class="form-control" type="file" id="formFile" name="portada" required>
                                     </div>
 
                                     <input type="submit" class="btn btn-outline-dark" value="Crear">
@@ -159,76 +179,11 @@
                     </div>
                 </div>
 
-                <!-- Modal Editar Producto -->
-                <div class="modal fade" id="modalEditarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/producto/editarProducto" method="post">
+                <!--Iframe-->
+                <iframe name="IframeCrearProducto" id="IfCrearProducto" src="http://localhost/producto" frameborder="1" style="visibility: hidden" width="600" height="800"></iframe>
 
-                                    <div class="mb-3">
-                                        <label for="producto-a-editar" class="form-label">Producto a Editar</label>
-                                        <select class="form-select" id="producto-a-editar">
-                                            <option disabled selected>Seleccione un producto</option>
-                                            <option>Producto ejemplo 1</option>
-                                            <option>Producto ejemplo 2</option>
-                                            <option>Producto ejemplo 3</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="nombre-producto-nuevo" class="form-label">Editar Nombre</label>
-                                        <input type="text" class="form-control" id="nombre-producto-nuevo" name="nombre" placeholder="ej: Clarín">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="tipo-producto" class="form-label">Editar Tipo de Producto</label>
-                                        <select class="form-select" name="tipoProducto">
-                                            <option disabled selected>Seleccione tipo de publicacion</option>
-                                            <option value="1">Revista</option>
-                                            <option value="2">Diario</option>
-                                        </select>
-                                    </div>
-
-                                    <input type="submit" class="btn btn-outline-dark" value="Guardar Cambios">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal Eliminar Producto -->
-                <div class="modal fade" id="modalEliminarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Eliminar Producto</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/producto/eliminarProducto" method="post">
-
-                                    <div class="mb-3">
-                                        <label for="producto-a-eliminar" class="form-label">Producto a Eliminar</label>
-                                        <select class="form-select" id="producto-a-eliminar">
-                                            <option disabled selected>Seleccione un producto</option>
-                                            <option>Producto ejemplo 1</option>
-                                            <option>Producto ejemplo 2</option>
-                                            <option>Producto ejemplo 3</option>
-                                        </select>
-                                    </div>
-
-                                    <input type="submit" class="btn btn-outline-dark" value="Eliminar Producto">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
+
         </main>
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid px-4">
@@ -251,5 +206,21 @@
 <script src="assets/demo/chart-bar-demo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
 <script src="js/datatables-simple-demo.js"></script>
+
+<script type="text/javascript">
+
+    function toggleIfrm(id) {
+        if(document.getElementById(id).style.visibility=="hidden") {
+
+            document.getElementById(id).style.visibility="visible";
+
+        } else {
+
+            document.getElementById(id).style.visibility="hidden";
+
+        }
+
+    }
+</script>
 
 {{>footer}}
