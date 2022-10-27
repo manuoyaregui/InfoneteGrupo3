@@ -12,8 +12,8 @@
         <input class="form-control my-3" type="email" name="email" placeholder="Ingrese su email" required>
         <input class="form-control my-3" type="password" name="password" placeholder="Ingrese su contraseña" required>
 
-        <input class="form-control my-3" type="text" id="latitud" name="latitud">
-        <input class="form-control my-3" type="text" id="longitud" name="longitud">
+        <input class="form-control my-3" type="hidden" id="latitud" name="latitud">
+        <input class="form-control my-3" type="hidden" id="longitud" name="longitud">
 
 
         <div id="map" style="width: 800px; height: 300px"></div>
@@ -27,22 +27,27 @@
 
 <script>
     function initMap(){
-
         var coordenadas = {
-            lat:-34.647996,
-            lng: -58.524341
+            lat: -34.67312,
+            lng: -58.48061
         };
         var map = new google.maps.Map(document.getElementById('map'),{
             zoom: 15,
             center: coordenadas
         });
         var marker = new google.maps.Marker({
+            map: map,
             position: coordenadas,
-            map: map
+            draggable: true
         });
 
-        document.querySelector("#latitud").value = coordenadas.lat;
-        document.querySelector("#longitud").value = coordenadas.lng;
+        /* Esto salta como deprecado, pero no pude hacerlo andar con addEventListener
+        *  (no estoy seguro si es por un problema de la api key)
+        *  */
+        google.maps.event.addListener(marker,'dragend',function() {
+            document.querySelector('#latitud').value = marker.getPosition().lat();
+            document.querySelector('#longitud').value = marker.getPosition().lng();
+        });
     }
 </script>
 
