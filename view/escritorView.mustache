@@ -1,16 +1,31 @@
 {{>header}}
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+    <a class="navbar-brand ps-3" href="/escritor">Infonete</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Inicio</a></li>
+        </ul>
+        <form class="d-flex align-items-center">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            {{#isLogged}}
+                <li class="nav-item "><a class="nav-link active" aria-current="page" href="/login/logout">Log out</a></li>
+            {{/isLogged}}
+            </ul>
+        </form>
+    </div>
+
+
     <!-- Navbar Search-->
-    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+    <!-- <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
         <div class="input-group">
             <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
             <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
         </div>
-    </form>
+    </form> -->
     <!-- Navbar-->
 <!--    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">-->
 <!--        <li class="nav-item dropdown">-->
@@ -49,8 +64,8 @@
                             </a>
                             <div class="collapse" id="pagesCollapseProductos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                 <nav class="nav-link sb-sidenav-menu-nested nav">
-                                    <a class="btn nav-link" data-bs-toggle="modal" data-bs-target="#modalCrearProducto">
-                                        Crear
+                                    <a class="btn nav-link" target="IframeCrearProducto" onclick="toggleIfrm('IfCrearProducto')">
+                                        Crear Producto
                                     </a>
 
 
@@ -161,7 +176,8 @@
                         </div>
                     </div>
                 </div>
-
+                <!--Iframe-->
+                <iframe name="IframeCrearProducto" id="IfCrearProducto" src="http://localhost/producto" frameborder="1" style="visibility: hidden" width="600" height="800"></iframe>
             </div>
 
         </main>
@@ -186,5 +202,21 @@
 <script src="assets/demo/chart-bar-demo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
 <script src="js/datatables-simple-demo.js"></script>
+
+<script type="text/javascript">
+
+    function toggleIfrm(id) {
+        if(document.getElementById(id).style.visibility=="hidden") {
+
+            document.getElementById(id).style.visibility="visible";
+
+        } else {
+
+            document.getElementById(id).style.visibility="hidden";
+
+        }
+
+    }
+</script>
 
 {{>footer}}

@@ -5,13 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b38509c-9227-4b9c-90d7-89fb18eed3c5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/view/partial/nav.mustache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/view/partial/nav2.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/51b9ab5b-84ba-443f-a98a-f59d3738a291.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
 <<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/LoginController.php" afterDir="false" />
 =======
       <change beforePath="$PROJECT_DIR$/helper/Configuration.php" beforeDir="false" afterPath="$PROJECT_DIR$/helper/Configuration.php" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/controller/EscritorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/EscritorController.php" afterDir="false" />
+>>>>>>> develop
       <change beforePath="$PROJECT_DIR$/view/catalogoView.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/catalogoView.mustache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/partial/footer.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/partial/footer.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/crearProductoView.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/crearProductoView.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/escritorView.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/escritorView.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/inicio.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/inicio.mustache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/view/partial/header.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/partial/header.mustache" afterDir="false" />
 >>>>>>> develop
     </list>
@@ -35,17 +45,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/xampp/htdocs/public/css/fromTemplates",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/public/css/fromTemplates&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\public\css\fromTemplates" />
@@ -65,7 +77,12 @@
       <workItem from="1666564008245" duration="1174000" />
       <workItem from="1666625646784" duration="247000" />
       <workItem from="1666735318720" duration="172000" />
+<<<<<<< HEAD
       <workItem from="1666735547439" duration="2298000" />
+=======
+      <workItem from="1666735547439" duration="280000" />
+      <workItem from="1666805181478" duration="6827000" />
+>>>>>>> develop
     </task>
     <servers />
   </component>
