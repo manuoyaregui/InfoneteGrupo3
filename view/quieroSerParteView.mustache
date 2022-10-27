@@ -1,6 +1,7 @@
 <!-- TODO: despues hay que cambiar el nombre de la vista por registroView o algo asi -->
 
 {{> header}}
+{{> nav}}
 <div class="container w-50">
 
     <h2 class="display-4 text-center my-3">Registrarme en Infonete</h2>
@@ -10,7 +11,12 @@
         <input class="form-control my-3" type="text" name="nombre" placeholder="Ingrese su nombre" required>
         <input class="form-control my-3" type="email" name="email" placeholder="Ingrese su email" required>
         <input class="form-control my-3" type="password" name="password" placeholder="Ingrese su contraseña" required>
-        <input class="form-control my-3" type="text" name="direccion" placeholder="Ingrese su direccion" required>
+
+        <input class="form-control my-3" type="text" id="latitud" name="latitud">
+        <input class="form-control my-3" type="text" id="longitud" name="longitud">
+
+
+        <div id="map" style="width: 800px; height: 300px"></div>
 
         <input class="btn btn-outline-dark" type="submit" value="Registrar">
     </form>
@@ -18,4 +24,28 @@
     <h4 class="alert text-danger text-center">{{mensaje}}</h4>
 
 </div>
+
+<script>
+    function initMap(){
+
+        var coordenadas = {
+            lat:-34.647996,
+            lng: -58.524341
+        };
+        var map = new google.maps.Map(document.getElementById('map'),{
+            zoom: 15,
+            center: coordenadas
+        });
+        var marker = new google.maps.Marker({
+            position: coordenadas,
+            map: map
+        });
+
+        document.querySelector("#latitud").value = coordenadas.lat;
+        document.querySelector("#longitud").value = coordenadas.lng;
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=initMap"></script>
+
 {{> footer}}

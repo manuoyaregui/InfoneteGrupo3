@@ -20,11 +20,12 @@ class RegistrarseController
         $nombre = $_POST["nombre"];
         $email = $_POST["email"];
         $passwordMD5 = md5($_POST["password"]);
-        $direccion = $_POST["direccion"];
+        $latitud = $_POST["latitud"];
+        $longitud = $_POST["longitud"];
         $rol = 1 ;
 
-        if (!empty($nombre) && !empty($email) && !empty($passwordMD5) && !empty($direccion) && !empty($rol)) {
-            $resultado = $this->registrarseModel->procesarFormularioRegistarseLector($nombre, $email, $passwordMD5, $direccion, $rol);
+        if (!empty($nombre) && !empty($email) && !empty($passwordMD5) && !empty($latitud) && !empty($longitud) && !empty($rol)) {
+            $resultado = $this->registrarseModel->procesarFormularioRegistarseLector($nombre, $email, $passwordMD5, $latitud, $longitud, $rol);
 
             if ($resultado){
                 $data["mensaje"] = "Registrado correctamente";
