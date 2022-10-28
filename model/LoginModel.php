@@ -37,5 +37,13 @@ class LoginModel
         return $this->database->query($sql);
     }
 
+    public function getRolDeUsuarioPorEmail($email){
+        $sql = "
+            select rol.nombre
+            from usuario join rol on usuario.idRol = rol.idRol
+            where usuario.email like '". $email . "'" ;
+        return $this->database->query($sql);
+    }
+
 
 }
