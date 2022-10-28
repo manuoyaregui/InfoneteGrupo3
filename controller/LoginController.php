@@ -30,6 +30,7 @@ class login
 
         }else if ($this->loginModel->procesarFormularioLogin($email,$passwordCifrada) == 'ok'){
             $_SESSION["usuario"] = $email;
+            $_SESSION["rol"]= $this->loginModel->getRolDeUsuarioPorEmail($email)[0];
             header("Location:/infonete");
             exit();
         }else{
@@ -40,7 +41,7 @@ class login
 
 
     public function Logout(){
-        $_SESSION["usuario"] = "";
+        session_destroy();
         header("Location:/infonete");
         exit();
     }

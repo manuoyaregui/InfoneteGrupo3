@@ -9,8 +9,14 @@ class EscritorController
     }
 
     public function execute(){
-        echo $this->render->render("view/escritorView.mustache");
+        $rolUsuario = $_SESSION['rol']? $_SESSION['rol']['nombre'] : false;
+        if($rolUsuario == 'ESCRITOR' || $rolUsuario == 'ADMINISTRADOR' )
+            echo $this->render->render("view/escritorView.mustache");
+        else
+            echo $this->render->redirect("/");
     }
+
+
 
 
 }
