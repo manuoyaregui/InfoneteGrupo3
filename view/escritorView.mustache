@@ -67,8 +67,8 @@
                                     <a class="btn nav-link" target="IframeCrearProducto" onclick="toggleIfrm('IfCrearProducto')">
                                         Crear Producto
                                     </a>
-                                    <a class="btn nav-link" data-bs-toggle="modal" data-bs-target="#modalEditarProducto">
-                                        Editar
+                                    <a href="/escritor/listarProductos" class="btn nav-link">
+                                        Listar Productos
                                     </a>
                                     <a class="btn nav-link" data-bs-toggle="modal" data-bs-target="#modalEliminarProducto">
                                         Eliminar
@@ -179,6 +179,31 @@
                     </div>
                 </div>
 
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Tipo de Producto</th>
+                        <th scope="col">Portada</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#productos}}
+                        <tr>
+                            <th scope="row">{{idProducto}}</th>
+                            <td>{{nombre}}</td>
+                            <td>{{tipoProducto}}</td>
+                            <td><img src="/public/img/portadasDeProducto/{{portada}}" width="50"></td>
+                            <td>
+                                <a href="/escritor/llamarFormularioProducto/id={{idProducto}}" class="btn btn-info">Editar</a>
+                                <a href="/escritor/eliminarProducto/id={{idProducto}}" class="btn btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                    {{/productos}}
+                    </tbody>
+                </table>
                 <!--Iframe-->
                 <iframe name="IframeCrearProducto" id="IfCrearProducto" src="http://localhost/producto" frameborder="1" style="visibility: hidden" width="600" height="800"></iframe>
 
@@ -200,7 +225,7 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="public/js/vistaEscritor.js"></script>
+<script src="/public/js/vistaEscritor.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <script src="assets/demo/chart-area-demo.js"></script>
 <script src="assets/demo/chart-bar-demo.js"></script>
