@@ -29,7 +29,7 @@ class RegistrarseController
 
             if ($resultado){
                 $data["mensaje"] = "Registrado correctamente";
-                echo $this->render->render("view/inicio.mustache", $data);
+                echo $this->render->render("view/login.mustache", $data);
             } else{
                 $data["mensaje"] = "Ese mail ya esta registrado";
                 echo $this->render->render("view/quieroSerParteView.mustache", $data);
