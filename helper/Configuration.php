@@ -86,8 +86,8 @@ class Configuration{
     }
 
     public function getEscritorController(){
-
-        return new EscritorController($this->getRender());
+        $productoModel = $this->getProductoModel();
+        return new EscritorController($this->getRender(), $productoModel);
     }
 
     //------------------------------------------------------------------//
