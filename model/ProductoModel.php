@@ -24,4 +24,23 @@
             return $this->database->query($consulta);
         }
 
+        public function listarProductos() {
+            $sqlQuery = "SELECT p.*, tp.nombre AS tipoProducto
+                            FROM producto p JOIN tipo_producto tp ON p.idTipo = tp.idTipo";
+
+            return $this->database->query($sqlQuery);
+        }
+
+        public function editarProducto($id, $nombre, $idTipo, $portada) {
+            $sqlQuery = "UPDATE producto 
+                            SET nombre = '".$nombre."', idTipo = '".$idTipo."', portada = '".$portada."' 
+                         WHERE idProducto = '$id'";
+            return $this->database->execute($sqlQuery);
+        }
+
+        public function eliminarProducto($id) {
+            $sqlQuery = "DELETE FROM producto WHERE idProducto = " . $id;
+            return $this->database->execute($sqlQuery);
+        }
+
     }

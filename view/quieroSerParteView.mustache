@@ -10,12 +10,46 @@
         <input class="form-control my-3" type="text" name="nombre" placeholder="Ingrese su nombre" required>
         <input class="form-control my-3" type="email" name="email" placeholder="Ingrese su email" required>
         <input class="form-control my-3" type="password" name="password" placeholder="Ingrese su contraseña" required>
-        <input class="form-control my-3" type="text" name="direccion" placeholder="Ingrese su direccion" required>
 
-        <input class="btn btn-outline-dark" type="submit" value="Registrar">
+        <input class="form-control my-3" type="hidden" id="latitud" name="latitud">
+        <input class="form-control my-3" type="hidden" id="longitud" name="longitud">
+
+
+        <div id="map" class="m-auto rounded-3" style="width: 100%; height: 300px;"></div>
+
+        <input class="btn btn-outline-dark mt-3" type="submit" value="Registrar">
     </form>
 
     <h4 class="alert text-danger text-center">{{mensaje}}</h4>
 
 </div>
+
+<script>
+    function initMap(){
+        var coordenadas = {
+            lat: -34.67312,
+            lng: -58.48061
+        };
+        var map = new google.maps.Map(document.getElementById('map'),{
+            zoom: 15,
+            center: coordenadas
+        });
+        var marker = new google.maps.Marker({
+            map: map,
+            position: coordenadas,
+            draggable: true
+        });
+
+        /* Esto salta como deprecado, pero no pude hacerlo andar con addEventListener
+        *  (no estoy seguro si es por un problema de la api key)
+        *  */
+        google.maps.event.addListener(marker,'dragend',function() {
+            document.querySelector('#latitud').value = marker.getPosition().lat();
+            document.querySelector('#longitud').value = marker.getPosition().lng();
+        });
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=initMap"></script>
+
 {{> footer}}

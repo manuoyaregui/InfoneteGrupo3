@@ -22,11 +22,11 @@ class login
 
         if ($email == null){
             $data["mensaje"] = "Ingrese un email valido ";
-            echo $this->render->render("view/login.mustache", $data) ;
+            echo $this->render->render("view/login.mustache", $data);
 
         }elseif ($passwordCifrada == null){
             $data["mensaje"] = "Ingrese una contraseña valida ";
-            echo $this->render->render("view/login.mustache", $data) ;
+            echo $this->render->render("view/login.mustache", $data);
 
         }else if ($this->loginModel->procesarFormularioLogin($email,$passwordCifrada) == 'ok'){
             $_SESSION["usuario"] = $email;

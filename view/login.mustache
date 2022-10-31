@@ -1,5 +1,13 @@
 {{> header}}
-<div class="container w-50">
+<div class="container w-50 mb-3">
+
+    {{#mensaje}}
+    <div class="alert alert-success alert-dismissible fade show my-3" role="alert">
+        <h2 class="fs-4 text-white text-center">{{mensaje}}</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {{/mensaje}}
+
     <h2 class="display-4 text-center my-3">Ingresar</h2>
 
     <form action="/login/FormularioLogin" method="post">
@@ -9,8 +17,6 @@
 
         <input class="btn btn-outline-dark" type="submit" value="Ingresar">
     </form>
-
-    <h4 class="alert text-danger text-center">{{mensaje}}</h4>
 
 </div>
 {{> footer}}
