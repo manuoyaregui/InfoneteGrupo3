@@ -67,10 +67,13 @@
                                     <a class="btn nav-link" target="IframeCrearProducto" onclick="toggleIfrm('IfCrearProducto')">
                                         Crear Producto
                                     </a>
-                                    <a class="btn nav-link" data-bs-toggle="modal" data-bs-target="#modalEditarProducto">
+                                    <a class="btn nav-link" target="IframeEditarProducto"onclick="toggleIfrm('IfEditarProducto')">
                                         Editar
                                     </a>
-                                    <a class="btn nav-link" data-bs-toggle="modal" data-bs-target="#modalEliminarProducto">
+                                    <a class="btn nav-link"
+                                       target="IframeEliminarProducto"
+                                       onclick="toggleIfrm('IfEliminarProducto')"
+                                    >
                                         Eliminar
                                     </a>
                                 </nav>
@@ -81,7 +84,7 @@
                             </a>
                             <div class="collapse" id="pagesCollapseEdiciones" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/escritor">Crear</a>
+                                    <a class="btn nav-link" target="IframeCrearEdicion" onclick="toggleIfrm('IfCrearEdicion')">Crear</a>
                                     <a class="nav-link" href="/escritor">Editar</a>
                                     <a class="nav-link" href="/escritor">Eliminar</a>
                                 </nav>
@@ -178,9 +181,36 @@
                         </div>
                     </div>
                 </div>
+                <!--Iframe Inicial-->
+                <iframe class="formsDeAcciones w-100"
+                        src="http://localhost/iFrame/"
+                        style="display: block" height="800"></iframe>
 
-                <!--Iframe-->
-                <iframe name="IframeCrearProducto" id="IfCrearProducto" src="http://localhost/producto" frameborder="1" style="visibility: hidden" width="600" height="800"></iframe>
+                <!--Iframes De Productos-->
+                <iframe class="formsDeAcciones w-100"
+                        name="IframeCrearProducto"
+                        id="IfCrearProducto"
+                        src="http://localhost/iFrame/crearProducto"
+                        style="display: none" height="800"></iframe>
+
+                <iframe class="formsDeAcciones w-100"
+                        name="IframeEditarProducto"
+                        id="IfEditarProducto"
+                        src="http://localhost/iFrame/editarProducto"
+                        style="display: none" height="800"></iframe>
+
+                <iframe class="formsDeAcciones w-100"
+                        name="IframeEliminarProducto"
+                        id="IfEliminarProducto"
+                        src="http://localhost/iFrame/eliminarProducto"
+                        style="display: none" height="800"></iframe>
+
+                <!--Iframes De Articulos-->
+                <iframe class="formsDeAcciones w-100"
+                        name="IframeCrearEdicion"
+                        id="IfCrearEdicion"
+                        src="http://localhost/iFrame/crearEdicion"
+                        style="display: none" height="800"></iframe>
 
             </div>
 
@@ -209,16 +239,17 @@
 
 <script type="text/javascript">
 
+
     function toggleIfrm(id) {
-        if(document.getElementById(id).style.visibility=="hidden") {
-
-            document.getElementById(id).style.visibility="visible";
-
-        } else {
-
-            document.getElementById(id).style.visibility="hidden";
-
+        /*obtengo todos los elementos de clase formsDeAcciones
+            pongo todos visibility hidden
+            muestro el que tenga el ID
+        * */
+        let formsDeAcciones = document.getElementsByClassName('formsDeAcciones')
+        for (const formAccion of formsDeAcciones) {
+            formAccion.style.display="none";
         }
+        document.getElementById(id).style.display = "block";
 
     }
 </script>

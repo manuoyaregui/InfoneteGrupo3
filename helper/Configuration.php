@@ -14,6 +14,7 @@ include_once ("controller/RegistrarseController.php");
 include_once ("controller/InicioController.php");
 include_once("controller/ProductoController.php");
 include_once("controller/EscritorController.php");
+include_once("controller/IFrameController.php");
 
 
 
@@ -88,6 +89,10 @@ class Configuration{
     public function getEscritorController(){
 
         return new EscritorController($this->getRender());
+    }
+    public function getIFrameController(){
+
+        return new IFrameController($this->getRender());
     }
 
     //------------------------------------------------------------------//
