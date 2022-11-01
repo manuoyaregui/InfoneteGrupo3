@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `articulo`;
 
 CREATE TABLE `articulo` (
-                            `idArticulo` int(11) NOT NULL,
-                            `titulo` text NOT NULL,
-                            `descripcion` text NOT NULL,
-                            `ubicacion` varchar(16) NOT NULL
+`idArticulo` int(11) NOT NULL,
+`titulo` text NOT NULL,
+`descripcion` text NOT NULL,
+`ubicacion` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -42,10 +42,10 @@ CREATE TABLE `articulo` (
 --
 DROP TABLE IF EXISTS `edicion`;
 CREATE TABLE `edicion` (
-                           `idEdicion` int(11) NOT NULL,
-                           `numero` int(11) NOT NULL,
-                           `precio` float NOT NULL,
-                           `idProducto` int(11) NOT NULL
+`idEdicion` int(11) NOT NULL,
+`numero` int(11) NOT NULL,
+`precio` float NOT NULL,
+`idProducto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -55,9 +55,9 @@ CREATE TABLE `edicion` (
 --
 DROP TABLE IF EXISTS `edicion_seccion_articulos` CASCADE ;
 CREATE TABLE `edicion_seccion_articulos` (
-                                             `idEdicion` int(11) NOT NULL,
-                                             `idSeccion` int(11) NOT NULL,
-                                             `idArticulo` int(11) NOT NULL
+`idEdicion` int(11) NOT NULL,
+`idSeccion` int(11) NOT NULL,
+`idArticulo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -67,8 +67,8 @@ CREATE TABLE `edicion_seccion_articulos` (
 --
 DROP TABLE IF EXISTS `estado`;
 CREATE TABLE `estado` (
-                          `idEstado` int(11) NOT NULL,
-                          `nombre` text NOT NULL
+`idEstado` int(11) NOT NULL,
+`nombre` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -76,9 +76,9 @@ CREATE TABLE `estado` (
 --
 
 INSERT INTO `estado` (`idEstado`, `nombre`) VALUES
-                                                (1, 'INACTIVO'),
-                                                (2, 'ACTIVO'),
-                                                (3, 'BLOQUEADO');
+(1, 'INACTIVO'),
+(2, 'ACTIVO'),
+(3, 'BLOQUEADO');
 
 -- --------------------------------------------------------
 
@@ -88,10 +88,10 @@ INSERT INTO `estado` (`idEstado`, `nombre`) VALUES
 --
 DROP TABLE IF EXISTS `producto`;
 CREATE TABLE `producto` (
-                            `idProducto` int(11) NOT NULL,
-                            `nombre` text NOT NULL,
-                            `idTipo` int(11) NOT NULL,
-                            `portada` text DEFAULT NULL
+`idProducto` int(11) NOT NULL,
+`nombre` text NOT NULL,
+`idTipo` int(11) NOT NULL,
+`portada` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -99,15 +99,15 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`idProducto`, `nombre`, `idTipo`, `portada`) VALUES
-                                                                         (1, 'CLARIN', 2, 'clarin.jpg'),
-                                                                         (2, 'LA NACION', 2, 'la-nacion.jpg'),
-                                                                         (3, 'PAGINA 12', 2, 'pagina-12.jpg'),
-                                                                         (4, 'LA CAPITAL ', 2, 'la-capital.jpg'),
-                                                                         (5, 'EL DIA', 2, 'el-dia.jpg'),
-                                                                         (6, 'LA GACETA', 2, 'la-gaceta.jpg'),
-                                                                         (7, 'LA VOZ', 2, 'la-voz.jpg'),
-                                                                         (8, 'OHLALA!', 1, 'ohlala.jpg'),
-                                                                         (9, 'PARATI', 1, 'parati.jpg');
+(1, 'CLARIN', 2, 'clarin.jpg'),
+(2, 'LA NACION', 2, 'la-nacion.jpg'),
+(3, 'PAGINA 12', 2, 'pagina-12.jpg'),
+(4, 'LA CAPITAL ', 2, 'la-capital.jpg'),
+(5, 'EL DIA', 2, 'el-dia.jpg'),
+(6, 'LA GACETA', 2, 'la-gaceta.jpg'),
+(7, 'LA VOZ', 2, 'la-voz.jpg'),
+(8, 'OHLALA!', 1, 'ohlala.jpg'),
+(9, 'PARATI', 1, 'parati.jpg');
 
 
 -- --------------------------------------------------------
@@ -117,8 +117,8 @@ INSERT INTO `producto` (`idProducto`, `nombre`, `idTipo`, `portada`) VALUES
 --
 DROP TABLE IF EXISTS `rol`;
 CREATE TABLE `rol` (
-                       `idRol` int(11) NOT NULL,
-                       `nombre` text NOT NULL
+`idRol` int(11) NOT NULL,
+`nombre` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -126,9 +126,9 @@ CREATE TABLE `rol` (
 --
 
 INSERT INTO `rol` (`idRol`, `nombre`) VALUES
-                                          (1, 'LECTOR'),
-                                          (2, 'ESCRITOR'),
-                                          (3, 'ADMINISTRADOR');
+(1, 'LECTOR'),
+(2, 'ESCRITOR'),
+(3, 'ADMINISTRADOR');
 
 -- --------------------------------------------------------
 
@@ -137,8 +137,8 @@ INSERT INTO `rol` (`idRol`, `nombre`) VALUES
 --
 DROP TABLE IF EXISTS `seccion`;
 CREATE TABLE `seccion` (
-                           `idSeccion` int(11) NOT NULL,
-                           `nombre` int(11) NOT NULL
+`idSeccion` int(11) NOT NULL,
+`nombre` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -148,8 +148,8 @@ CREATE TABLE `seccion` (
 --
 DROP TABLE IF EXISTS `tipo_producto`;
 CREATE TABLE `tipo_producto` (
-                                 `idTipo` int(11) NOT NULL,
-                                 `nombre` text NOT NULL
+`idTipo` int(11) NOT NULL,
+`nombre` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -157,8 +157,8 @@ CREATE TABLE `tipo_producto` (
 --
 
 INSERT INTO `tipo_producto` (`idTipo`, `nombre`) VALUES
-                                                     (1, 'REVISTA'),
-                                                     (2, 'DIARIO');
+(1, 'REVISTA'),
+(2, 'DIARIO');
 
 -- --------------------------------------------------------
 
@@ -167,14 +167,14 @@ INSERT INTO `tipo_producto` (`idTipo`, `nombre`) VALUES
 --
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
-                           `idUsuario` int(11) NOT NULL,
-                           `nombre` text NOT NULL,
-                           `email` varchar(40) NOT NULL,
-                           `password` text NOT NULL,
-                           `latitud` varchar(10) NOT NULL,
-                           `longitud` varchar(10) NOT NULL,
-                           `idRol` int(11) NOT NULL,
-                           `idEstado` int(11) NOT NULL
+`idUsuario` int(11) NOT NULL,
+`nombre` text NOT NULL,
+`email` varchar(40) NOT NULL,
+`password` text NOT NULL,
+`latitud` varchar(10) NOT NULL,
+`longitud` varchar(10) NOT NULL,
+`idRol` int(11) NOT NULL,
+`idEstado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -182,13 +182,13 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `password`, `latitud`, `longitud`, `idRol`, `idEstado`) VALUES
-                                                                                                                   (1, 'Alan', 'alan@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
-                                                                                                                   (2, 'Macarena', 'macarena@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
-                                                                                                                   (3, 'Miguel', 'miguel@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
-                                                                                                                   (4, 'Pedro', 'pedrito@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
-                                                                                                                   (5, 'Sofia', 'sofia@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
-                                                                                                                   (6, 'Graciela', 'graciela@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
-                                                                                                                   (7, 'Fernanda', 'escritor@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 2, 2);
+(1, 'Alan', 'alan@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
+(2, 'Macarena', 'macarena@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
+(3, 'Miguel', 'miguel@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
+(4, 'Pedro', 'pedrito@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
+(5, 'Sofia', 'sofia@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
+(6, 'Graciela', 'graciela@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
+(7, 'Fernanda', 'escritor@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 2, 2);
 
 
 --

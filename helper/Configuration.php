@@ -14,7 +14,7 @@ include_once ("controller/RegistrarseController.php");
 include_once ("controller/InicioController.php");
 include_once("controller/ProductoController.php");
 include_once("controller/EscritorController.php");
-include_once("controller/IFrameController.php");
+
 
 
 
@@ -90,10 +90,7 @@ class Configuration{
         $productoModel = $this->getProductoModel();
         return new EscritorController($this->getRender(), $productoModel);
     }
-    public function getIFrameController(){
 
-        return new IFrameController($this->getRender());
-    }
 
     //------------------------------------------------------------------//
 
