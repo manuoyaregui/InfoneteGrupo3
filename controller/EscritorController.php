@@ -18,10 +18,14 @@ class EscritorController
             echo $this->render->redirect("/");
     }
 
+    public function crearProducto(){
+        header('location: /producto');
+    }
+
     public function listarProductos() {
         $data["productos"] = $this->productoModel->listarProductos();
 
-        echo $this->render->render("view/escritorView.mustache", $data);
+        echo $this->render->render("view/listarProductosView.mustache", $data);
     }
 
     public function editarProducto(){

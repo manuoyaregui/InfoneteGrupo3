@@ -188,7 +188,7 @@ INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `password`, `latitud`, `l
                                                                                                                    (4, 'Pedro', 'pedrito@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
                                                                                                                    (5, 'Sofia', 'sofia@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
                                                                                                                    (6, 'Graciela', 'graciela@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
-                                                                                                                   (7, 'Fernanda', 'escritor@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 1);
+                                                                                                                   (7, 'Fernanda', 'escritor@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 2, 2);
 
 
 --

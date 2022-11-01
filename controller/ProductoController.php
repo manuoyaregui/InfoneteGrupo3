@@ -15,7 +15,8 @@
             echo $this->render->render("view/crearProductoView.mustache");
         }
 
-        public function crearProducto() {
+        public function crearProducto()
+        {
 
             if (isset($_POST["nombre"]) && isset($_POST["tipoProducto"]) && isset($_FILES["portada"]["name"])) {
 
@@ -25,7 +26,7 @@
 
                 if (!empty($nombre) && !empty($idTipo)) {
 
-                    $nombreEnMayuscula = mb_strtoupper($nombre,'utf-8');
+                    $nombreEnMayuscula = mb_strtoupper($nombre, 'utf-8');
 
                     $resultado = $this->productoModel->crearProducto($nombreEnMayuscula, $idTipo, $portada);
 
@@ -38,12 +39,11 @@
                 }
 
                 if ($resultado) {
-                    header("Location: /escritor");
-                    exit();
+                    header('Location: /escritor/listarProductos');
+                    //exit();
                 }
 
             }
-
         }
 
         public function vistaPreviaProducto(){

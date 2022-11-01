@@ -7,7 +7,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Inicio</a></li>
             </ul>
-            <form class="d-flex align-items-center">
+            <div class="d-flex align-items-center">
                 {{#isLogged}}
                     <a class="btn btn-outline-dark" aria-current="page" href="/login/logout">Log out</a>
                 {{/isLogged}}
@@ -15,7 +15,10 @@
                     <a class="btn btn-outline-dark me-1" aria-current="page" href="/login">Login</a>
                     <a class="btn btn-outline-dark" aria-current="page" href="/registrarse">Registrarse</a>
                 {{/isLogged}}
-            </form>
+                {{#esEscritor}}
+                    <a class="btn btn-danger ms-2" aria-current="page" href="/escritor">Vista Escritor</a>
+                {{/esEscritor}}
+            </div>
         </div>
     </div>
 </nav>

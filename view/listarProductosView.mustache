@@ -1,0 +1,36 @@
+{{>header}}
+{{>nav2}}
+<div id="layoutSidenav">
+    {{>navLatEscritor}}
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+            <!-- contenido -->
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Tipo de Producto</th>
+                        <th scope="col">Portada</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#productos}}
+                        <tr>
+                            <th scope="row">{{idProducto}}</th>
+                            <td>{{nombre}}</td>
+                            <td>{{tipoProducto}}</td>
+                            <td><img src="/public/img/portadasDeProducto/{{portada}}" width="50"></td>
+                            <td>
+                                <a href="/escritor/llamarFormularioProducto/id={{idProducto}}" class="btn btn-info">Editar</a>
+                                <!--<a href="/escritor/eliminarProducto/id={{idProducto}}" class="btn btn-danger">Eliminar</a>-->
+                            </td>
+                        </tr>
+                    {{/productos}}
+                    </tbody>
+                </table>
+
+            </div>
+{{>footer}}
