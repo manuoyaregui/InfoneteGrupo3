@@ -186,8 +186,8 @@ INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `password`, `latitud`, `l
 (2, 'Macarena', 'macarena@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
 (3, 'Miguel', 'miguel@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
 (4, 'Pedro', 'pedrito@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
-(5, 'Sofia', 'sofia@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
-(6, 'Graciela', 'graciela@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
+(5, 'Sofia', 'admin@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 3, 2),
+(6, 'Graciela', 'editor@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 4, 2),
 (7, 'Fernanda', 'escritor@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 2, 2);
 
 
@@ -199,8 +199,8 @@ INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `password`, `latitud`, `l
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
-    ADD PRIMARY KEY (`idProducto`),
-    ADD KEY `idTipo` (`idTipo`);
+ADD PRIMARY KEY (`idProducto`),
+ADD KEY `idTipo` (`idTipo`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
