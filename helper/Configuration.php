@@ -109,14 +109,14 @@ class Configuration{
         $productoModel = $this->getProductoModel();
         $edicionModel = $this->getEdicionModel();
         $articuloModel = $this->getArticuloModel();
-        return new EscritorController($this->getRender(), $productoModel, $edicionModel, $articuloModel);
+        return new AdministradorController($this->getRender(), $productoModel, $edicionModel, $articuloModel);
     }
 
     public function getEditorController(){
         $productoModel = $this->getProductoModel();
         $edicionModel = $this->getEdicionModel();
         $articuloModel = $this->getArticuloModel();
-        return new EscritorController($this->getRender(), $productoModel, $edicionModel, $articuloModel);
+        return new EditorController($this->getRender(), $productoModel, $edicionModel, $articuloModel);
     }
 
 

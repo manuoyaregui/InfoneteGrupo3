@@ -8,13 +8,7 @@
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Inicio</a></li>
             </ul>
             <div class="d-flex align-items-center">
-                {{#isLogged}}
-                    <a class="btn btn-outline-dark" aria-current="page" href="/login/logout">Log out</a>
-                {{/isLogged}}
-                {{^isLogged}}
-                    <a class="btn btn-outline-dark me-1" aria-current="page" href="/login">Login</a>
-                    <a class="btn btn-outline-dark" aria-current="page" href="/registrarse">Registrarse</a>
-                {{/isLogged}}
+
                 {{#esEscritor}}
                     <a class="btn btn-danger ms-2" aria-current="page" href="/escritor">Vista Escritor</a>
                 {{/esEscritor}}
@@ -24,6 +18,15 @@
                 {{#esAdmin}}
                     <a class="btn btn-danger ms-2 m-2" aria-current="page" href="/administrador">Vista Admin</a>
                 {{/esAdmin}}
+
+                {{#isLogged}}
+                    <a class="btn btn-outline-dark" aria-current="page" href="/login/logout">Log out</a>
+                {{/isLogged}}
+                {{^isLogged}}
+                    <a class="btn btn-outline-dark me-1" aria-current="page" href="/login">Login</a>
+                    <a class="btn btn-outline-dark" aria-current="page" href="/registrarse">Registrarse</a>
+                {{/isLogged}}
+
             </div>
         </div>
     </div>
