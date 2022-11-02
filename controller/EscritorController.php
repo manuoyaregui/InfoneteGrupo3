@@ -16,7 +16,7 @@ class EscritorController
 
     public function execute(){
         $rolUsuario = $_SESSION['rol']? $_SESSION['rol']['nombre'] : false;
-        if($rolUsuario == 'ESCRITOR' || $rolUsuario == 'ADMINISTRADOR' )
+        if($rolUsuario === 'ESCRITOR')
             echo $this->render->render("view/escritorView.mustache");
         else
             echo $this->render->redirect("/");
@@ -85,16 +85,6 @@ class EscritorController
         }
     }
 
-/*    public function eliminarProducto() {
-        $id = $_GET["id"];
-
-        $resultado = $this->productoModel->eliminarProducto($id);
-
-        if ($resultado) {
-            header('Location: /escritor/listarProductos');
-        }
-
-    }*/
 
     public function llamarFormularioProducto() {
         $idProducto = $_GET["id"];

@@ -1,0 +1,48 @@
+<div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+                <div class="sb-sidenav-menu-heading">Core</div>
+                <a class="nav-link" href="/">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Vista de Lector
+                </a>
+                <div class="sb-sidenav-menu-heading">Interface</div>
+
+                <div class="nav-link sb-sidenav-menu-nested nav">
+                    <nav class="sb-sidenav-menu-nested nav">
+
+                        <h5 class="nav-link disabled"><i class="fas fa-book-open m-2"></i>Productos</h5>
+
+                        <div aria-labelledby="headingOne" >
+
+                            <a href="/escritor/listarProductos" class="btn nav-link">Listar Productos</a>
+
+                        </div>
+
+                        <h5>Ediciones</h5>
+
+                        <div  aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+
+                            <a href="/escritor/listarEdiciones" class="nav-link">Listar Ediciones</a>
+
+                        </div>
+
+                        <h5>Articulos</h5>
+
+                        <div aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+
+                            <a href="/escritor/listarArticulos" class="nav-link">Listar Articulos</a>
+
+                        </div>
+
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+        <div class="sb-sidenav-footer">
+            <div class="small">Logged in as: {{rol}}</div>
+        </div>
+    </nav>
+</div>

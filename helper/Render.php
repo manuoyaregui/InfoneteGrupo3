@@ -19,7 +19,7 @@ class Render{
     }
 
     public function redirect($destination){
-        header("location: ".$destination);
+        header("'location: ".$destination ."'");
         exit();
     }
 
@@ -41,7 +41,13 @@ class Render{
                 switch ($rolUsuario) {
                     case 'ADMINISTRADOR':
                         $data['esAdmin'] = true;
-                        $data['esEscritor'] = true;
+                        $data['esEditor'] = false;
+                        $data['esEscritor'] = false;
+                        $data['esLector'] = true;
+                        break;
+                    case 'EDITOR':
+                        $data['esEditor'] = true;
+                        $data['esEscritor'] = false;
                         $data['esLector'] = true;
                         break;
                     case 'ESCRITOR':

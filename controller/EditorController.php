@@ -13,4 +13,13 @@ class EditorController
         $this->edicionModel = $edicionModel;
         $this->articuloModel = $articuloModel;
     }
+
+    public function execute(){
+        $rolUsuario = $_SESSION['rol']? $_SESSION['rol']['nombre'] : false;
+        if($rolUsuario === 'EDITOR')
+            echo $this->render->render("view/editorView.mustache");
+        else
+            echo $this->render->redirect("/");
+    }
+
 }
