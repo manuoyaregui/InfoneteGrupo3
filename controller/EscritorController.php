@@ -95,7 +95,7 @@ class EscritorController
     }
 
     public function llamarFormCrearEdicion(){
-        echo $this->render->render("view/editarEdicionView.mustache");
+        echo $this->render->render("view/crearEdicionView.mustache");
     }
 
     public function listarEdiciones() {
@@ -106,7 +106,24 @@ class EscritorController
     }
 
     public function crearEdicion(){
-        //AGREGAR CODIGO
+        //AGREGAR
+        if (isset($_POST["numeroEdicion"]) && isset($_POST["precioEdicion"])) {
+
+            $numeroEdicion = $_POST["numeroEdicion"];
+            $precioEdicion = $_POST["precioEdicion"];
+
+            if (!empty($numeroEdicion) && !empty($precioEdicion)) {
+
+                $resultado = $this->edicionModel->crearEdicion($numeroEdicion, $precioEdicion);
+
+            }
+
+            if ($resultado) {
+                header('Location: /escritor/listarProductos');
+                //exit();
+            }
+
+        }
     }
 
     public function editarEdicion(){
