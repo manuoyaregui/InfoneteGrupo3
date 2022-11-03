@@ -168,7 +168,9 @@ class EscritorController
     }
 
     public function llamarFormCrearArticulo(){
-        echo $this->render->render("view/crearArticuloView.mustache");
+        $data["productos"] = $this->productoModel->listarProductos();
+
+        echo $this->render->render("view/crearArticuloView.mustache",$data);
     }
 
     public function listarArticulos() {
@@ -180,10 +182,25 @@ class EscritorController
 
     public function crearArticulo(){
         //AGREGAR CODIGO
+        $this->render->redirect("/escritor");
     }
 
     public function editarArticulo(){
         //AGREGAR CODIGO
+    }
+
+    public function getEdiciones(){
+        //obtengo el id por POST
+        //obtengo las ediciones del producto
+        //le paso por echo el html a imprimir
+
+        $idProducto = $_POST['producto'];
+
+        $edicionesObtenidas = $this->edicionModel->listaDeEdicionesDeUnProducto($idProducto);
+
+        foreach ($edicionesObtenidas as $edicion){
+            echo "<option value = '". $edicion['idEdicion']."'>" . $edicion['numero'] . "</option>";
+        }
     }
 
 }
