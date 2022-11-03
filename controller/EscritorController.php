@@ -94,6 +94,14 @@ class EscritorController
         echo $this->render->render("view/editarProducto.mustache", $data);
     }
 
+    public function llamarFormularioEdicion() {
+        $idEdicion = $_GET["id"];
+
+        $data["edicion"] = $this->edicionModel->getEdicionPorId($idEdicion);
+        $data["productos"] = $this->productoModel->listarProductos();
+
+        echo $this->render->render("view/editarEdicionView.mustache", $data);
+    }
     public function llamarFormCrearEdicion(){
         $data["productos"] = $this->productoModel->listarProductos();
 
@@ -104,7 +112,7 @@ class EscritorController
         //AGREGAR CODIGO EN EL MODEL EDICION PARA QUE FUNCIONE LISTAR
         $data["ediciones"] = $this->edicionModel->listarEdiciones();
 
-        echo $this->render->render("view/listarEdicionesView.mustache", $data);
+        echo $this->render->render("view/listarEdicionView.mustache", $data);
     }
 
     public function crearEdicion(){
@@ -122,7 +130,7 @@ class EscritorController
             }
 
             if ($resultado) {
-                header('Location: /escritor/listarProductos');
+                header('Location: /escritor/listarEdiciones');
                 //exit();
             } else{
                 $data ["mensaje"] = "Esa edicion ya existe.";
@@ -130,12 +138,33 @@ class EscritorController
                 $data["productos"] = $this->productoModel->listarProductos();
                 echo $this->render->render("view/crearEdicionView.mustache", $data);
             }
-
         }
     }
 
     public function editarEdicion(){
-        //AGREGAR CODIGO
+        $idEdicion = $_GET["id"];
+        if (isset($_POST["numeroEdicion"]) && isset($_POST["precioEdicion"]) && isset($_POST["idProducto"])) {
+
+            $numeroEdicion = $_POST["numeroEdicion"];
+            $precioEdicion = $_POST["precioEdicion"];
+            $idProducto = $_POST["idProducto"];
+
+            if (!empty($numeroEdicion) && !empty($precioEdicion) && !empty($idProducto)) {
+
+                $resultado = $this->edicionModel->editarEdicion($idEdicion, $numeroEdicion, $precioEdicion, $idProducto);
+
+            }
+
+            if ($resultado) {
+                header('Location: /escritor/listarEdiciones');
+                exit();
+            } else{
+                $data ["mensaje"] = "Esa edicion ya existe.";
+                $data ["listaDeEdiciones"] = $this->edicionModel->listaDeEdicionesDeUnProducto($idProducto);
+                $data["productos"] = $this->productoModel->listarProductos();
+                echo $this->render->render("view/crearEdicionView.mustache", $data);
+            }
+        }
     }
 
     public function llamarFormCrearArticulo(){

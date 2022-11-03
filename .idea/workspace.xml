@@ -5,8 +5,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/EscritorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/EscritorController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/EdicionModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/EdicionModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/crearEdicionView.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/crearEdicionView.mustache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/listarProductosView.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/listarProductosView.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/editarEdicionView.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/editarEdicionView.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/listarEdicionView.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/listarEdicionView.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/partial/navLatEscritor.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/partial/navLatEscritor.mustache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +51,7 @@
       <workItem from="1666625646784" duration="247000" />
       <workItem from="1666735318720" duration="172000" />
       <workItem from="1666735547439" duration="280000" />
-      <workItem from="1667425497531" duration="11217000" />
+      <workItem from="1667425497531" duration="18760000" />
     </task>
     <servers />
   </component>
