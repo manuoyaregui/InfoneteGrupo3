@@ -6,12 +6,23 @@
         <main>
             <div class="container-fluid px-4">
 
+
                 <!-- formulario -->
                 <div class="w-50 my-4 mx-auto">
 
                     <h2 class="mb-4 display-4 text-center">Crear edición</h2>
 
                     <form action="/escritor/crearEdicion" method="post">
+
+                        <div class="mb-3">
+                            <label for="tipo-producto" class="form-label" >Diario o revista al que pertenece</label>
+                            <select class="form-select" name="idProducto" required>
+                                <option disabled selected>Seleccione a que diario o revista pertenece</option>
+                            {{#productos}}
+                                <option value="{{idProducto}}">{{nombre}}</option>
+                            {{/productos}}
+                            </select>
+                        </div>
 
                         <div class="mb-3">
                             <label for="numero-edicion" class="form-label">Número de la edición</label>
@@ -26,5 +37,7 @@
                         <input type="submit" class="btn btn-outline-dark" value="Crear">
                     </form>
                 </div>
+                <h4 class="alert text-danger text-center">{{mensaje}}</h4>
+                <h4 class="alert text-danger text-center">Las ediciones existentes son : {{#listaDeEdiciones}} - {{numero}}  {{/listaDeEdiciones}}</h4>
             </div>
 {{>footer}}
