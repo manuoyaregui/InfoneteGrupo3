@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b38509c-9227-4b9c-90d7-89fb18eed3c5" name="Changes" comment="Se idento para que quede bonito nada mas">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/EscritorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/EscritorController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/EdicionModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/EdicionModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/crearEdicionView.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/crearEdicionView.mustache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/listarProductosView.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/listarProductosView.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +47,7 @@
       <workItem from="1666735318720" duration="172000" />
       <workItem from="1666735547439" duration="280000" />
       <workItem from="1667425497531" duration="11217000" />
+      <workItem from="1667439293604" duration="344000" />
     </task>
     <servers />
   </component>
