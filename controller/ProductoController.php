@@ -15,36 +15,6 @@
             echo $this->render->render("view/crearProductoView.mustache");
         }
 
-        public function crearProducto() {
-
-            if (isset($_POST["nombre"]) && isset($_POST["tipoProducto"]) && isset($_FILES["portada"]["name"])) {
-
-                $nombre = $_POST["nombre"];
-                $idTipo = $_POST["tipoProducto"];
-                $portada = str_replace(" ", "-", $_FILES["portada"]["name"]);
-
-                if (!empty($nombre) && !empty($idTipo)) {
-
-                    $nombreEnMayuscula = mb_strtoupper($nombre,'utf-8');
-
-                    $resultado = $this->productoModel->crearProducto($nombreEnMayuscula, $idTipo, $portada);
-
-                    if (!empty($portada)) {
-
-                        move_uploaded_file($_FILES["portada"]["tmp_name"], "public/img/portadasDeProducto/" . $portada);
-
-                    }
-
-                }
-
-                if ($resultado) {
-                    header("Location: /escritor");
-                    exit();
-                }
-
-            }
-
-        }
 
         public function vistaPreviaProducto(){
             if( isset($_GET['idProducto'])  && !empty($_GET['idProducto']) )

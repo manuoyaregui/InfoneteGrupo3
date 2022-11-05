@@ -8,12 +8,16 @@ include_once ("model/LoginModel.php");
 include_once ("model/RegistrarseModel.php");
 include_once("model/ProductoModel.php");
 include_once("model/InicioModel.php");
+include_once("model/EdicionModel.php");
+include_once ("model/ArticuloModel.php");
 
 include_once("controller/LoginController.php");
 include_once ("controller/RegistrarseController.php");
 include_once ("controller/InicioController.php");
 include_once("controller/ProductoController.php");
 include_once("controller/EscritorController.php");
+include_once("controller/EditorController.php");
+include_once ("controller/AdministradorController.php");
 
 
 
@@ -81,14 +85,40 @@ class Configuration{
         $productoModel = $this->getProductoModel();
         return new ProductoController($this->getRender(), $productoModel);
     }
+
     public function getProductoModel() {
         return new ProductoModel($this->getDatabase());
     }
 
+    public function getEdicionModel() {
+        return new EdicionModel($this->getDatabase());
+    }
+
+    public function getArticuloModel() {
+        return new ArticuloModel($this->getDatabase());
+    }
+
     public function getEscritorController(){
         $productoModel = $this->getProductoModel();
-        return new EscritorController($this->getRender(), $productoModel);
+        $edicionModel = $this->getEdicionModel();
+        $articuloModel = $this->getArticuloModel();
+        return new EscritorController($this->getRender(), $productoModel, $edicionModel, $articuloModel);
     }
+
+    public function getAdministradorController(){
+        $productoModel = $this->getProductoModel();
+        $edicionModel = $this->getEdicionModel();
+        $articuloModel = $this->getArticuloModel();
+        return new AdministradorController($this->getRender(), $productoModel, $edicionModel, $articuloModel);
+    }
+
+    public function getEditorController(){
+        $productoModel = $this->getProductoModel();
+        $edicionModel = $this->getEdicionModel();
+        $articuloModel = $this->getArticuloModel();
+        return new EditorController($this->getRender(), $productoModel, $edicionModel, $articuloModel);
+    }
+
 
     //------------------------------------------------------------------//
 

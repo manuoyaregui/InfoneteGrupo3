@@ -13,7 +13,7 @@ class RegistrarseController
 
     public function execute()
     {
-        echo $this->render->render("view/quieroSerParteView.mustache");
+        echo $this->render->render("view/registroView.mustache");
     }
 
     public function procesarFormularioRegistrarseLector(){
@@ -32,12 +32,12 @@ class RegistrarseController
                 echo $this->render->render("view/login.mustache", $data);
             } else{
                 $data["mensaje"] = "Ese mail ya esta registrado";
-                echo $this->render->render("view/quieroSerParteView.mustache", $data);
+                echo $this->render->render("view/registroView.mustache", $data);
             }
 
         } else {
             $data["mensaje"] = "Los campos son obligatorios";
-            echo $this->render->render("view/quieroSerParteView.mustache", $data);
+            echo $this->render->render("view/registroView.mustache", $data);
         }
 
     }
