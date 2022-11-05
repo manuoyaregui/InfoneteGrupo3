@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="2b38509c-9227-4b9c-90d7-89fb18eed3c5" name="Changes" comment="Se idento para que quede bonito nada mas">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/EscritorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/EscritorController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/databaseQuery/infonete.sql" beforeDir="false" afterPath="$PROJECT_DIR$/databaseQuery/infonete.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helper/Render.php" beforeDir="false" afterPath="$PROJECT_DIR$/helper/Render.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/crearArticuloView.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/crearArticuloView.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/crearEdicionView.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/view/crearEdicionView.mustache" afterDir="false" />
+>>>>>>> 25a14df2168fbd0a1f25285cfbe1988092c46dca
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,16 +36,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/xampp/htdocs&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/xampp/htdocs",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\public\jQuery" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -46,8 +68,13 @@
       <workItem from="1666625646784" duration="247000" />
       <workItem from="1666735318720" duration="172000" />
       <workItem from="1666735547439" duration="280000" />
+<<<<<<< HEAD
       <workItem from="1667425497531" duration="11217000" />
       <workItem from="1667439293604" duration="344000" />
+=======
+      <workItem from="1667425497531" duration="18760000" />
+      <workItem from="1667500300082" duration="8575000" />
+>>>>>>> 25a14df2168fbd0a1f25285cfbe1988092c46dca
     </task>
     <servers />
   </component>
@@ -64,5 +91,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

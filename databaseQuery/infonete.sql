@@ -7,9 +7,16 @@
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+drop schema if exists infonete;
+create schema if not exists infonete;
+use
+infonete;
+
+SET
+SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET
+time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -28,11 +35,12 @@ SET time_zone = "+00:00";
 --
 DROP TABLE IF EXISTS `articulo`;
 
-CREATE TABLE `articulo` (
-`idArticulo` int(11) NOT NULL,
-`titulo` text NOT NULL,
-`descripcion` text NOT NULL,
-`ubicacion` varchar(16) NOT NULL
+CREATE TABLE `articulo`
+(
+    `idArticulo`  int(11) NOT NULL,
+    `titulo`      text        NOT NULL,
+    `descripcion` text        NOT NULL,
+    `ubicacion`   varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -41,11 +49,12 @@ CREATE TABLE `articulo` (
 -- Estructura de tabla para la tabla `edicion`
 --
 DROP TABLE IF EXISTS `edicion`;
-CREATE TABLE `edicion` (
-`idEdicion` int(11) NOT NULL,
-`numero` int(11) NOT NULL,
-`precio` float NOT NULL,
-`idProducto` int(11) NOT NULL
+CREATE TABLE `edicion`
+(
+    `idEdicion`  int(11) NOT NULL,
+    `numero`     int(11) NOT NULL,
+    `precio`     float NOT NULL,
+    `idProducto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -53,11 +62,12 @@ CREATE TABLE `edicion` (
 --
 -- Estructura de tabla para la tabla `edicion_seccion_articulos`
 --
-DROP TABLE IF EXISTS `edicion_seccion_articulos` CASCADE ;
-CREATE TABLE `edicion_seccion_articulos` (
-`idEdicion` int(11) NOT NULL,
-`idSeccion` int(11) NOT NULL,
-`idArticulo` int(11) NOT NULL
+DROP TABLE IF EXISTS `edicion_seccion_articulos` CASCADE;
+CREATE TABLE `edicion_seccion_articulos`
+(
+    `idEdicion`  int(11) NOT NULL,
+    `idSeccion`  int(11) NOT NULL,
+    `idArticulo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -66,19 +76,20 @@ CREATE TABLE `edicion_seccion_articulos` (
 -- Estructura de tabla para la tabla `estado`
 --
 DROP TABLE IF EXISTS `estado`;
-CREATE TABLE `estado` (
-`idEstado` int(11) NOT NULL,
-`nombre` text NOT NULL
+CREATE TABLE `estado`
+(
+    `idEstado` int(11) NOT NULL,
+    `nombre`   text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `estado`
 --
 
-INSERT INTO `estado` (`idEstado`, `nombre`) VALUES
-(1, 'INACTIVO'),
-(2, 'ACTIVO'),
-(3, 'BLOQUEADO');
+INSERT INTO `estado` (`idEstado`, `nombre`)
+VALUES (1, ''INACTIVO''),
+       (2, ''ACTIVO''),
+       (3, ''BLOQUEADO'');
 
 -- --------------------------------------------------------
 
@@ -87,27 +98,28 @@ INSERT INTO `estado` (`idEstado`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `producto`
 --
 DROP TABLE IF EXISTS `producto`;
-CREATE TABLE `producto` (
-`idProducto` int(11) NOT NULL,
-`nombre` text NOT NULL,
-`idTipo` int(11) NOT NULL,
-`portada` text DEFAULT NULL
+CREATE TABLE `producto`
+(
+    `idProducto` int(11) NOT NULL,
+    `nombre`     text NOT NULL,
+    `idTipo`     int(11) NOT NULL,
+    `portada`    text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`idProducto`, `nombre`, `idTipo`, `portada`) VALUES
-(1, 'CLARIN', 2, 'clarin.jpg'),
-(2, 'LA NACION', 2, 'la-nacion.jpg'),
-(3, 'PAGINA 12', 2, 'pagina-12.jpg'),
-(4, 'LA CAPITAL ', 2, 'la-capital.jpg'),
-(5, 'EL DIA', 2, 'el-dia.jpg'),
-(6, 'LA GACETA', 2, 'la-gaceta.jpg'),
-(7, 'LA VOZ', 2, 'la-voz.jpg'),
-(8, 'OHLALA!', 1, 'ohlala.jpg'),
-(9, 'PARATI', 1, 'parati.jpg');
+INSERT INTO `producto` (`idProducto`, `nombre`, `idTipo`, `portada`)
+VALUES (1, ''CLARIN'', 2, ''clarin.jpg''),
+       (2, ''LA NACION'', 2, ''la-nacion.jpg''),
+       (3, ''PAGINA 12'', 2, ''pagina-12.jpg''),
+       (4, ''LA CAPITAL '', 2, ''la-capital.jpg''),
+       (5, ''EL DIA'', 2, ''el-dia.jpg''),
+       (6, ''LA GACETA'', 2, ''la-gaceta.jpg''),
+       (7, ''LA VOZ'', 2, ''la-voz.jpg''),
+       (8, ''OHLALA!'', 1, ''ohlala.jpg''),
+       (9, ''PARATI'', 1, ''parati.jpg'');
 
 
 -- --------------------------------------------------------
@@ -116,19 +128,20 @@ INSERT INTO `producto` (`idProducto`, `nombre`, `idTipo`, `portada`) VALUES
 -- Estructura de tabla para la tabla `rol`
 --
 DROP TABLE IF EXISTS `rol`;
-CREATE TABLE `rol` (
-`idRol` int(11) NOT NULL,
-`nombre` text NOT NULL
+CREATE TABLE `rol`
+(
+    `idRol`  int(11) NOT NULL,
+    `nombre` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `rol`
 --
 
-INSERT INTO `rol` (`idRol`, `nombre`) VALUES
-(1, 'LECTOR'),
-(2, 'ESCRITOR'),
-(3, 'ADMINISTRADOR');
+INSERT INTO `rol` (`idRol`, `nombre`)
+VALUES (1, ''LECTOR''),
+       (2, ''ESCRITOR''),
+       (3, ''ADMINISTRADOR'');
 
 -- --------------------------------------------------------
 
@@ -136,9 +149,10 @@ INSERT INTO `rol` (`idRol`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `seccion`
 --
 DROP TABLE IF EXISTS `seccion`;
-CREATE TABLE `seccion` (
-`idSeccion` int(11) NOT NULL,
-`nombre` int(11) NOT NULL
+CREATE TABLE `seccion`
+(
+    `idSeccion` int(11) NOT NULL,
+    `nombre`    int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -147,18 +161,19 @@ CREATE TABLE `seccion` (
 -- Estructura de tabla para la tabla `tipo_producto`
 --
 DROP TABLE IF EXISTS `tipo_producto`;
-CREATE TABLE `tipo_producto` (
-`idTipo` int(11) NOT NULL,
-`nombre` text NOT NULL
+CREATE TABLE `tipo_producto`
+(
+    `idTipo` int(11) NOT NULL,
+    `nombre` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tipo_producto`
 --
 
-INSERT INTO `tipo_producto` (`idTipo`, `nombre`) VALUES
-(1, 'REVISTA'),
-(2, 'DIARIO');
+INSERT INTO `tipo_producto` (`idTipo`, `nombre`)
+VALUES (1, ''REVISTA''),
+       (2, ''DIARIO'');
 
 -- --------------------------------------------------------
 
@@ -166,29 +181,30 @@ INSERT INTO `tipo_producto` (`idTipo`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `usuario`
 --
 DROP TABLE IF EXISTS `usuario`;
-CREATE TABLE `usuario` (
-`idUsuario` int(11) NOT NULL,
-`nombre` text NOT NULL,
-`email` varchar(40) NOT NULL,
-`password` text NOT NULL,
-`latitud` varchar(10) NOT NULL,
-`longitud` varchar(10) NOT NULL,
-`idRol` int(11) NOT NULL,
-`idEstado` int(11) NOT NULL
+CREATE TABLE `usuario`
+(
+    `idUsuario` int(11) NOT NULL,
+    `nombre`    text        NOT NULL,
+    `email`     varchar(40) NOT NULL,
+    `password`  text        NOT NULL,
+    `latitud`   varchar(10) NOT NULL,
+    `longitud`  varchar(10) NOT NULL,
+    `idRol`     int(11) NOT NULL,
+    `idEstado`  int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `password`, `latitud`, `longitud`, `idRol`, `idEstado`) VALUES
-(1, 'Alan', 'alan@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
-(2, 'Macarena', 'macarena@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
-(3, 'Miguel', 'miguel@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
-(4, 'Pedro', 'pedrito@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, 2),
-(5, 'Sofia', 'admin@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 3, 2),
-(6, 'Graciela', 'editor@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 4, 2),
-(7, 'Fernanda', 'escritor@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 2, 2);
+INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `password`, `latitud`, `longitud`, `idRol`, `idEstado`)
+VALUES (1, ''Alan'', ''alan@mail.com'', ''81dc9bdb52d04dc20036dbd8313ed055'', ''0 '', '''', 1, 2),
+       (2, ''Macarena'', ''macarena@mail.com'', ''81dc9bdb52d04dc20036dbd8313ed055'', ''0 '', '''', 1, 2),
+       (3, ''Miguel'', ''miguel@mail.com'', ''81dc9bdb52d04dc20036dbd8313ed055'', ''0 '', '''', 1, 2),
+       (4, ''Pedro'', ''pedrito@mail.com'', ''81dc9bdb52d04dc20036dbd8313ed055'', ''0 '', '''', 1, 2),
+       (5, ''Sofia'', ''admin@mail.com'', ''81dc9bdb52d04dc20036dbd8313ed055'', ''0 '', '''', 3, 2),
+       (6, ''Graciela'', ''editor@mail.com'', ''81dc9bdb52d04dc20036dbd8313ed055'', ''0 '', '''', 2, 2),
+       (7, ''Fernanda'', ''escritor@gmail.com'', ''81dc9bdb52d04dc20036dbd8313ed055'', ''0 '', '''', 2, 2);
 
 
 --
@@ -199,7 +215,7 @@ INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `password`, `latitud`, `l
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
-ADD PRIMARY KEY (`idProducto`),
+    ADD PRIMARY KEY (`idProducto`),
 ADD KEY `idTipo` (`idTipo`);
 
 --
@@ -210,7 +226,7 @@ ADD KEY `idTipo` (`idTipo`);
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-    MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+    MODIFY `idProducto` int (11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas
@@ -232,8 +248,15 @@ ALTER TABLE `edicion`
 --
 ALTER TABLE `edicion_seccion_articulos`
     ADD CONSTRAINT `edicion_seccion_articulos_ibfk_1` FOREIGN KEY (`idEdicion`) REFERENCES `edicion` (`idEdicion`) ON UPDATE CASCADE ON DELETE CASCADE,
-    ADD CONSTRAINT `edicion_seccion_articulos_ibfk_2` FOREIGN KEY (`idArticulo`) REFERENCES `articulo` (`idArticulo`) ON UPDATE CASCADE ON DELETE CASCADE,
-    ADD CONSTRAINT `edicion_seccion_articulos_ibfk_3` FOREIGN KEY (`idSeccion`) REFERENCES `seccion` (`idSeccion`) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT `edicion_seccion_articulos_ibfk_2` FOREIGN KEY (`idArticulo`) REFERENCES `articulo` (`idArticulo`) ON
+UPDATE CASCADE
+ON
+DELETE CASCADE,
+    ADD CONSTRAINT `edicion_seccion_articulos_ibfk_3` FOREIGN KEY (`idSeccion`) REFERENCES `seccion` (`idSeccion`)
+ON
+UPDATE CASCADE
+ON
+DELETE CASCADE;
 
 --
 -- Filtros para la tabla `producto`
@@ -246,7 +269,10 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `usuario`
     ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`idRol`) ON UPDATE CASCADE ON DELETE CASCADE,
-    ADD CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`idEstado`) REFERENCES `estado` (`idEstado`) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`idEstado`) REFERENCES `estado` (`idEstado`) ON
+UPDATE CASCADE
+ON
+DELETE CASCADE;
 
 COMMIT;
 

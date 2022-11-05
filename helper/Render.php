@@ -19,7 +19,7 @@ class Render{
     }
 
     public function redirect($destination){
-        header("'location: ".$destination ."'");
+        header("Location: ".$destination);
         exit();
     }
 
