@@ -21,8 +21,8 @@ class RegistrarseModel
         return $this->database->query($sql);
     }
     private function crearUsuario($nombre, $email, $password, $latitud, $longitud, $idRol){
-        $sql = "INSERT INTO usuario (idUsuario,nombre, email, password, latitud, longitud, idRol, idEstado) 
-             VALUES (null,'".$nombre."','".$email."','".$password."','".$latitud."', '".$longitud."', '".$idRol."','2')";
+        $sql = "INSERT INTO usuario (nombre, email, password, latitud, longitud, idRol, idEstado) 
+             VALUES ('".$nombre."','".$email."','".$password."','".$latitud."', '".$longitud."', '".$idRol."','2')";
         return $this->database->execute($sql);
     }
 }
