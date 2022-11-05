@@ -10,7 +10,13 @@
 
         <input class="form-control my-3" type="text" name="nombre" placeholder="Ingrese su nombre" required>
         <input class="form-control my-3" type="email" name="email" placeholder="Ingrese su email" required>
-        <input class="form-control my-3" type="password" name="password" placeholder="Ingrese su contraseña" required>
+
+        <div class="input-group my-3">
+            <input class="form-control" type="password" name="password" id="campoPassword" placeholder="Ingrese su contraseña" required>
+            <button class="input-group-text" id="btnMostrarPassword"><i class="fa-solid fa-eye"></i></button>
+        </div>
+
+
 
         <input class="form-control my-3" type="hidden" id="latitud" name="latitud">
         <input class="form-control my-3" type="hidden" id="longitud" name="longitud">
@@ -49,6 +55,23 @@
             document.querySelector('#longitud').value = marker.getPosition().lng();
         });
     }
+</script>
+
+<script>
+
+    const campoPassword = document.querySelector('#campoPassword');
+    const btn = document.querySelector('#btnMostrarPassword');
+
+    btn.addEventListener('click', () => {
+
+        if (campoPassword.getAttribute('type') == 'password') {
+            campoPassword.setAttribute('type', 'text');
+        } else {
+            campoPassword.setAttribute('type', 'password');
+        }
+
+    });
+
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=initMap"></script>
