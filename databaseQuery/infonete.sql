@@ -1,15 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 05-11-2022 a las 18:41:43
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.1.2
-
-DROP SCHEMA IF EXISTS infonete;
-CREATE SCHEMA IF NOT EXISTS infonete;
-USE infonete;
+-- Tiempo de generación: 06-11-2022 a las 23:46:26
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,6 +20,10 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `infonete`
 --
+drop schema if exists infonete;
+create schema if not exists infonete;
+use infonete;
+
 
 -- --------------------------------------------------------
 
@@ -100,23 +100,24 @@ CREATE TABLE `producto` (
                             `idProducto` int(11) NOT NULL,
                             `nombre` text NOT NULL,
                             `idTipo` int(11) NOT NULL,
-                            `portada` text DEFAULT NULL
+                            `portada` text DEFAULT NULL,
+                            `idEstado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`idProducto`, `nombre`, `idTipo`, `portada`) VALUES
-                                                                         (1, 'CLARIN', 2, 'clarin.jpg'),
-                                                                         (2, 'LA NACION', 2, 'la-nacion.jpg'),
-                                                                         (3, 'PAGINA 12', 2, 'pagina-12.jpg'),
-                                                                         (4, 'LA CAPITAL ', 2, 'la-capital.jpg'),
-                                                                         (5, 'EL DIA', 2, 'el-dia.jpg'),
-                                                                         (6, 'LA GACETA', 2, 'la-gaceta.jpg'),
-                                                                         (7, 'LA VOZ', 2, 'la-voz.jpg'),
-                                                                         (8, 'OHLALA!', 1, 'ohlala.jpg'),
-                                                                         (9, 'PARATI', 1, 'parati.jpg');
+INSERT INTO `producto` (`idProducto`, `nombre`, `idTipo`, `portada`, `idEstado`) VALUES
+                                                                                     (1, 'CLARIN', 2, 'clarin.jpg', 2),
+                                                                                     (2, 'LA NACION', 2, 'la-nacion.jpg', 2),
+                                                                                     (3, 'PAGINA 12', 2, 'pagina-12.jpg', 2),
+                                                                                     (4, 'LA CAPITAL ', 2, 'la-capital.jpg', 1),
+                                                                                     (5, 'EL DIA', 2, 'el-dia.jpg', 1),
+                                                                                     (6, 'LA GACETA', 2, 'la-gaceta.jpg', 1),
+                                                                                     (7, 'LA VOZ', 2, 'la-voz.jpg', 1),
+                                                                                     (8, 'OHLALA!', 1, 'ohlala.jpg', 1),
+                                                                                     (9, 'PARATI', 1, 'parati.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -136,7 +137,8 @@ CREATE TABLE `rol` (
 INSERT INTO `rol` (`idRol`, `nombre`) VALUES
                                           (1, 'LECTOR'),
                                           (2, 'ESCRITOR'),
-                                          (3, 'ADMINISTRADOR');
+                                          (3, 'ADMINISTRADOR'),
+                                          (4, 'EDITOR');
 
 -- --------------------------------------------------------
 
@@ -196,7 +198,7 @@ INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `password`, `latitud`, `l
                                                                                                                                        (3, 'Miguel', 'miguel@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, '', 2),
                                                                                                                                        (4, 'Pedro', 'pedrito@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, '', 2),
                                                                                                                                        (5, 'Sofia', 'admin@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 3, '', 2),
-                                                                                                                                       (6, 'Graciela', 'editor@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 2, '', 2),
+                                                                                                                                       (6, 'Graciela', 'editor@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 4, '', 2),
                                                                                                                                        (7, 'Fernanda', 'escritor@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 2, '', 2);
 
 --
@@ -208,13 +210,22 @@ INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `password`, `latitud`, `l
 --
 ALTER TABLE `producto`
     ADD PRIMARY KEY (`idProducto`),
-    ADD KEY `idTipo` (`idTipo`);
+    ADD KEY `idTipo` (`idTipo`),
+    ADD KEY `idEstado` (`idEstado`);
+
+--
+-- Indices de la tabla `rol`
+--
+ALTER TABLE `rol`
+    ADD PRIMARY KEY (`idRol`);
 
 --
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-    ADD PRIMARY KEY (`idUsuario`);
+    ADD PRIMARY KEY (`idUsuario`),
+    ADD KEY `idRol` (`idRol`),
+    ADD KEY `idEstado` (`idEstado`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -227,10 +238,26 @@ ALTER TABLE `producto`
     MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT de la tabla `rol`
+--
+ALTER TABLE `rol`
+    MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
     MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `usuario`
+--
+ALTER TABLE `usuario`
+    ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`idRol`) REFERENCES `rol` (`idRol`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
