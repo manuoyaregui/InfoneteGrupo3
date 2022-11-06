@@ -9,7 +9,8 @@
         }
 
         public function crearProducto($nombre, $idTipo, $portada) {
-            $sqlQuery = "INSERT INTO producto (nombre, idTipo, portada) VALUES ('".$nombre."', '".$idTipo."', '".$portada."')";
+            $sqlQuery = "INSERT INTO producto (nombre, idTipo, portada,idEstado) 
+                         VALUES ('".$nombre."', '".$idTipo."', '".$portada."',1)";
             return $this->database->execute($sqlQuery);
         }
 
@@ -24,12 +25,12 @@
             return $this->database->query($consulta);
         }
 
-        public function listarProductos() {
+       /* public function listarProductos() {
             $sqlQuery = "SELECT p.*, tp.nombre AS tipoProducto
-                            FROM producto p JOIN tipo_producto tp ON p.idTipo = tp.idTipo";
-
+                         FROM producto p JOIN tipo_producto tp ON p.idTipo = tp.idTipo
+                         ";
             return $this->database->query($sqlQuery);
-        }
+        }*/
 
         public function editarProducto($id, $nombre, $idTipo, $portada) {
             $sqlQuery = "UPDATE producto 
@@ -38,24 +39,27 @@
             return $this->database->execute($sqlQuery);
         }
 
-        public function eliminarProducto($id) {
-            $sqlQuery = "DELETE FROM producto WHERE idProducto = " . $id;
+        public function bajaProducto($id) {
+            $sqlQuery = " FROM producto WHERE idProducto = " . $id;
             return $this->database->execute($sqlQuery);
         }
 
+        public function getProductos(){
+            $sql = "SELECT * FROM producto" ;
+            return $this->database->query($sql);
+        }
+
         public function getProductosRevista(){
-            $sqlQuery = "SELECT p.nombre, p.portada 
+            $sqlQuery = "SELECT * 
                          FROM producto p JOIN tipo_producto tp ON p.idTipo=tp.idTipo 
                          WHERE tp.nombre LIKE 'revista'";
-
             return $this->database->query($sqlQuery);
         }
 
         public function getProductosDiario(){
-            $sqlQuery = "SELECT p.nombre, p.portada 
+            $sqlQuery = "SELECT * 
                          FROM producto p JOIN tipo_producto tp ON p.idTipo=tp.idTipo 
                          WHERE tp.nombre LIKE 'diario'";
-
             return $this->database->query($sqlQuery);
         }
 

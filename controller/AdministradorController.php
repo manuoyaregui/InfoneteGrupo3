@@ -23,14 +23,14 @@ class AdministradorController
     }
 
 
-    /*    public function eliminarProducto() {
+    public function bajaProducto() {
         $id = $_GET["id"];
 
-        $resultado = $this->productoModel->eliminarProducto($id);
+        $resultado = $this->productoModel->bajaProducto($id);
 
         if ($resultado) {
             header('Location: /escritor/listarProductos');
         }
 
-    }*/
+    }
 }
