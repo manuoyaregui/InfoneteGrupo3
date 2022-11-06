@@ -1,7 +1,15 @@
 {{>header}}
 {{>nav2}}
 <div id="layoutSidenav">
-    {{>navLatEscritor}}
+    {{#esEscritor}}
+        {{>navLatEscritor}}
+    {{/esEscritor}}
+    {{#esEditor}}
+        {{>navLatEditor}}
+    {{/esEditor}}
+    {{#esAdmin}}
+        {{>navLatAdmin}}
+    {{/esAdmin}}
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">

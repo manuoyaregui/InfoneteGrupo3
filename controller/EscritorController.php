@@ -56,11 +56,7 @@ class EscritorController
         }
     }
 
-    public function listarProductos() {
-        $data["productos"] = $this->productoModel->listarProductos();
 
-        echo $this->render->render("view/listarProductosView.mustache", $data);
-    }
 
     public function editarProducto(){
         $id = $_GET["id"];

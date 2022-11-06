@@ -7,7 +7,6 @@ include_once("helper/UrlHelper.php");
 include_once ("model/LoginModel.php");
 include_once ("model/RegistrarseModel.php");
 include_once("model/ProductoModel.php");
-include_once("model/InicioModel.php");
 include_once("model/EdicionModel.php");
 include_once ("model/ArticuloModel.php");
 
@@ -72,14 +71,10 @@ class Configuration{
     }
 
     public function getInicioController(){
-        $inicioModel = $this->getInicioModel();
-        return new InicioController($inicioModel,$this->getRender());
+        $productoModel = $this->getproductoModel();
+        return new InicioController($productoModel,$this->getRender());
     }
 
-    public function getInicioModel(){
-        $database = $this->getDatabase();
-        return new InicioModel($database);
-    }
 
     public function getProductoController() {
         $productoModel = $this->getProductoModel();

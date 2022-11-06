@@ -25,12 +25,17 @@ class AdministradorController
 
     public function bajaProducto() {
         $id = $_GET["id"];
-
-        $resultado = $this->productoModel->bajaProducto($id);
-
+        $resultado = $this->productoModel->bloquearProducto($id);
         if ($resultado) {
-            header('Location: /escritor/listarProductos');
+            header('Location: /producto/listarProductos');
         }
+    }
 
+    public function altaProducto() {
+        $id = $_GET["id"];
+        $resultado = $this->productoModel->habilitarProducto($id);
+        if ($resultado) {
+            header('Location: /producto/listarProductos');
+        }
     }
 }

@@ -1,7 +1,15 @@
 {{>header}}
 {{>nav2}}
 <div id="layoutSidenav">
-    {{>navLatEscritor}}
+    {{#esEscritor}}
+        {{>navLatEscritor}}
+    {{/esEscritor}}
+    {{#esEditor}}
+        {{>navLatEditor}}
+    {{/esEditor}}
+    {{#esAdmin}}
+        {{>navLatAdmin}}
+    {{/esAdmin}}
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
@@ -14,6 +22,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Tipo de Producto</th>
+                        <th scope="col">Estado</th>
                         <th scope="col">Portada</th>
                         <th scope="col">Acciones</th>
                     </tr>
@@ -24,13 +33,18 @@
                             <th scope="row">{{idProducto}}</th>
                             <td>{{nombre}}</td>
                             <td>{{tipoProducto}}</td>
+                            <th>{{nombreEstado}}</th>
                             <td><img src="/public/img/portadasDeProducto/{{portada}}" width="50"></td>
                             <td>
                         {{#esEscritor}}
                                 <a href="/escritor/llamarFormularioProducto/id={{idProducto}}" class="btn btn-info">Editar</a>
                         {{/esEscritor}}
+                        {{#esEditor}}
+                            <a href="/administrador/altaProducto/id={{idProducto}}" class="btn btn-success">Habilitar</a>
+                        {{/esEditor}}
                         {{#esAdmin}}
-                                <a href="/administrador/bajaProducto/id={{idProducto}}" class="btn btn-danger">Dar de Baja</a>
+                                <a href="/administrador/bajaProducto/id={{idProducto}}" class="btn btn-danger">Baja</a>
+                                <a href="/administrador/altaProducto/id={{idProducto}}" class="btn btn-success">Alta</a>
                         {{/esAdmin}}
                             </td>
                         </tr>
