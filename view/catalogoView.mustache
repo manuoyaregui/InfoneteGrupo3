@@ -10,6 +10,20 @@
             </div>
         </header>
         <!-- Section-->
+        <section>
+
+                <div class="row ">
+                    <div class="btn-group center " role="group" aria-label="Basic example" style="margin-top: 1px;height: 60px">
+                        <button type="button " class="btn btn-dark" style="margin-right: 1px" onchange="listarDiarios()">DIARIOS</button>
+                        <button type="button" class="btn btn-dark" style="margin-left: 1px" onchange="listarRevistas()">REVISTAS</button>
+                    </div>
+                </div>
+
+
+
+
+        </section>
+        <!-- Section-->
         <section class="py-5">
 
         <div class="container px-4 px-lg-5 mt-5">
@@ -24,14 +38,14 @@
                                 <div class="text-center">
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">{{nombre}}</h5>
-                                    <!-- Product price-->
-                                    $40.00 - $80.00
+                                    <!-- Product price
+                                    $40.00 - $80.00-->
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
-                                    <a class="btn btn-outline-dark mt-auto" href="/producto/vistaPreviaProducto/idProducto={{idProducto}}">Ver ediciones</a>
+                                    <a class="btn btn-outline-dark mt-auto" href="/producto/vistaPreviaProducto/idProducto={{idProducto}}">Ver más</a>
                                 </div>
                             </div>
                         </div>
@@ -44,6 +58,9 @@
         </section>
         {{>footer}}
         <!-- Bootstrap core JS-->
+<script>
+   <!-- agregar ajax -->
+</script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

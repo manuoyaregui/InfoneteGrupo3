@@ -43,4 +43,20 @@
             return $this->database->execute($sqlQuery);
         }
 
+        public function getProductosRevista(){
+            $sqlQuery = "SELECT p.nombre, p.portada 
+                         FROM producto p JOIN tipo_producto tp ON p.idTipo=tp.idTipo 
+                         WHERE tp.nombre LIKE 'revista'";
+
+            return $this->database->query($sqlQuery);
+        }
+
+        public function getProductosDiario(){
+            $sqlQuery = "SELECT p.nombre, p.portada 
+                         FROM producto p JOIN tipo_producto tp ON p.idTipo=tp.idTipo 
+                         WHERE tp.nombre LIKE 'diario'";
+
+            return $this->database->query($sqlQuery);
+        }
+
     }
