@@ -2,6 +2,7 @@
 include_once("helper/MysqlDatabase.php");
 include_once("helper/Render.php");
 include_once("helper/UrlHelper.php");
+include_once("helper/Mailer.php");
 
 
 include_once ("model/LoginModel.php");
@@ -64,7 +65,8 @@ class Configuration{
 
     public function getRegistrarseController(){
         $registrarseModel = $this->getRegistrarseModel();
-        return new RegistrarseController($registrarseModel,$this->getRender());
+        $mailer = $this->getMailer();
+        return new RegistrarseController($registrarseModel, $this->getRender(), $this->getMailer());
     }
     public function getRegistrarseModel(){
         $database = $this->getDatabase();
@@ -121,5 +123,8 @@ class Configuration{
 
 
     //------------------------------------------------------------------//
+    public function getMailer() {
+        return new Mailer();
+    }
 
 }
