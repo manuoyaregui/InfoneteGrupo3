@@ -4,6 +4,13 @@
 {{>nav}}
 <div class="container w-50">
 
+    {{#mensajeActivacion}}
+        <div class="alert alert-success alert-dismissible fade show my-3" role="alert">
+            <h2 class="fs-4 text-white text-center">{{mensajeActivacion}}</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {{/mensajeActivacion}}
+
     <h2 class="display-4 text-center my-3">Registrarme en Infonete</h2>
 
     <form action="/registrarse/procesarFormularioRegistrarseLector" method="POST">
