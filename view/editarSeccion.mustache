@@ -1,0 +1,24 @@
+{{>header}}
+
+<div class="container w-50">
+
+    <h2 class="display-4 text-center my-3">Editar Sección</h2>
+
+    {{#seccionAEditar}}
+    <form action="/escritor/editarSeccion/id={{idSeccion}}" method="post" enctype="multipart/form-data">
+        <div class="mb-3 ">
+            <p class="text-center"><strong>Id Seccion </strong>= {{idSeccion}}</p>
+            <p class="text-center"><strong>Nombre Actual</strong> = {{nombre}}</p>
+        </div>
+        <hr>
+
+        <div class="mb-3">
+            <label for="nombre-seccion" class="form-label">Nuevo nombre de la Sección</label>
+            <input type="text" class="form-control" id="nombre-seccion" name="nombre-seccion" value="{{nombre}}">
+        </div>
+
+        <input type="submit" class="btn btn-outline-dark" value="Crear">
+    </form>
+    {{/seccionAEditar}}
+
+</div>

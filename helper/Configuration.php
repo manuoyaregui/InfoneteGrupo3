@@ -9,6 +9,8 @@ include_once ("model/RegistrarseModel.php");
 include_once("model/ProductoModel.php");
 include_once("model/EdicionModel.php");
 include_once ("model/ArticuloModel.php");
+include_once ("model/SeccionModel.php");
+
 
 include_once("controller/LoginController.php");
 include_once ("controller/RegistrarseController.php");
@@ -93,11 +95,16 @@ class Configuration{
         return new ArticuloModel($this->getDatabase());
     }
 
+    public function getSeccionModel(){
+        return new SeccionModel($this->getDatabase());
+    }
+
     public function getEscritorController(){
         $productoModel = $this->getProductoModel();
         $edicionModel = $this->getEdicionModel();
         $articuloModel = $this->getArticuloModel();
-        return new EscritorController($this->getRender(), $productoModel, $edicionModel, $articuloModel);
+        $seccionModel = $this->getSeccionModel();
+        return new EscritorController($this->getRender(), $productoModel, $edicionModel, $articuloModel,$seccionModel);
     }
 
     public function getAdministradorController(){
@@ -113,6 +120,8 @@ class Configuration{
         $articuloModel = $this->getArticuloModel();
         return new EditorController($this->getRender(), $productoModel, $edicionModel, $articuloModel);
     }
+
+
 
 
     //------------------------------------------------------------------//

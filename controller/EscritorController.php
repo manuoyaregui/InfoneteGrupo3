@@ -6,12 +6,14 @@ class EscritorController
     private $productoModel;
     private $edicionModel;
     private $articuloModel;
+    private $seccionModel;
 
-    public function __construct($render ,$productoModel ,$edicionModel ,$articuloModel){
+    public function __construct($render ,$productoModel ,$edicionModel ,$articuloModel,$seccionModel){
         $this->render = $render;
         $this->productoModel = $productoModel;
         $this->edicionModel = $edicionModel;
         $this->articuloModel = $articuloModel;
+        $this->seccionModel = $seccionModel;
     }
 
     public function execute(){
@@ -197,6 +199,44 @@ class EscritorController
         foreach ($edicionesObtenidas as $edicion){
             echo "<option value = '". $edicion['idEdicion']."'>" . $edicion['numero'] . "</option>";
         }
+    }
+
+
+    public function llamarFormCrearSeccion(){
+        echo $this->render->render("view/crearSeccionView.mustache");
+    }
+
+    public function crearSeccion(){
+        $nombreSeccion = $_POST['nombre-seccion'];
+        if($this->seccionModel->crearSeccion($nombreSeccion) == "ok"){
+            $this->render->redirect("/escritor/listarSecciones");
+
+        }else{
+            $data['mensaje'] = "La sección ya existe";
+            echo $this->render->render("view/crearSeccionView.mustache", $data);
+        }
+
+        //AGREGAR CODIGO
+    }
+
+    public function listarSecciones(){
+        $data['secciones'] = $this->seccionModel->listarSecciones();
+        echo $this->render->render("view/listarSeccionView.mustache",$data);
+    }
+
+    public function llamarFormEditarSeccion(){
+        $idSeccionAEditar = $_GET['id'];
+        $data['seccionAEditar'] = $this->seccionModel->getSeccionById($idSeccionAEditar);
+
+        echo $this->render->render("view/editarSeccion.mustache",$data);
+    }
+
+    public function editarSeccion(){
+        $idSeccionAEditar = $_GET['id'];
+        $nombreNuevo =  $_POST['nombre-seccion'];
+
+        $this->seccionModel->editarSeccion($idSeccionAEditar,$nombreNuevo);
+        $this->listarSecciones();
     }
 
 }

@@ -1,0 +1,27 @@
+{{>header}}
+{{>nav2}}
+<div id="layoutSidenav">
+{{>navLatEscritor}}
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+
+<!-- Form -->
+<div class="w-50 my-4 mx-auto">
+
+    <h2 class="mb-4 display-4 text-center">Crear Sección</h2>
+
+    <form action="/escritor/crearSeccion" method="post" enctype="multipart/form-data">
+        {{#mensaje}}
+        <p class="bg-danger text-light text-center p-2">{{mensaje}}</p>
+        {{/mensaje}}
+        <div class="mb-3">
+            <label for="nombre-seccion" class="form-label">Nombre de la sección</label>
+            <input type="text" class="form-control" id="nombre-seccion" name="nombre-seccion" required>
+        </div>
+
+
+        <input type="submit" class="btn btn-outline-dark" value="Crear">
+    </form>
+</div>
+{{>footer}}

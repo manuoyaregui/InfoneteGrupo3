@@ -1,0 +1,42 @@
+{{>header}}
+{{>nav2}}
+<div id="layoutSidenav">
+    {{#esEscritor}}
+        {{>navLatEscritor}}
+    {{/esEscritor}}
+    {{#esEditor}}
+        {{>navLatEditor}}
+    {{/esEditor}}
+    {{#esAdmin}}
+        {{>navLatAdmin}}
+    {{/esAdmin}}
+    <div id="layoutSidenav_content">
+        <main>
+            <h2 class="text-center p-2">Ediciones</h2>
+            <div class="container-fluid px-4">
+                <!-- contenido -->
+                <table class="table w-100 text-center">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#secciones}}
+                        <tr>
+                            <th scope="row">{{idSeccion}}</th>
+                            <td>{{nombre}}</td>
+                            <td>{{descripcion}}</td>
+                            <td>
+                                {{#esEscritor}}
+                                <a href="/escritor/llamarFormEditarSeccion/id={{idSeccion}}" class="btn btn-info">Editar</a>
+                                {{/esEscritor}}
+                            </td>
+                        </tr>
+
+                    {{/secciones}}
+                    </tbody>
+                </table>
+            </div>
+{{>footer}}

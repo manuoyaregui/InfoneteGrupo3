@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 06-11-2022 a las 23:46:26
+-- Tiempo de generación: 07-11-2022 a las 03:32:05
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -23,8 +23,6 @@ SET time_zone = "+00:00";
 drop schema if exists infonete;
 create schema if not exists infonete;
 use infonete;
-
-
 -- --------------------------------------------------------
 
 --
@@ -148,8 +146,19 @@ INSERT INTO `rol` (`idRol`, `nombre`) VALUES
 
 CREATE TABLE `seccion` (
                            `idSeccion` int(11) NOT NULL,
-                           `nombre` int(11) NOT NULL
+                           `nombre` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `seccion`
+--
+
+INSERT INTO `seccion` (`idSeccion`, `nombre`) VALUES
+                                                  (6, 'Comics'),
+                                                  (7, 'Moda'),
+                                                  (8, 'Policial'),
+                                                  (9, 'Drama'),
+                                                  (15, 'Nutrición');
 
 -- --------------------------------------------------------
 
@@ -199,7 +208,8 @@ INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `password`, `latitud`, `l
                                                                                                                                        (4, 'Pedro', 'pedrito@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, '', 2),
                                                                                                                                        (5, 'Sofia', 'admin@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 3, '', 2),
                                                                                                                                        (6, 'Graciela', 'editor@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 4, '', 2),
-                                                                                                                                       (7, 'Fernanda', 'escritor@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 2, '', 2);
+                                                                                                                                       (7, 'Fernanda', 'escritor@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 2, '', 2),
+                                                                                                                                       (8, 'Lector', 'lector@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '-34.653141', '-58.475545', 1, '', 2);
 
 --
 -- Índices para tablas volcadas
@@ -218,6 +228,12 @@ ALTER TABLE `producto`
 --
 ALTER TABLE `rol`
     ADD PRIMARY KEY (`idRol`);
+
+--
+-- Indices de la tabla `seccion`
+--
+ALTER TABLE `seccion`
+    ADD PRIMARY KEY (`idSeccion`);
 
 --
 -- Indices de la tabla `usuario`
@@ -241,13 +257,19 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-    MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+    MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `seccion`
+--
+ALTER TABLE `seccion`
+    MODIFY `idSeccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-    MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+    MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
