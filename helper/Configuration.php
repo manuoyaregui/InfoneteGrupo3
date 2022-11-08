@@ -82,7 +82,8 @@ class Configuration{
 
     public function getProductoController() {
         $productoModel = $this->getProductoModel();
-        return new ProductoController($this->getRender(), $productoModel);
+        $edicionModel = $this->getEdicionModel();
+        return new ProductoController($this->getRender(), $productoModel, $edicionModel);
     }
 
     public function getProductoModel() {

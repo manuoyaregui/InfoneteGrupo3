@@ -29,7 +29,7 @@ class EdicionModel
     }
 
     public function getEdicionPorId($idRecibido){
-        $consulta = "select e.*, p.nombre AS nombreProducto
+        $consulta = "SELECT e.*, p.nombre AS nombreProducto
                        FROM edicion e JOIN producto p ON e.idProducto = p.idProducto
                         WHERE idEdicion = ". $idRecibido;
         return $this->database->query($consulta);
