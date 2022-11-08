@@ -23,12 +23,15 @@ class RegistrarseModel
 
     private function crearUsuario($nombre, $email, $password, $latitud, $longitud, $idRol, $hash){
         $sql = "INSERT INTO usuario (nombre, email, password, latitud, longitud, idRol, hashVerificacion, idEstado) 
-             VALUES ('".$nombre."','".$email."','".$password."','".$latitud."', '".$longitud."', '".$idRol."', '".$hash."', 2)";
+             VALUES ('".$nombre."','".$email."','".$password."','".$latitud."', '".$longitud."', '".$idRol."', '".$hash."', '2')";
         return $this->database->execute($sql);
     }
 
     public function activarUsuario($email, $hash) {
-        $sql = "UPDATE usuario SET idEstado = 1 WHERE email ='" . $email . "' AND hashVerificacion = '" . $hash."'";
+        $sql = "UPDATE usuario SET idEstado = 2 
+                    WHERE email ='" . $email . "' 
+                        AND hashVerificacion = '" . $hash . "'
+                        AND idEstado = 1";
         return $this->database->execute($sql);
     }
 
