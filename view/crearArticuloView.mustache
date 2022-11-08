@@ -5,6 +5,14 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
+
+                {{#mensaje}}
+                <div class="alert alert-success alert-dismissible fade show my-3" role="alert">
+                    <h2 class="fs-4 text-white text-center">{{mensaje}}</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {{/mensaje}}
+
                 <!-- formulario -->
                 <div class="w-50 my-4 mx-auto">
 
@@ -26,9 +34,9 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="tipo-producto" class="form-label" >Edicion al que pertenecerá</label>
+                            <label for="tipo-producto" class="form-label">Edicion al que pertenecerá</label>
                             <select class="form-select"
-                                    name="idProducto"
+                                    name="idEdicion"
                                     required
                                     id="ajaxEdiciones">
                                 <option disabled selected>Seleccione un producto al q pertenezca primero</option>
@@ -41,7 +49,7 @@
                             <input type="text"
                                    class="form-control"
                                    id="titulo-articulo"
-                                   name="articulo" required>
+                                   name="titulo-articulo" required>
                         </div>
 
                         <label for="descripcion-articulo">Descripción del Artículo</label>

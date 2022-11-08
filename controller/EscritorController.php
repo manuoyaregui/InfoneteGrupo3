@@ -179,8 +179,28 @@ class EscritorController
     }
 
     public function crearArticulo(){
-        //AGREGAR CODIGO
-        $this->render->redirect("/escritor");
+        $idProducto = $_POST["idProducto"];
+        $idEdicion = $_POST["idEdicion"];
+        $titulo = $_POST["titulo-articulo"];
+        $contenido = $_POST["descripcion-articulo"];
+        $latitud = $_POST["latitud"];
+        $longitud = $_POST["longitud"];
+
+        $existeProducto = $this->productoModel->getProductoPorId($idProducto);
+        $existeEdicion = $this->edicionModel->getEdicionPorId($idEdicion);
+
+        if (!empty($existeProducto) && !empty($existeEdicion)) {
+            if (!empty($titulo) && !empty($contenido) && !empty($latitud) && !empty($longitud)) {
+
+                $resultado = $this->articuloModel->crearArticulo($titulo, $contenido, $latitud, $longitud);
+
+                if ($resultado) {
+                    $data["mensaje"] = "Se creo el articulo " . $titulo;
+                    echo $this->render->render("view/crearArticuloView.mustache", $data);
+                }
+
+            }
+        }
     }
 
     public function editarArticulo(){
