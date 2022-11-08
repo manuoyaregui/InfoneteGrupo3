@@ -57,7 +57,8 @@ class RegistrarseController
         $resultado = $this->registrarseModel->activarUsuario($email, $hash);
 
         if ($resultado) {
-            echo $this->render->render("login.mustache");
+           header("Location: /login");
+           exit();
         }
     }
 

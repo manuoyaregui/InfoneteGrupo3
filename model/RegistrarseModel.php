@@ -28,7 +28,7 @@ class RegistrarseModel
     }
 
     public function activarUsuario($email, $hash) {
-        $sql = "UPDATE usuario SET idEstado = 1 WHERE email = " . $email . " AND hashVerificacion = " . $hash;
+        $sql = "UPDATE usuario SET idEstado = 1 WHERE email ='" . $email . "' AND hashVerificacion = '" . $hash."'";
         return $this->database->execute($sql);
     }
 
