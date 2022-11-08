@@ -1,8 +1,13 @@
-<!-- TODO: despues hay que cambiar el nombre de la vista por registroView o algo asi -->
-
 {{> header}}
 {{>nav}}
 <div class="container w-50">
+
+    {{#mensajeActivacion}}
+        <div class="alert alert-success alert-dismissible fade show my-3" role="alert">
+            <h2 class="fs-4 text-white text-center">{{mensajeActivacion}}</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {{/mensajeActivacion}}
 
     <h2 class="display-4 text-center my-3">Registrarme en Infonete</h2>
 
@@ -13,7 +18,7 @@
 
         <div class="input-group my-3">
             <input class="form-control" type="password" name="password" id="campoPassword" placeholder="Ingrese su contraseña" required>
-            <button class="input-group-text" id="btnMostrarPassword"><i class="fa-solid fa-eye"></i></button>
+            <a href="#" class="input-group-text" id="btnMostrarPassword"><i class="fa-solid fa-eye"></i></a>
         </div>
 
         <input class="form-control my-3" type="hidden" id="latitud" name="latitud">

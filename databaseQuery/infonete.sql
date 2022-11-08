@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 26-10-2022 a las 23:34:36
+-- Tiempo de generación: 07-11-2022 a las 22:04:07
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -208,7 +208,7 @@ INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `password`, `latitud`, `l
 --
 ALTER TABLE `producto`
     ADD PRIMARY KEY (`idProducto`),
-    ADD KEY `idTipo` (`idTipo`);
+  ADD KEY `idTipo` (`idTipo`);
 
 --
 -- Indices de la tabla `usuario`

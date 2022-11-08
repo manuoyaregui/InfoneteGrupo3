@@ -44,13 +44,22 @@
                                    name="articulo" required>
                         </div>
 
-                            <label for="descripcion-articulo">Descripción del Artículo</label>
-                            <textarea
-                                    class="form-control mb-3"
-                                    laceholder="Leave a comment here"
-                                    id="descripcion-articulo"
-                                    name="descripcion-articulo"
-                                    style="height: 150px"></textarea>
+                        <label for="descripcion-articulo">Descripción del Artículo</label>
+                        <textarea
+                                class="form-control mb-3"
+                                placeholder="Leave a comment here"
+                                id="descripcion-articulo"
+                                name="descripcion-articulo"
+                                style="height: 150px"></textarea>
+
+                        <script>
+                            $('#descripcion-articulo').summernote({
+                                placeholder: 'Contenido del articulo',
+                                tabsize: 2,
+                                height: 200
+                            });
+                        </script>
+
 
                         <label for="latitud">Ubicación geográfica del artículo</label>
                         <input class="form-control my-3" type="hidden" id="latitud" name="latitud">
