@@ -3,9 +3,14 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 07-11-2022 a las 03:32:05
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+
+-- Tiempo de generación: 07-11-2022 a las 22:04:07
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.1.2
+
+DROP SCHEMA IF EXISTS infonete;
+CREATE SCHEMA IF NOT EXISTS infonete;
+USE infonete;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -220,7 +225,6 @@ INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `password`, `latitud`, `l
 --
 ALTER TABLE `producto`
     ADD PRIMARY KEY (`idProducto`),
-    ADD KEY `idTipo` (`idTipo`),
     ADD KEY `idEstado` (`idEstado`);
 
 --
@@ -235,9 +239,6 @@ ALTER TABLE `rol`
 ALTER TABLE `seccion`
     ADD PRIMARY KEY (`idSeccion`);
 
---
--- Indices de la tabla `usuario`
---
 ALTER TABLE `usuario`
     ADD PRIMARY KEY (`idUsuario`),
     ADD KEY `idRol` (`idRol`),
