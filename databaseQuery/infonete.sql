@@ -1,16 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
-
--- Tiempo de generación: 07-11-2022 a las 22:04:07
+-- Tiempo de generación: 08-11-2022 a las 20:11:20
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
-
-DROP SCHEMA IF EXISTS infonete;
-CREATE SCHEMA IF NOT EXISTS infonete;
-USE infonete;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -25,9 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `infonete`
 --
-drop schema if exists infonete;
-create schema if not exists infonete;
-use infonete;
+
 -- --------------------------------------------------------
 
 --
@@ -38,7 +31,8 @@ CREATE TABLE `articulo` (
                             `idArticulo` int(11) NOT NULL,
                             `titulo` text NOT NULL,
                             `descripcion` text NOT NULL,
-                            `ubicacion` varchar(16) NOT NULL
+                            `latitud` varchar(10) NOT NULL,
+                            `longitud` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -221,11 +215,18 @@ INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `password`, `latitud`, `l
 --
 
 --
+-- Indices de la tabla `articulo`
+--
+ALTER TABLE `articulo`
+    ADD PRIMARY KEY (`idArticulo`);
+
+--
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
     ADD PRIMARY KEY (`idProducto`),
-    ADD KEY `idEstado` (`idEstado`);
+  ADD KEY `idTipo` (`idTipo`),
+  ADD KEY `idEstado` (`idEstado`);
 
 --
 -- Indices de la tabla `rol`
@@ -239,14 +240,23 @@ ALTER TABLE `rol`
 ALTER TABLE `seccion`
     ADD PRIMARY KEY (`idSeccion`);
 
+--
+-- Indices de la tabla `usuario`
+--
 ALTER TABLE `usuario`
     ADD PRIMARY KEY (`idUsuario`),
-    ADD KEY `idRol` (`idRol`),
-    ADD KEY `idEstado` (`idEstado`);
+  ADD KEY `idRol` (`idRol`),
+  ADD KEY `idEstado` (`idEstado`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `articulo`
+--
+ALTER TABLE `articulo`
+    MODIFY `idArticulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`

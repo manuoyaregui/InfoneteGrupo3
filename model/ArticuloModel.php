@@ -14,8 +14,4 @@ class ArticuloModel
         return $this->database->execute($sql);
     }
 
-    public function listarArticulos() {
-        $sql = "SELECT * FROM"
-    }
-
 }
