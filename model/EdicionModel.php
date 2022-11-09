@@ -8,9 +8,11 @@ class EdicionModel
         $this->database = $database;
     }
 
-    public function crearEdicion($numeroEdicion, $precioEdicion, $idProducto){
+    public function crearEdicion($numeroEdicion, $precioEdicion, $idProducto, $fechaEdicion){
         if($this->buscarEdicionPorNroDeProductoYNroDeEdicion($idProducto, $numeroEdicion) == null){
-            $sqlQuery = "INSERT INTO edicion (numero, precio, idProducto) VALUES ('".$numeroEdicion."', '".$precioEdicion."', '".$idProducto."')";
+            $sqlQuery = "
+                INSERT INTO edicion (numero, precio, idProducto, fechaEdicion) 
+                VALUES ('".$numeroEdicion."', '".$precioEdicion."', '".$idProducto."', '".$fechaEdicion."')";
             return $this->database->execute($sqlQuery);
         }
     }

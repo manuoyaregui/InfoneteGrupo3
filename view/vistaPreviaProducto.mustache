@@ -1,4 +1,5 @@
 {{>header}}
+{{>nav}}
 
         <!-- Product section-->
         <section class="py-5">
@@ -14,11 +15,11 @@
                         </div>
                         <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
                         <div class="d-flex">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                            <button class="btn btn-outline-dark flex-shrink-0 me-3" type="button">
                                 <i class="bi-cart-fill me-1"></i>
-                                Add to cart
+                                Suscribirse
                             </button>
+                            <a  class="btn btn-dark" href="#seccion_ediciones">Comprar una edición</a>
                         </div>
                     </div>
                 </div>
@@ -29,7 +30,9 @@
             <div class="container px-4 px-lg-5 mt-5">
                 <h2 class="fw-bolder mb-4">Ediciones Disponibles</h2>
 
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <div
+                        id="seccion_ediciones"
+                        class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     {{#edicionesDisponibles}}
                     <div class="col mb-5">
                         <div class="card h-100">
@@ -40,6 +43,8 @@
                                 <div class="text-center">
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">Edicion N°{{numero}}</h5>
+                                    <!--Fecha de la edicion-->
+                                    <h6>{{fechaEdicion}}</h6>
                                     <!-- Product price-->
                                     <p class="fw-bold text-success">${{precio}}</p>
                                 </div>

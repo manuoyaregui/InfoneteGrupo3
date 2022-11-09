@@ -12,10 +12,19 @@
         <!-- Section-->
         <section>
 
-            <div class="row ">
-                <div class="btn-group center " role="group" aria-label="Basic example" style="margin-top: 1px;height: 60px">
-                    <a  class="btn btn-dark" style="margin-right: 1px;" href="/inicio/listarDiarios">DIARIOS</a>
-                    <a class="btn btn-dark" style="margin-left: 1px" href="/inicio/listarRevistas">REVISTAS</a>
+            <div class="mt-2">
+                <div class="center w-100 d-flex justify-content-around flex-wrap">
+                    <a class="btn btn-dark
+                                col-12 col-lg-5 p-3
+                                fs-5 fw-normal
+                                d-flex align-items-center justify-content-center"
+                       href="/inicio/listarDiarios">DIARIOS</a>
+
+                    <a class="btn btn-dark
+                                col-12 col-lg-5   p-3 mt-2 mt-lg-0
+                                fs-5 fw-normal
+                                d-flex align-items-center justify-content-center"
+                       href="/inicio/listarRevistas">REVISTAS</a>
                 </div>
             </div>
 
@@ -28,7 +37,7 @@
 
 
         <div class="container px-4 px-lg-5 mt-5">
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 {{#producto}}
                     <div class="col mb-5">
                         <div class="card h-100">
