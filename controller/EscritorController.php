@@ -115,15 +115,19 @@ class EscritorController
 
     public function crearEdicion(){
         //AGREGAR
-        if (isset($_POST["numeroEdicion"]) && isset($_POST["precioEdicion"]) && isset($_POST["idProducto"])) {
+        if ( isset( $_POST["numeroEdicion"],
+                    $_POST["precioEdicion"],
+                    $_POST["idProducto"],
+                    $_POST["fechaEdicion"]) ) {
 
+            $fechaEdicion = $_POST["fechaEdicion"];
             $numeroEdicion = $_POST["numeroEdicion"];
             $precioEdicion = $_POST["precioEdicion"];
             $idProducto = $_POST["idProducto"];
 
             if (!empty($numeroEdicion) && !empty($precioEdicion) && !empty($idProducto)) {
 
-                $resultado = $this->edicionModel->crearEdicion($numeroEdicion, $precioEdicion, $idProducto);
+                $resultado = $this->edicionModel->crearEdicion($numeroEdicion, $precioEdicion, $idProducto,$fechaEdicion);
 
             }
 
@@ -136,6 +140,9 @@ class EscritorController
                 $data["productos"] = $this->productoModel->listarProductos();
                 echo $this->render->render("view/crearEdicionView.mustache", $data);
             }
+        }
+        else{
+            $data['formError'] = "Por favor rellena todos los campos.";
         }
     }
 

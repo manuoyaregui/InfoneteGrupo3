@@ -37,7 +37,7 @@
             $this->email->Username   = "alanforno@yahoo.com";
             $this->email->Password   = "K0Vs3nEvSMfhIb8a";
             //Definimos el remitente (dirección y, opcionalmente, nombre)
-            $this->email->SetFrom('alanforno@yahoo.com', 'Infonete');
+            $this->email->SetFrom('infonete@grupo3.com', 'Infonete');
 
             $this->email->isHTML(true);
         }
