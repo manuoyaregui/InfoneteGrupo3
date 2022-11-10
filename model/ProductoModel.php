@@ -24,8 +24,9 @@
 
         public function listarProductos() {
             $sqlQuery = "SELECT p.*, tp.nombre AS tipoProducto ,e.nombre  AS nombreEstado
-                         FROM producto p JOIN tipo_producto tp ON p.idTipo = tp.idTipo
-                                         JOIN estado e ON p.idEstado = e.idEstado";
+                            FROM producto p JOIN tipo_producto tp ON p.idTipo = tp.idTipo
+                                         JOIN estado e ON p.idEstado = e.idEstado
+                            WHERE e.nombre = 'ACTIVO'";
             return $this->database->query($sqlQuery);
         }
 
@@ -47,15 +48,17 @@
 
         public function getProductosRevista(){
             $sqlQuery = "SELECT * 
-                         FROM producto p JOIN tipo_producto tp ON p.idTipo=tp.idTipo 
-                         WHERE tp.nombre LIKE 'revista'";
+                            FROM producto p JOIN tipo_producto tp ON p.idTipo=tp.idTipo
+                                            JOIN estado e ON e.idEstado = p.idEstado
+                         WHERE tp.nombre LIKE 'revista' AND e.nombre = 'ACTIVO'";
             return $this->database->query($sqlQuery);
         }
 
         public function getProductosDiario(){
             $sqlQuery = "SELECT * 
-                         FROM producto p JOIN tipo_producto tp ON p.idTipo=tp.idTipo 
-                         WHERE tp.nombre LIKE 'diario'";
+                            FROM producto p JOIN tipo_producto tp ON p.idTipo=tp.idTipo
+                                            JOIN estado e ON e.idEstado = p.idEstado
+                            WHERE tp.nombre LIKE 'diario' AND e.nombre = 'ACTIVO'";
             return $this->database->query($sqlQuery);
         }
 
