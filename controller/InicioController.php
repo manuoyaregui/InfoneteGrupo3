@@ -16,12 +16,12 @@ class InicioController
     }
 
     public function listarDiarios(){
-        $data["producto"] = $this->productoModel->getProductosDiario();
+        $data["producto"] = $this->productoModel->listarProductosDiarioDisponibles();
         echo $this->render->render("view/catalogoView.mustache",$data);
     }
 
     public function listarRevistas(){
-        $data["producto"] = $this->productoModel->getProductosRevista();
+        $data["producto"] = $this->productoModel->listarProductosRevistaDisponibles();
         echo $this->render->render("view/catalogoView.mustache",$data);
     }
 
