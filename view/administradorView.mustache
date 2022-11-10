@@ -7,7 +7,33 @@
             <div class="container-fluid px-4">
                 <!-- contenido -->
 
+                <table class="table w-100 text-center">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#usuarios}}
+                        <tr>
+                            <th scope="row">{{idUsuario}}</th>
+                            <td>{{nombre}}</td>
+                            <td>{{email}}</td>
+                            <td>{{rol}}</td>
+                            <td>{{estado}}</td>
+                            <td>
+                                <a href="/administrador/llamarFormEditarUsuario/id={{idUsuario}}" class="btn btn-info">Editar</a>
+                            </td>
+                        </tr>
 
+                    {{/usuarios}}
+                    </tbody>
+                </table>
 
             </div>
 
