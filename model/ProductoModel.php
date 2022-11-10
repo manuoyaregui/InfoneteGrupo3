@@ -25,8 +25,7 @@
         public function listarProductos() {
             $sqlQuery = "SELECT p.*, tp.nombre AS tipoProducto ,e.nombre  AS nombreEstado
                             FROM producto p JOIN tipo_producto tp ON p.idTipo = tp.idTipo
-                                         JOIN estado e ON p.idEstado = e.idEstado
-                            WHERE e.nombre = 'ACTIVO'";
+                                            JOIN estado e ON p.idEstado = e.idEstado";
             return $this->database->query($sqlQuery);
         }
 
@@ -48,17 +47,31 @@
 
         public function getProductosRevista(){
             $sqlQuery = "SELECT * 
+                         FROM producto p JOIN tipo_producto tp ON p.idTipo=tp.idTipo 
+                         WHERE tp.nombre LIKE 'revista'";
+            return $this->database->query($sqlQuery);
+        }
+
+        public function getProductosDiario(){
+            $sqlQuery = "SELECT * 
+                         FROM producto p JOIN tipo_producto tp ON p.idTipo=tp.idTipo 
+                         WHERE tp.nombre LIKE 'diario'";
+            return $this->database->query($sqlQuery);
+        }
+
+        public function listarProductosRevistaDisponibles(){
+            $sqlQuery = "SELECT * 
                             FROM producto p JOIN tipo_producto tp ON p.idTipo=tp.idTipo
                                             JOIN estado e ON e.idEstado = p.idEstado
                          WHERE tp.nombre LIKE 'revista' AND e.nombre = 'ACTIVO'";
             return $this->database->query($sqlQuery);
         }
 
-        public function getProductosDiario(){
+        public function listarProductosDiarioDisponibles(){
             $sqlQuery = "SELECT * 
                             FROM producto p JOIN tipo_producto tp ON p.idTipo=tp.idTipo
                                             JOIN estado e ON e.idEstado = p.idEstado
-                            WHERE tp.nombre LIKE 'diario' AND e.nombre = 'ACTIVO'";
+                         WHERE tp.nombre LIKE 'diario' AND e.nombre = 'ACTIVO'";
             return $this->database->query($sqlQuery);
         }
 
@@ -68,6 +81,7 @@
                          WHERE idProducto = '$id'";
             return $this->database->execute($sqlQuery);
         }
+
 
         public function bloquearProducto($id){
             $sqlQuery = "UPDATE producto 
