@@ -1,0 +1,55 @@
+{{>header}}
+{{>nav2}}
+
+<div id="layoutSidenav">
+
+    {{>navLatAdmin}}
+
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4 w-50">
+                <h2 class="display-4 text-center my-3">Editar Usuario</h2>
+
+                {{#usuario}}
+                <form action="/administrador/editarUsuario/id={{idUsuario}}" method="post">
+
+                    <div class="mb-3">
+                        <label for="nombre-usuario" class="form-label">Nombre de usuario</label>
+                        <!-- Tanto nombre como email no se modifican por ende no llevan el atributo name -->
+                        <input type="text" disabled class="form-control" id="nombre-usuario" value="{{nombre}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email-usuario" class="form-label">Email</label>
+                        <input type="email" disabled class="form-control" id="email-usuario" value="{{email}}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Rol del usuario</label>
+                        <select class="form-select" name="rolUsuario" required>
+                            <option value="{{idRol}}"  selected>{{rol}}</option>
+                            <option value="1">Lector</option>
+                            <option value="2">Escritor</option>
+                            <option value="3">Administrador</option>
+                            <option value="4">Editor</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Estado del usuario</label>
+                        <select class="form-select" name="estadoUsuario" required>
+                            <option value="{{idEstado}}"  selected>{{estado}}</option>
+                            <option value="1">Inactivo</option>
+                            <option value="2">Activo</option>
+                            <option value="3">Bloqueado</option>
+                        </select>
+                    </div>
+
+                    <input type="submit" class="btn btn-outline-dark" value="Editar">
+
+                </form>
+                {{/usuario}}
+            </div>
+
+
+{{>footer}}
