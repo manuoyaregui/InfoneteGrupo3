@@ -147,7 +147,7 @@ class EscritorController
         }
     }
 
-    public function crearEdicionModal(){
+    /*public function crearEdicionModal(){
         //AGREGAR
         if ( isset( $_POST["numeroEdicion"],
             $_POST["precioEdicion"],
@@ -171,14 +171,14 @@ class EscritorController
                 $data ["mensaje"] = "Esa edicion ya existe.";
                 $data ["listaDeEdiciones"] = $this->edicionModel->listaDeEdicionesDeUnProducto($idProducto);
                 $data ["productos"] = $this->productoModel->listarProductos();
-                return $this->render->render("escritor/crearEdicionModal", $data);
+                return $this->render->render("escritor/llamarFormCrearArticulo", $data);
             }
         }
         else{
             $data['formError'] = "Por favor rellena todos los campos.";
-            echo $this->render->render("view/crearEdicionView.mustache", $data);
+            echo $this->render->render("escritor/llamarFormCrearArticulo", $data);
         }
-    }
+    }*/
 
     public function editarEdicion(){
         $idEdicion = $_GET["id"];
