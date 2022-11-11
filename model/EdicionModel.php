@@ -38,7 +38,7 @@ class EdicionModel
     }
 
     public function listaDeEdicionesDeUnProducto($idProducto){
-        $consulta = "select * from edicion where idProducto = ".$idProducto;
+        $consulta = "select * from edicion where idProducto =.$idProducto.";
         return $this->database->query($consulta);
     }
 
