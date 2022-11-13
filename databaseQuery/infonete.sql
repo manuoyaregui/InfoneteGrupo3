@@ -22,7 +22,9 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
+DROP SCHEMA IF EXISTS infonete;
+CREATE SCHEMA IF NOT EXISTS infonete;
+USE infonete;
 --
 -- Estructura de tabla para la tabla `articulo`
 --

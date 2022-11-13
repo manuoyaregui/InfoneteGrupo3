@@ -143,8 +143,42 @@ class EscritorController
         }
         else{
             $data['formError'] = "Por favor rellena todos los campos.";
+            echo $this->render->render("view/crearEdicionView.mustache", $data);
         }
     }
+
+    /*public function crearEdicionModal(){
+        //AGREGAR
+        if ( isset( $_POST["numeroEdicion"],
+            $_POST["precioEdicion"],
+            $_POST["idProducto"],
+            $_POST["fechaEdicion"]) ) {
+
+            $fechaEdicion = $_POST["fechaEdicion"];
+            $numeroEdicion = $_POST["numeroEdicion"];
+            $precioEdicion = $_POST["precioEdicion"];
+            $idProducto = $_POST["idProducto"];
+
+            if (!empty($numeroEdicion) && !empty($precioEdicion) && !empty($idProducto)) {
+
+                $resultado = $this->edicionModel->crearEdicion($numeroEdicion, $precioEdicion, $idProducto,$fechaEdicion);
+
+            }
+
+            if ($resultado) {
+               return  $data ["mensaje"] = "Edicion creada exitosamente.";
+            } else{
+                $data ["mensaje"] = "Esa edicion ya existe.";
+                $data ["listaDeEdiciones"] = $this->edicionModel->listaDeEdicionesDeUnProducto($idProducto);
+                $data ["productos"] = $this->productoModel->listarProductos();
+                return $this->render->render("escritor/llamarFormCrearArticulo", $data);
+            }
+        }
+        else{
+            $data['formError'] = "Por favor rellena todos los campos.";
+            echo $this->render->render("escritor/llamarFormCrearArticulo", $data);
+        }
+    }*/
 
     public function editarEdicion(){
         $idEdicion = $_GET["id"];
@@ -174,7 +208,7 @@ class EscritorController
 
     public function llamarFormCrearArticulo(){
         $data["productos"] = $this->productoModel->listarProductos();
-
+        $data["secciones"] = $this->seccionModel->listarSecciones();
         echo $this->render->render("view/crearArticuloView.mustache",$data);
     }
 
@@ -188,6 +222,7 @@ class EscritorController
     public function crearArticulo(){
         $idProducto = $_POST["idProducto"];
         $idEdicion = $_POST["idEdicion"];
+        $idSeccion = $_POST["idSeccion"];
         $titulo = $_POST["titulo-articulo"];
         $contenido = $_POST["descripcion-articulo"];
         $latitud = $_POST["latitud"];
@@ -195,19 +230,25 @@ class EscritorController
 
         $existeProducto = $this->productoModel->getProductoPorId($idProducto);
         $existeEdicion = $this->edicionModel->getEdicionPorId($idEdicion);
-
-        if (!empty($existeProducto) && !empty($existeEdicion)) {
+        $existeSeccion = $this->seccionModel->getSeccionById($idSeccion);
+        if (!empty($existeProducto) && !empty($existeEdicion) && !empty($existeSeccion)) {
             if (!empty($titulo) && !empty($contenido) && !empty($latitud) && !empty($longitud)) {
 
-                $resultado = $this->articuloModel->crearArticulo($titulo, $contenido, $latitud, $longitud);
+                $resultado = $this->articuloModel->crearArticulo($idEdicion,$idSeccion,$titulo, $contenido, $latitud, $longitud);
 
                 if ($resultado) {
                     $data["mensaje"] = "Se creo el articulo " . $titulo;
+                    $data["productos"] = $this->productoModel->listarProductos();
+                    $data["secciones"] = $this->seccionModel->listarSecciones();
                     echo $this->render->render("view/crearArticuloView.mustache", $data);
                 }
 
             }
         }
+        $data["productos"] = $this->productoModel->listarProductos();
+        $data["secciones"] = $this->seccionModel->listarSecciones();
+        $data["mensaje"] = "No se pudo crear el articulo " . $titulo;
+        echo $this->render->render("view/crearArticuloView.mustache", $data);
     }
 
     public function editarArticulo(){
@@ -246,9 +287,22 @@ class EscritorController
         //AGREGAR CODIGO
     }
 
+
+    public function getSecciones(){
+        $seccionesObtenidas = $this->seccionModel->listarSecciones();
+        foreach ($seccionesObtenidas as $seccion){
+            echo "<option value ='". $seccion['idSeccion']."'>" . $seccion['nombre'] . "</option>";
+        }
+    }
+
     public function listarSecciones(){
         $data['secciones'] = $this->seccionModel->listarSecciones();
         echo $this->render->render("view/listarSeccionView.mustache",$data);
+    }
+
+    public function listarSeccion1(){
+        $data['seccion'] = $this->seccionModel->listarSecciones();
+        echo $this->render->render("view/crearArticuloView.mustache",$data);
     }
 
     public function llamarFormEditarSeccion(){

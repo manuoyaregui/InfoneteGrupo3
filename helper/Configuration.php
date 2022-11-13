@@ -21,7 +21,7 @@ include_once ("controller/ProductoController.php");
 include_once ("controller/EscritorController.php");
 include_once ("controller/EditorController.php");
 include_once ("controller/AdministradorController.php");
-
+include_once ("controller/EdicionController.php");
 
 
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
@@ -132,6 +132,13 @@ class Configuration{
         $articuloModel = $this->getArticuloModel();
         return new EditorController($this->getRender(), $productoModel, $edicionModel, $articuloModel);
     }
+
+    public function getEdicionController(){
+        $articuloModel = $this->getArticuloModel();
+        return new EdicionController($this->getRender(),$articuloModel);
+
+    }
+
     //------------------------------------------------------------------//
     public function getMailer() {
         return new Mailer();

@@ -33,15 +33,28 @@
                             </select>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="tipo-producto" class="form-label">Edicion al que pertenecerá</label>
-                            <select class="form-select"
-                                    name="idEdicion"
-                                    required
-                                    id="ajaxEdiciones">
-                                <option disabled selected>Seleccione un producto al q pertenezca primero</option>
+                        <div class="mb-3 row">
+                            <div class="col-md">
+                                <label for="tipo-producto" class="form-label">Edición a la que pertenecerá</label>
 
-                            </select>
+                                <select class="form-select"
+                                        name="idEdicion" required
+                                        id="ajaxEdiciones">
+                                    <option disabled selected>Seleccione la edición</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md">
+                                <label for="" class="form-label">Sección a la que pertenecerá</label>
+                                    <select class="form-select"
+                                            name="idSeccion" required
+                                            id="ajaxSecciones">
+                                        <option disabled selected>Seleccione la sección</option>
+                                        {{#secciones}}
+                                        <option value="{{idSeccion}}">{{nombre}}</option>
+                                        {{/secciones}}
+                                    </select>
+                            </div>
                         </div>
 
                         <div class="mb-3">
@@ -82,13 +95,11 @@
                 <h4 class="alert text-danger text-center">{{mensaje}}</h4>
                 <h4 class="alert text-danger text-center">Los artículos existentes son :
                     {{#listaDeEdiciones}} - {{numero}}  {{/listaDeEdiciones}}</h4>
-            </div>
-
 
             <!--JQuery-->
             <script type="text/javascript" src="/public/jQuery/jquery.js"></script>
             <!--AJAX y custom-->
-            <script>
+            <script type="text/javascript">
                 function mostrarEdiciones(producto) {
                     console.log(producto);
 
@@ -138,4 +149,3 @@
             <!--API Maps-->
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=initMap"></script>
 {{>footer}}
-
