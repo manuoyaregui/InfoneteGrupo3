@@ -1,9 +1,18 @@
 {{>header}}
 {{>nav}}
-{{#articulosDeLaEdicion}}
-    {{titulo}}
-    <div>
-        {{descripcion}}
-    </div>
 
-{{/articulosDeLaEdicion}}
+<div class="container my-3">
+    <div class="row">
+        {{#articulosDeLaEdicion}}
+        <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-subtitle mb-2 text-muted">{{seccion}}</h4>
+                        <h2 class="card-title">{{titulo}}</h2>
+                        <div>{{{descripcion}}}</div>
+                    </div>
+                </div>
+        </div>
+        {{/articulosDeLaEdicion}}
+    </div>
+</div>
