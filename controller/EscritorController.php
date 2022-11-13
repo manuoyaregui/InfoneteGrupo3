@@ -238,11 +238,17 @@ class EscritorController
 
                 if ($resultado) {
                     $data["mensaje"] = "Se creo el articulo " . $titulo;
+                    $data["productos"] = $this->productoModel->listarProductos();
+                    $data["secciones"] = $this->seccionModel->listarSecciones();
                     echo $this->render->render("view/crearArticuloView.mustache", $data);
                 }
 
             }
         }
+        $data["productos"] = $this->productoModel->listarProductos();
+        $data["secciones"] = $this->seccionModel->listarSecciones();
+        $data["mensaje"] = "No se pudo crear el articulo " . $titulo;
+        echo $this->render->render("view/crearArticuloView.mustache", $data);
     }
 
     public function editarArticulo(){
