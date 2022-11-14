@@ -60,7 +60,7 @@
         }
 
         public function listarProductosRevistaDisponibles(){
-            $sqlQuery = "SELECT * 
+            $sqlQuery = "SELECT p.* 
                             FROM producto p JOIN tipo_producto tp ON p.idTipo=tp.idTipo
                                             JOIN estado e ON e.idEstado = p.idEstado
                          WHERE tp.nombre LIKE 'revista' AND e.nombre = 'ACTIVO'";
@@ -68,7 +68,7 @@
         }
 
         public function listarProductosDiarioDisponibles(){
-            $sqlQuery = "SELECT * 
+            $sqlQuery = "SELECT p.* 
                             FROM producto p JOIN tipo_producto tp ON p.idTipo=tp.idTipo
                                             JOIN estado e ON e.idEstado = p.idEstado
                          WHERE tp.nombre LIKE 'diario' AND e.nombre = 'ACTIVO'";

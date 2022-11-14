@@ -19,6 +19,7 @@ class RegistrarseController
     }
 
     public function procesarFormularioRegistrarseLector(){
+       //$nombre = "'" . implode("','",$_POST["nombre"]) . "'";
         $nombre = $_POST["nombre"];
         $email = $_POST["email"];
         $passwordMD5 = md5($_POST["password"]);

@@ -8,9 +8,9 @@ class ArticuloModel
         $this->database = $database;
     }
 
-    public function crearArticulo($idEdicion,$idSeccion,$titulo, $contenido, $latitud, $longitud) {
-        $sql = "INSERT INTO articulo (idArticulo,titulo, descripcion, latitud, longitud)
-                    VALUES (null,'".$titulo."', '".$contenido."', '".$latitud."', '".$longitud."')";
+    public function crearArticulo($idEdicion,$idSeccion,$titulo,$subtitulo, $contenido, $latitud, $longitud) {
+        $sql = "INSERT INTO articulo (idArticulo,titulo,subtitulo, descripcion, latitud, longitud)
+                    VALUES (null,'".$titulo."','".$subtitulo."', '".$contenido."', '".$latitud."', '".$longitud."')";
         $result = $this->database->execute($sql);
 
         if($result){
@@ -33,7 +33,7 @@ class ArticuloModel
 									                SELECT idEdicion
 									                FROM producto p join edicion e on p.idProducto=e.idProducto
 									                WHERE p.idProducto = ".$idProducto.")";*/
-        $sql = "SELECT art.titulo, art.descripcion, ed.idEdicion, sec.nombre AS seccion
+        $sql = "SELECT art.titulo, art.descripcion, ed.idEdicion, sec.nombre AS seccion, art.subtitulo
                     FROM edicion_seccion_articulos esa
                         JOIN articulo art ON art.idArticulo = esa.idArticulo
                         JOIN edicion ed ON ed.idEdicion = esa.idEdicion
