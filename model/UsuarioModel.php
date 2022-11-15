@@ -31,4 +31,5 @@
             return $this->database->execute($sql);
         }
 
+       // public function getIdUsuarioPorEmail
     }
