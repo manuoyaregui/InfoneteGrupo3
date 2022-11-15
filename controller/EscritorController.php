@@ -116,10 +116,12 @@ class EscritorController
     public function crearEdicion(){
         //AGREGAR
         if ( isset( $_POST["numeroEdicion"],
+                    $_POST["portadaEdicion"],
                     $_POST["precioEdicion"],
                     $_POST["idProducto"],
                     $_POST["fechaEdicion"]) ) {
 
+            $portadaEdicion = $_POST["portadaEdicion"];
             $fechaEdicion = $_POST["fechaEdicion"];
             $numeroEdicion = $_POST["numeroEdicion"];
             $precioEdicion = $_POST["precioEdicion"];
@@ -127,7 +129,7 @@ class EscritorController
 
             if (!empty($numeroEdicion) && !empty($precioEdicion) && !empty($idProducto)) {
 
-                $resultado = $this->edicionModel->crearEdicion($numeroEdicion, $precioEdicion, $idProducto,$fechaEdicion);
+                $resultado = $this->edicionModel->crearEdicion($numeroEdicion,$portadaEdicion, $precioEdicion, $idProducto,$fechaEdicion);
 
             }
 
