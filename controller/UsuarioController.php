@@ -4,13 +4,13 @@
 
         private $render;
         private $productoModel;
-        private $articuloModel;
+        private $edicionModel;
         private $suscripcionYCompraModel;
 
-        public function __construct($render, $productoModel, $articuloModel, $suscripcionYCompraModel) {
+        public function __construct($render, $productoModel, $edicionModel, $suscripcionYCompraModel) {
             $this->render = $render;
             $this->productoModel = $productoModel;
-            $this->articuloModel = $articuloModel;
+            $this->edicionModel = $edicionModel;
             $this->suscripcionYCompraModel = $suscripcionYCompraModel;
         }
 
@@ -45,6 +45,28 @@
                 echo $this->render->render("view/catalogoView.mustache", $data);
             }
 
+        }
+
+        public function comprarEdicion() {
+            $idEdicion = $_GET["idEdicion"];
+            $precio = $this->edicionModel->getEdicionPorId($idEdicion)[0]["precio"];
+
+            if (isset($_SESSION["idUsuario"]) && isset($_POST["metodoDePago"])) {
+                $idUsuario = $_SESSION["idUsuario"];
+                $metodoPago = $_POST["metodoDePago"];
+
+                $resultado = $this->suscripcionYCompraModel->comprarEdicion($idUsuario, $idEdicion, $precio, $metodoPago);
+
+                if ($resultado) {
+                    $data["mensajeCompra"] = "Se compro la edicion";
+                    echo $this->render->render("view/catalogoView.mustache", $data);
+                }
+
+            } else {
+                $data["producto"] = $this->productoModel->getProductos();
+                $data["mensajeErrorCompra"] = "No se pudo comprar la edicion";
+                echo $this->render->render("view/catalogoView.mustache", $data);
+            }
         }
 
 
