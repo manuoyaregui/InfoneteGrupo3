@@ -14,36 +14,33 @@
                             <span class="fw-bold text-success">${{productoVP.precioSuscripcion}}</span>
                         </div>
                         <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        <i class="bi-cart-fill me-1"></i>
-                                        Suscribirme
-                                    </button>
-                                </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body mb-5">
+                        <div>
+                            <a class="btn btn-info text-white" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <i class="bi-cart-fill me-1"></i>
+                                Suscribirse
+                            </a>
+                        </div>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
 
-                                        <h4 class="text-muted mb-3">
-                                            Total a abonar: <span class="badge bg-success">${{productoVP.precioSuscripcion}}</span>
-                                        </h4>
+                                <h4 class="text-muted mb-3">
+                                    Total a abonar: <span class="badge bg-success">${{productoVP.precioSuscripcion}}</span>
+                                </h4>
 
-                                        <form action="/usuario/suscribirseAProducto/idProducto={{productoVP.idProducto}}" method="post">
+                                <form action="/usuario/suscribirseAProducto/idProducto={{productoVP.idProducto}}" method="post">
 
-                                            <select class="form-select" name="metodoDePago">
-                                                <option disabled selected>Metodo de pago</option>
-                                            {{#metodosDePago}}
-                                                <option value="{{idMedioDePago}}">{{metodoDePago}}</option>
-                                            {{/metodosDePago}}
-                                            </select>
+                                <select class="form-select" name="metodoDePago">
+                                    <option disabled selected>Metodo de pago</option>
+                                    {{#metodosDePago}}
+                                        <option value="{{idMedioDePago}}">{{metodoDePago}}</option>
+                                    {{/metodosDePago}}
+                                </select>
 
-                                            <input type="submit" class="btn btn-info text-white float-end mt-3" value="Abonar">
-                                        </form>
-                                        
-                                    </div>
-                                </div>
+                                <input type="submit" class="btn btn-info text-white float-end mt-3" value="Abonar">
+                                </form>
+
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -73,9 +70,36 @@
                                 </div>
                             </div>
                             <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <a class="btn btn-outline-dark mt-auto" href="/edicion/listarArticulos/idProducto={{idProducto}}&idEdicion={{idEdicion}}">View options</a>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent mx-auto">
+                                <div>
+                                    <a class="btn btn-outline-dark mt-auto" href="/edicion/listarArticulos/idProducto={{idProducto}}&idEdicion={{idEdicion}}">Articulos</a>
+
+                                    <div>
+                                        <a class="btn btn-success text-white" data-bs-toggle="collapse" href="#collapse-{{idEdicion}}" role="button" aria-expanded="false" aria-controls="collapse-{{idEdicion}}">
+                                            Comprar
+                                        </a>
+                                    </div>
+                                    <div class="collapse" id="collapse-{{idEdicion}}">
+                                        <div class="card card-body">
+
+                                            <h4 class="text-muted mb-3">
+                                                Total a abonar: <span class="badge bg-success">${{precio}}</span>
+                                            </h4>
+
+                                            <form action="/usuario/comprarEdicion/idEdicion={{idEdicion}}" method="post">
+
+                                            <select class="form-select" name="metodoDePago">
+                                                <option disabled selected>Metodo de pago</option>
+                                                {{#metodosDePago}}
+                                                    <option value="{{idMedioDePago}}">{{metodoDePago}}</option>
+                                                {{/metodosDePago}}
+                                            </select>
+
+                                            <input type="submit" class="btn btn-info text-white float-end mt-3" value="Abonar">
+                                            </form>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

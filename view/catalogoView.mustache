@@ -35,12 +35,26 @@
                 </div>
             {{/mensajeSuscripto}}
 
+            {{#mensajeCompra}}
+                <div class="alert bg-success alert-dismissible fade show mt-3 w-50 mx-auto" role="alert">
+                    <h2 class="fs-4 text-white text-center">{{mensajeCompra}}</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {{/mensajeCompra}}
+
             {{#mensajeErrorSuscripcion}}
                 <div class="alert bg-danger alert-dismissible fade show mt-3 w-50 mx-auto" role="alert">
                     <h2 class="fs-4 text-white text-center">{{mensajeErrorSuscripcion}}</h2>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             {{/mensajeErrorSuscripcion}}
+
+            {{#mensajeErrorCompra}}
+                <div class="alert bg-danger alert-dismissible fade show mt-3 w-50 mx-auto" role="alert">
+                    <h2 class="fs-4 text-white text-center">{{mensajeErrorCompra}}</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {{/mensajeErrorCompra}}
 
 
         </section>
