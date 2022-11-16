@@ -225,6 +225,7 @@ class EscritorController
         $idProducto = $_POST["idProducto"];
         $idEdicion = $_POST["idEdicion"];
         $idSeccion = $_POST["idSeccion"];
+        $portadaArticulo = $_POST["portadaArticulo"];
         $titulo = $_POST["titulo-articulo"];
         $subtitulo = $_POST["subtitulo-articulo"];
         $contenido = $_POST["descripcion-articulo"];
@@ -238,7 +239,7 @@ class EscritorController
         if (!empty($existeProducto) && !empty($existeEdicion) && !empty($existeSeccion)) {
             if (!empty($titulo) && !empty($subtitulo) && !empty($contenido) && !empty($latitud) && !empty($longitud)) {
 
-                $resultado = $this->articuloModel->crearArticulo($idEdicion,$idSeccion,$titulo,$subtitulo, $contenido, $latitud, $longitud);
+                $resultado = $this->articuloModel->crearArticulo($idEdicion,$idSeccion,$portadaArticulo,$titulo,$subtitulo, $contenido, $latitud, $longitud);
 
                 if ($resultado) {
                     $data["mensaje"] = "Se creo el articulo " . $titulo;
