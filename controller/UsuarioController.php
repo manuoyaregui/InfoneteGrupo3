@@ -22,7 +22,10 @@
         // Hay que corregir a donde se redirecciona al suscribirse y al no poder suscribirse
         public function suscribirseAProducto() {
             $idProducto = $_GET["idProducto"];
-            $fechaVencimiento = "202212116";
+            // Se obtiene la fecha actual (en el campo fechaInicio se pone la fecha de hoy al insertar el registro)
+            $fechaActual = date("Y-m-d");
+            // Se le agrega un mes a la fecha actual
+            $fechaVencimiento = date("Y-m-d", strtotime($fechaActual . "+ 1 month"));
             $precio = $this->productoModel->getProductoPorId($idProducto)[0]["precioSuscripcion"];
 
             if (isset($_SESSION["idUsuario"]) && isset($_POST["metodoDePago"])) {
