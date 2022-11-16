@@ -145,9 +145,9 @@ class Configuration{
 
     public function getUsuarioController() {
         $productoModel = $this->getproductoModel();
-        $articuloModel = $this->getArticuloModel();
+        $edicionModel = $this->getEdicionModel();
         $suscripcionYCompraModel = $this->getSuscripcionYCompraModel();
-        return new UsuarioController($this->getRender(), $productoModel, $articuloModel, $suscripcionYCompraModel);
+        return new UsuarioController($this->getRender(), $productoModel, $edicionModel, $suscripcionYCompraModel);
     }
 
     //------------------------------------------------------------------//
