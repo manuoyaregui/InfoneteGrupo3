@@ -25,7 +25,7 @@
             $fechaVencimiento = "202212116";
             $precio = $this->productoModel->getProductoPorId($idProducto)[0]["precioSuscripcion"];
 
-            if (isset($_SESSION["idUsuario"]) && isset($metodoPago)) {
+            if (isset($_SESSION["idUsuario"]) && isset($_POST["metodoDePago"])) {
                 $idUsuario = $_SESSION["idUsuario"];
                 $metodoPago = $_POST["metodoDePago"];
 
