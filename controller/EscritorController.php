@@ -35,12 +35,13 @@ class EscritorController
             $nombre = $_POST["nombre"];
             $idTipo = $_POST["tipoProducto"];
             $portada = str_replace(" ", "-", $_FILES["portada"]["name"]);
+            $precioSuscripcion = $_POST["precioSuscripcion"];
 
             if (!empty($nombre) && !empty($idTipo)) {
 
                 $nombreEnMayuscula = mb_strtoupper($nombre, 'utf-8');
 
-                $resultado = $this->productoModel->crearProducto($nombreEnMayuscula, $idTipo, $portada);
+                $resultado = $this->productoModel->crearProducto($nombreEnMayuscula, $idTipo, $portada, $precioSuscripcion);
 
                 if (!empty($portada)) {
 
@@ -67,11 +68,12 @@ class EscritorController
             $nombre = $_POST["nombre"];
             $idTipo = $_POST["tipoProducto"];
             $portada = str_replace(" ", "-", $_FILES["portada"]["name"]);
+            $precioSuscripcion = $_POST["precioSuscripcion"];
 
             if (!empty($nombre) && !empty($idTipo)) {
 
                 $nombreEnMayuscula = mb_strtoupper($nombre, 'utf-8');
-                $resultado = $this->productoModel->editarProducto($id, $nombreEnMayuscula, $idTipo, $portada);
+                $resultado = $this->productoModel->editarProducto($id, $nombreEnMayuscula, $idTipo, $portada, $precioSuscripcion);
 
                 if (!empty($portada)) {
                     move_uploaded_file($_FILES["portada"]["tmp_name"], "public/img/portadasDeProducto/" . $portada);

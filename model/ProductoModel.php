@@ -8,15 +8,15 @@
             $this->database = $database;
         }
 
-        public function crearProducto($nombre, $idTipo, $portada) {
-            $sqlQuery = "INSERT INTO producto (nombre, idTipo, portada,idEstado) 
-                         VALUES ('".$nombre."', '".$idTipo."', '".$portada."',1)";
+        public function crearProducto($nombre, $idTipo, $portada, $precioSuscripcion) {
+            $sqlQuery = "INSERT INTO producto (nombre, idTipo, portada, precioSuscripcion, idEstado) 
+                         VALUES ('".$nombre."', '".$idTipo."', '".$portada."', '".$precioSuscripcion."', 1)";
             return $this->database->execute($sqlQuery);
         }
 
-        public function editarProducto($id, $nombre, $idTipo, $portada) {
+        public function editarProducto($id, $nombre, $idTipo, $portada, $precioSuscripcion) {
             $sqlQuery = "UPDATE producto 
-                            SET nombre = '".$nombre."', idTipo = '".$idTipo."', portada = '".$portada."' 
+                            SET nombre = '".$nombre."', idTipo = '".$idTipo."', portada = '".$portada."', precioSuscripcion = '".$precioSuscripcion."'
                          WHERE idProducto = '$id'";
             return $this->database->execute($sqlQuery);
         }

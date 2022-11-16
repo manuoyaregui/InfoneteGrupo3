@@ -24,6 +24,7 @@
                         <th scope="col">Tipo de Producto</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Portada</th>
+                        <th scope="col">Precio por Suscripcion</th>
                         <th scope="col">Acciones</th>
                     </tr>
                     </thead>
@@ -35,6 +36,7 @@
                             <td>{{tipoProducto}}</td>
                             <td>{{nombreEstado}}</td>
                             <td><img src="/public/img/portadasDeProducto/{{portada}}" width="50"></td>
+                            <td>${{precioSuscripcion}}</td>
                             <td>
                         {{#esEscritor}}
                                 <a href="/escritor/llamarFormularioProducto/id={{idProducto}}" class="btn btn-info">Editar</a>

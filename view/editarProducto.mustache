@@ -26,7 +26,12 @@
             <input class="form-control" type="file" id="formFile" name="portada">
         </div>
 
-        <input type="submit" class="btn btn-outline-dark" value="Crear">
+        <div class="mb-3">
+            <label for="nombre-producto" class="form-label">Precio por suscripcion</label>
+            <input type="number" class="form-control" id="nombre-producto" name="precioSuscripcion" value="{{precioSuscripcion}}">
+        </div>
+
+        <input type="submit" class="btn btn-outline-dark" value="Editar">
     </form>
     {{/producto}}
 
