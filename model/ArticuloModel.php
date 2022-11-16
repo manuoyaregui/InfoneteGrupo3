@@ -8,7 +8,7 @@ class ArticuloModel
         $this->database = $database;
     }
 
-    public function crearArticulo($idEdicion,$idSeccion,$titulo,$subtitulo, $contenido, $latitud, $longitud) {
+    public function crearArticulo($idEdicion, $idSeccion, $titulo, $subtitulo, $contenido, $latitud, $longitud) {
         $sql = "INSERT INTO articulo (idArticulo,titulo,subtitulo, descripcion, latitud, longitud)
                     VALUES (null,'".$titulo."','".$subtitulo."', '".$contenido."', '".$latitud."', '".$longitud."')";
         $result = $this->database->execute($sql);
