@@ -26,4 +26,13 @@
             return $this->database->execute($sql);
         }
 
+        public function fechaVencimientoDeSuscripcion($idUsuario, $idProducto) {
+            // Trae la ultima fecha de vencimiento (ultima suscripcion realizada)
+            $sql = "SELECT fechaVencimiento 
+                        FROM `suscripcion` 
+                    WHERE idUsuario = '$idUsuario' AND idProducto = '$idProducto'
+                        ORDER BY idSuscripcion DESC LIMIT 1";
+            return $this->database->query($sql);
+        }
+
     }

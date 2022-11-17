@@ -28,14 +28,31 @@
             $fechaVencimiento = date("Y-m-d", strtotime($fechaActual . "+ 1 month"));
             $precio = $this->productoModel->getProductoPorId($idProducto)[0]["precioSuscripcion"];
 
+
             if (isset($_SESSION["idUsuario"]) && isset($_POST["metodoDePago"])) {
                 $idUsuario = $_SESSION["idUsuario"];
                 $metodoPago = $_POST["metodoDePago"];
+                $fechaVencimientoDelUsuario = null;
 
-                $resultado = $this->suscripcionYCompraModel->suscribirseAProducto($idUsuario, $idProducto, $fechaVencimiento, $metodoPago, $precio);
+                if (!empty($this->suscripcionYCompraModel->fechaVencimientoDeSuscripcion($idUsuario, $idProducto)[0]["fechaVencimiento"])) {
+                    $fechaVencimientoDelUsuario = $this->suscripcionYCompraModel->fechaVencimientoDeSuscripcion($idUsuario, $idProducto)[0]["fechaVencimiento"];
+                }
+                $suscripcionVencida = $fechaVencimientoDelUsuario < $fechaActual;
 
-                if ($resultado) {
-                    $data["mensajeSuscripto"] = "Suscripto con exito";
+                // El usuario esta suscripto si se encuentra en la tabla de suscripciones y ademas su suscripcion sigue vigente
+                $usuarioSuscripto = !empty($fechaVencimientoDelUsuario) && !$suscripcionVencida;
+
+                // Si el usuario no esta suscripto entonces se suscribe
+                if (!$usuarioSuscripto) {
+                    $resultado = $this->suscripcionYCompraModel->suscribirseAProducto($idUsuario, $idProducto, $fechaVencimiento, $metodoPago, $precio);
+
+                    if ($resultado) {
+                        $data["mensajeSuscripto"] = "Suscripto con exito hasta el " . $fechaVencimiento;
+                        echo $this->render->render("view/catalogoView.mustache", $data);
+                    }
+
+                } else {
+                    $data["mensajeYaSuscripto"] = "Tu suscripcion sigue vigente hasta el " . $fechaVencimientoDelUsuario;
                     echo $this->render->render("view/catalogoView.mustache", $data);
                 }
 
