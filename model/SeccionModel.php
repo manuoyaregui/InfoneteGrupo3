@@ -42,4 +42,5 @@ class SeccionModel
            $this->database->execute($update);
        }
     }
+
 }

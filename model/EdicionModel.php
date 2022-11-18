@@ -8,11 +8,11 @@ class EdicionModel
         $this->database = $database;
     }
 
-    public function crearEdicion($numeroEdicion, $precioEdicion, $idProducto, $fechaEdicion){
+    public function crearEdicion($numeroEdicion,$portadaEdicion, $precioEdicion, $idProducto, $fechaEdicion){
         if($this->buscarEdicionPorNroDeProductoYNroDeEdicion($idProducto, $numeroEdicion) == null){
             $sqlQuery = "
-                INSERT INTO edicion (numero, precio, idProducto, fechaEdicion) 
-                VALUES ('".$numeroEdicion."', '".$precioEdicion."', '".$idProducto."', '".$fechaEdicion."')";
+                INSERT INTO edicion (idEdicion,numero,portadaEdicion, precio, idProducto, fechaEdicion) 
+                VALUES (null,'".$numeroEdicion."','".$portadaEdicion."', '".$precioEdicion."', '".$idProducto."', '".$fechaEdicion."')";
             return $this->database->execute($sqlQuery);
         }
     }
@@ -38,7 +38,7 @@ class EdicionModel
     }
 
     public function listaDeEdicionesDeUnProducto($idProducto){
-        $consulta = "select * from edicion where idProducto = ".$idProducto;
+        $consulta = "select * from edicion where idProducto =".$idProducto;
         return $this->database->query($consulta);
     }
 

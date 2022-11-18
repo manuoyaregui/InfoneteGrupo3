@@ -33,15 +33,33 @@
                             </select>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="tipo-producto" class="form-label">Edicion al que pertenecerá</label>
-                            <select class="form-select"
-                                    name="idEdicion"
-                                    required
-                                    id="ajaxEdiciones">
-                                <option disabled selected>Seleccione un producto al q pertenezca primero</option>
+                        <div class="mb-3 row">
+                            <div class="col-md">
+                                <label for="tipo-producto" class="form-label">Edición a la que pertenecerá</label>
 
-                            </select>
+                                <select class="form-select"
+                                        name="idEdicion" required
+                                        id="ajaxEdiciones">
+                                    <option disabled selected>Seleccione la edición</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md">
+                                <label for="" class="form-label">Sección a la que pertenecerá</label>
+                                    <select class="form-select"
+                                            name="idSeccion" required
+                                            id="ajaxSecciones">
+                                        <option disabled selected>Seleccione la sección</option>
+                                        {{#secciones}}
+                                        <option value="{{idSeccion}}">{{nombre}}</option>
+                                        {{/secciones}}
+                                    </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="portada-titulo" class="form-label">Portada de la edicion</label>
+                            <input type="file" class="form-control" id="formFile" name="portadaArticulo">
                         </div>
 
                         <div class="mb-3">
@@ -50,6 +68,14 @@
                                    class="form-control"
                                    id="titulo-articulo"
                                    name="titulo-articulo" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="articulo" class="form-label">Subtitulo del artículo</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="subtitulo-articulo"
+                                   name="subtitulo-articulo" required>
                         </div>
 
                         <label for="descripcion-articulo">Descripción del Artículo</label>
@@ -82,13 +108,11 @@
                 <h4 class="alert text-danger text-center">{{mensaje}}</h4>
                 <h4 class="alert text-danger text-center">Los artículos existentes son :
                     {{#listaDeEdiciones}} - {{numero}}  {{/listaDeEdiciones}}</h4>
-            </div>
-
 
             <!--JQuery-->
             <script type="text/javascript" src="/public/jQuery/jquery.js"></script>
             <!--AJAX y custom-->
-            <script>
+            <script type="text/javascript">
                 function mostrarEdiciones(producto) {
                     console.log(producto);
 
@@ -138,4 +162,3 @@
             <!--API Maps-->
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=initMap"></script>
 {{>footer}}
-

@@ -8,9 +8,9 @@
             $this->database = $database;
         }
 
-        public function crearProducto($nombre, $idTipo, $portada) {
-            $sqlQuery = "INSERT INTO producto (nombre, idTipo, portada,idEstado) 
-                         VALUES ('".$nombre."', '".$idTipo."', '".$portada."',1)";
+        public function crearProducto($nombre, $idTipo, $portada, $idUsuario) {
+            $sqlQuery = "INSERT INTO producto (nombre, idTipo, portada,idEscritor,idEstado) 
+                         VALUES ('".$nombre."', '".$idTipo."', '".$portada."','".$idUsuario."',1)";
             return $this->database->execute($sqlQuery);
         }
 
@@ -60,7 +60,7 @@
         }
 
         public function listarProductosRevistaDisponibles(){
-            $sqlQuery = "SELECT * 
+            $sqlQuery = "SELECT p.* 
                             FROM producto p JOIN tipo_producto tp ON p.idTipo=tp.idTipo
                                             JOIN estado e ON e.idEstado = p.idEstado
                          WHERE tp.nombre LIKE 'revista' AND e.nombre = 'ACTIVO'";
@@ -68,7 +68,7 @@
         }
 
         public function listarProductosDiarioDisponibles(){
-            $sqlQuery = "SELECT * 
+            $sqlQuery = "SELECT p.* 
                             FROM producto p JOIN tipo_producto tp ON p.idTipo=tp.idTipo
                                             JOIN estado e ON e.idEstado = p.idEstado
                          WHERE tp.nombre LIKE 'diario' AND e.nombre = 'ACTIVO'";
