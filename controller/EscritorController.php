@@ -232,7 +232,6 @@ class EscritorController
         $idProducto = $_POST["idProducto"];
         $idEdicion = $_POST["idEdicion"];
         $idSeccion = $_POST["idSeccion"];
-        $portadaArticulo = $_POST["portadaArticulo"];
         $titulo = $_POST["titulo-articulo"];
         $subtitulo = $_POST["subtitulo-articulo"];
         $contenido = $_POST["descripcion-articulo"];
@@ -244,9 +243,16 @@ class EscritorController
         $existeEdicion = $this->edicionModel->getEdicionPorId($idEdicion);
         $existeSeccion = $this->seccionModel->getSeccionById($idSeccion);
         if (!empty($existeProducto) && !empty($existeEdicion) && !empty($existeSeccion)) {
-            if (!empty($titulo) && !empty($subtitulo) && !empty($contenido) && !empty($latitud) && !empty($longitud)) {
+            if (isset($_FILES["portadaArticulo"]["name"]) && !empty($titulo) && !empty($subtitulo) && !empty($contenido) && !empty($latitud) && !empty($longitud)) {
+                $portadaArticulo = str_replace(" ", "-", $_FILES["portadaArticulo"]["name"]);
 
                 $resultado = $this->articuloModel->crearArticulo($idEdicion,$idSeccion,$portadaArticulo,$titulo,$subtitulo, $contenido, $latitud, $longitud);
+
+                if (!empty($portadaArticulo)) {
+
+                    move_uploaded_file($_FILES["portadaArticulo"]["tmp_name"], "public/img/portadasDeArticulos/" . $portadaArticulo);
+
+                }
 
                 if ($resultado) {
                     $data["mensaje"] = "Se creo el articulo " . $titulo;
@@ -259,7 +265,7 @@ class EscritorController
         }
         $data["productos"] = $this->productoModel->listarProductos();
         $data["secciones"] = $this->seccionModel->listarSecciones();
-        $data["mensaje"] = "No se pudo crear el articulo " . $titulo;
+        $data["mensajeError"] = "No se pudo crear el articulo " . $titulo;
         echo $this->render->render("view/crearArticuloView.mustache", $data);
     }
 
