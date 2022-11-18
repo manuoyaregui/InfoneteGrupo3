@@ -46,7 +46,7 @@
                     }
 
                 } else {
-                    $fechaDeVencimiento = $this->obtenerFechaVencimientoDelUsuario($idUsuario, $idProducto);
+                    $fechaDeVencimiento = $this->obtenerFechaVencimientoDelUsuario($idUsuario, $idProducto)[0]["fechaVencimiento"];
                     $data["mensajeYaSuscripto"] = "Tu suscripcion sigue vigente hasta el " . $fechaDeVencimiento;
                     echo $this->render->render("view/catalogoView.mustache", $data);
                 }
@@ -98,12 +98,11 @@
 
             }
 
-
             return false;
         }
 
         private function obtenerFechaVencimientoDelUsuario($idUsuario, $idProducto) {
-            return $this->suscripcionYCompraModel->fechaVencimientoDeSuscripcion($idUsuario, $idProducto)[0]["fechaVencimiento"];
+            return $this->suscripcionYCompraModel->fechaVencimientoDeSuscripcion($idUsuario, $idProducto);
         }
 
 
