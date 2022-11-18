@@ -25,34 +25,29 @@
             // Se obtiene la fecha actual (en el campo fechaInicio se pone la fecha de hoy al insertar el registro)
             $fechaActual = date("Y-m-d");
             // Se le agrega un mes a la fecha actual
-            $fechaVencimiento = date("Y-m-d", strtotime($fechaActual . "+ 1 month"));
+            $fechaVencimientoCalculada = date("Y-m-d", strtotime($fechaActual . "+ 1 month"));
             $precio = $this->productoModel->getProductoPorId($idProducto)[0]["precioSuscripcion"];
 
 
             if (isset($_SESSION["idUsuario"]) && isset($_POST["metodoDePago"])) {
                 $idUsuario = $_SESSION["idUsuario"];
                 $metodoPago = $_POST["metodoDePago"];
-                $fechaVencimientoDelUsuario = null;
-
-                if (!empty($this->suscripcionYCompraModel->fechaVencimientoDeSuscripcion($idUsuario, $idProducto)[0]["fechaVencimiento"])) {
-                    $fechaVencimientoDelUsuario = $this->suscripcionYCompraModel->fechaVencimientoDeSuscripcion($idUsuario, $idProducto)[0]["fechaVencimiento"];
-                }
-                $suscripcionVencida = $fechaVencimientoDelUsuario < $fechaActual;
 
                 // El usuario esta suscripto si se encuentra en la tabla de suscripciones y ademas su suscripcion sigue vigente
-                $usuarioSuscripto = !empty($fechaVencimientoDelUsuario) && !$suscripcionVencida;
+                $usuarioSuscripto = $this->usuarioSuscripto($idUsuario, $idProducto);
 
                 // Si el usuario no esta suscripto entonces se suscribe
                 if (!$usuarioSuscripto) {
-                    $resultado = $this->suscripcionYCompraModel->suscribirseAProducto($idUsuario, $idProducto, $fechaVencimiento, $metodoPago, $precio);
+                    $resultado = $this->suscripcionYCompraModel->suscribirseAProducto($idUsuario, $idProducto, $fechaVencimientoCalculada, $metodoPago, $precio);
 
                     if ($resultado) {
-                        $data["mensajeSuscripto"] = "Suscripto con exito hasta el " . $fechaVencimiento;
+                        $data["mensajeSuscripto"] = "Suscripto con exito hasta el " . $fechaVencimientoCalculada;
                         echo $this->render->render("view/catalogoView.mustache", $data);
                     }
 
                 } else {
-                    $data["mensajeYaSuscripto"] = "Tu suscripcion sigue vigente hasta el " . $fechaVencimientoDelUsuario;
+                    $fechaDeVencimiento = $this->obtenerFechaVencimientoDelUsuario($idUsuario, $idProducto);
+                    $data["mensajeYaSuscripto"] = "Tu suscripcion sigue vigente hasta el " . $fechaDeVencimiento;
                     echo $this->render->render("view/catalogoView.mustache", $data);
                 }
 
@@ -84,6 +79,31 @@
                 $data["mensajeErrorCompra"] = "No se pudo comprar la edicion";
                 echo $this->render->render("view/catalogoView.mustache", $data);
             }
+        }
+
+        public function verArticulosCompletos() {
+
+        }
+
+        private function usuarioSuscripto($idUsuario, $idProducto) {
+            $fechaActual = date("Y-m-d");
+            $fechaVencimientoDelUsuario = $this->obtenerFechaVencimientoDelUsuario($idUsuario, $idProducto);
+
+            if (!empty($fechaVencimientoDelUsuario)) {
+                $suscripcionVencida = $fechaVencimientoDelUsuario < $fechaActual;
+
+                if (!$suscripcionVencida) {
+                    return true;
+                }
+
+            }
+
+
+            return false;
+        }
+
+        private function obtenerFechaVencimientoDelUsuario($idUsuario, $idProducto) {
+            return $this->suscripcionYCompraModel->fechaVencimientoDeSuscripcion($idUsuario, $idProducto)[0]["fechaVencimiento"];
         }
 
 
