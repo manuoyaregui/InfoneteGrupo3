@@ -8,9 +8,9 @@
             $this->database = $database;
         }
 
-        public function crearProducto($nombre, $idTipo, $portada) {
-            $sqlQuery = "INSERT INTO producto (nombre, idTipo, portada,idEstado) 
-                         VALUES ('".$nombre."', '".$idTipo."', '".$portada."',1)";
+        public function crearProducto($nombre, $idTipo, $portada, $idUsuario) {
+            $sqlQuery = "INSERT INTO producto (nombre, idTipo, portada,idEscritor,idEstado) 
+                         VALUES ('".$nombre."', '".$idTipo."', '".$portada."','".$idUsuario."',1)";
             return $this->database->execute($sqlQuery);
         }
 
