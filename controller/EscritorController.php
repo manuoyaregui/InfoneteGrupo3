@@ -118,12 +118,12 @@ class EscritorController
     public function crearEdicion(){
         //AGREGAR
         if ( isset( $_POST["numeroEdicion"],
-                    $_POST["portadaEdicion"],
+                    $_FILES["portadaEdicion"]["name"],
                     $_POST["precioEdicion"],
                     $_POST["idProducto"],
                     $_POST["fechaEdicion"]) ) {
 
-            $portadaEdicion = $_POST["portadaEdicion"];
+            $portadaEdicion = str_replace(" ", "-", $_FILES["portadaEdicion"]["name"]);
             $fechaEdicion = $_POST["fechaEdicion"];
             $numeroEdicion = $_POST["numeroEdicion"];
             $precioEdicion = $_POST["precioEdicion"];
@@ -131,7 +131,11 @@ class EscritorController
 
             if (!empty($numeroEdicion) && !empty($precioEdicion) && !empty($idProducto)) {
 
-                $resultado = $this->edicionModel->crearEdicion($numeroEdicion,$portadaEdicion, $precioEdicion, $idProducto,$fechaEdicion);
+                $resultado = $this->edicionModel->crearEdicion($numeroEdicion, $portadaEdicion, $precioEdicion, $idProducto, $fechaEdicion);
+
+                if (!empty($portadaEdicion)) {
+                    move_uploaded_file($_FILES["portadaEdicion"]["tmp_name"], "public/img/portadasDeEdicion/" . $portadaEdicion);
+                }
 
             }
 
@@ -147,6 +151,7 @@ class EscritorController
         }
         else{
             $data['formError'] = "Por favor rellena todos los campos.";
+            $data["productos"] = $this->productoModel->listarProductos();
             echo $this->render->render("view/crearEdicionView.mustache", $data);
         }
     }
