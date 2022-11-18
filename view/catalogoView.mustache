@@ -35,6 +35,13 @@
                 </div>
             {{/mensajeSuscripto}}
 
+            {{#mensajeYaSuscripto}}
+                <div class="alert bg-warning alert-dismissible fade show mt-3 w-50 mx-auto" role="alert">
+                    <h2 class="fs-4 text-white text-center">{{mensajeYaSuscripto}}</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {{/mensajeYaSuscripto}}
+
             {{#mensajeCompra}}
                 <div class="alert bg-success alert-dismissible fade show mt-3 w-50 mx-auto" role="alert">
                     <h2 class="fs-4 text-white text-center">{{mensajeCompra}}</h2>
