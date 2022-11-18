@@ -27,13 +27,7 @@ class ArticuloModel
     }
 
     public function listarArticulosPorEdicion($idProducto,$idEdicion){
-        /*$sql = "SELECT a.titulo, a.descripcion, idEdicion
-                FROM articulo a join edicion_seccion_articulos esa on a.idArticulo = esa.idArticulo
-                WHERE esa.idEdicion = ".$idEdicion." and EXISTS(
-									                SELECT idEdicion
-									                FROM producto p join edicion e on p.idProducto=e.idProducto
-									                WHERE p.idProducto = ".$idProducto.")";*/
-        $sql = "SELECT art.titulo, art.portadaArticulo, ed.idEdicion, sec.nombre AS seccion, art.subtitulo
+        $sql = "SELECT art.titulo, art.portadaArticulo, ed.idEdicion, sec.nombre AS seccion, art.subtitulo,art.idArticulo
                     FROM edicion_seccion_articulos esa
                         JOIN articulo art ON art.idArticulo = esa.idArticulo
                         JOIN edicion ed ON ed.idEdicion = esa.idEdicion
@@ -41,6 +35,14 @@ class ArticuloModel
                         JOIN seccion sec ON sec.idSeccion = esa.idSeccion
                     WHERE pr.idProducto = '$idProducto' AND ed.idEdicion = '$idEdicion'";
         return $this->database->query($sql);
+    }
 
+    public function getArticuloYSeccionPorId($idArticulo){
+        $sql = "SELECT art.*,sec.nombre AS nombreSeccion
+                FROM edicion_seccion_articulos esa
+                JOIN articulo art ON art.idArticulo = esa.idArticulo
+                JOIN seccion sec ON sec.idSeccion = esa.idSeccion
+                WHERE art.idArticulo = ".$idArticulo;
+        return $this->database->query($sql);
     }
 }
