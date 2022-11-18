@@ -21,7 +21,7 @@
         }
 
         public function comprarEdicion($idUsuario, $idEdicion, $precio, $metodoPago) {
-            $sql = "INSERT INTO compra(idUsuario, idEdicion, precio, idMedioDePago)
+            $sql = "INSERT INTO compra(idUsuario, idEdicion, precio, medioDePago)
                         VALUES ('".$idUsuario."', '".$idEdicion."', '".$precio."', '".$metodoPago."')";
             return $this->database->execute($sql);
         }
