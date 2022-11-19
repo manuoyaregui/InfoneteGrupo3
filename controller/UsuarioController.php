@@ -81,7 +81,16 @@
             }
         }
 
-        public function verArticulosCompletos() {
+        public function verArticuloCompleto() {
+            $idUsuario = $_SESSION["idUsuario"];
+            $idProducto = $_GET["idProducto"];
+
+            $usuarioSuscripto = $this->usuarioSuscripto($idUsuario, $idProducto);
+
+            if ($usuarioSuscripto) {
+                $data["usuarioSuscripto"] = true;
+                echo $this->render->render("view/edicionView.mustache", $data);
+            }
 
         }
 
@@ -90,7 +99,8 @@
             $fechaVencimientoDelUsuario = $this->obtenerFechaVencimientoDelUsuario($idUsuario, $idProducto);
 
             if (!empty($fechaVencimientoDelUsuario)) {
-                $suscripcionVencida = $fechaVencimientoDelUsuario < $fechaActual;
+                // [0]["fechaVencimiento] se usa aca porque sino estaria comparando la fechaActual con un array
+                $suscripcionVencida = $fechaVencimientoDelUsuario[0]["fechaVencimiento"] < $fechaActual;
 
                 if (!$suscripcionVencida) {
                     return true;
