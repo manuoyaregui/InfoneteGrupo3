@@ -30,7 +30,7 @@ class EscritorController
 
     public function crearProducto(){
 
-        if (isset($_POST["nombre"]) && isset($_POST["tipoProducto"]) && isset($_FILES["portada"]["name"])) {
+        if (isset($_POST["nombre"], $_POST["tipoProducto"], $_FILES["portada"]["name"], $_SESSION['idUsuario'])) {
             $idUsuario = $_SESSION['idUsuario'];
             $nombre = $_POST["nombre"];
             $idTipo = $_POST["tipoProducto"];
@@ -41,7 +41,7 @@ class EscritorController
 
                 $nombreEnMayuscula = mb_strtoupper($nombre, 'utf-8');
                 // TODO: modificar la base de datos
-                $resultado = $this->productoModel->crearProducto($nombreEnMayuscula, $idTipo, $portada, $precioSuscripcion, $idUsuario);
+                $resultado = $this->productoModel->crearProducto($nombreEnMayuscula, $idTipo, $portada, $precioSuscripcion, $idUsuario[0]["idUsuario"]);
 
                 if (!empty($portada)) {
 
