@@ -158,6 +158,8 @@ class Configuration{
 
     public function getArticuloController(){
         $articuloModel = $this->getArticuloModel();
-        return new ArticuloController($this->getRender(),$articuloModel);
+        $suscripcionYCompraModel = $this->getSuscripcionYCompraModel();
+        $productoModel = $this->getProductoModel();
+        return new ArticuloController($this->getRender(), $articuloModel, $suscripcionYCompraModel, $productoModel);
     }
 }
