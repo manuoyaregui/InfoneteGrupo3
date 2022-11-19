@@ -45,5 +45,11 @@ class LoginModel
         return $this->database->query($sql);
     }
 
+    public function getIdUsuarioPorEmail($email){
+        $sql = "SELECT idUsuario
+                FROM usuario 
+                WHERE email like '".$email."'";
+        return $this->database->query($sql);
+    }
 
 }
