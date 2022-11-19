@@ -34,7 +34,7 @@
                 $metodoPago = $_POST["metodoDePago"];
 
                 // El usuario esta suscripto si se encuentra en la tabla de suscripciones y ademas su suscripcion sigue vigente
-                $usuarioSuscripto = $this->usuarioSuscripto($idUsuario, $idProducto);
+                $usuarioSuscripto = $this->suscripcionYCompraModel->usuarioSuscripto($idUsuario, $idProducto);
 
                 // Si el usuario no esta suscripto entonces se suscribe
                 if (!$usuarioSuscripto) {
@@ -46,7 +46,7 @@
                     }
 
                 } else {
-                    $fechaDeVencimiento = $this->obtenerFechaVencimientoDelUsuario($idUsuario, $idProducto)[0]["fechaVencimiento"];
+                    $fechaDeVencimiento = $this->suscripcionYCompraModel->fechaVencimientoDeSuscripcion($idUsuario, $idProducto)[0]["fechaVencimiento"];
                     $data["mensajeYaSuscripto"] = "Tu suscripcion sigue vigente hasta el " . $fechaDeVencimiento;
                     echo $this->render->render("view/catalogoView.mustache", $data);
                 }
@@ -85,34 +85,13 @@
             $idUsuario = $_SESSION["idUsuario"];
             $idProducto = $_GET["idProducto"];
 
-            $usuarioSuscripto = $this->usuarioSuscripto($idUsuario, $idProducto);
+            $usuarioSuscripto = $this->suscripcionYCompraModel->usuarioSuscripto($idUsuario, $idProducto);
 
             if ($usuarioSuscripto) {
                 $data["usuarioSuscripto"] = true;
                 echo $this->render->render("view/edicionView.mustache", $data);
             }
 
-        }
-
-        private function usuarioSuscripto($idUsuario, $idProducto) {
-            $fechaActual = date("Y-m-d");
-            $fechaVencimientoDelUsuario = $this->obtenerFechaVencimientoDelUsuario($idUsuario, $idProducto);
-
-            if (!empty($fechaVencimientoDelUsuario)) {
-                // [0]["fechaVencimiento] se usa aca porque sino estaria comparando la fechaActual con un array
-                $suscripcionVencida = $fechaVencimientoDelUsuario[0]["fechaVencimiento"] < $fechaActual;
-
-                if (!$suscripcionVencida) {
-                    return true;
-                }
-
-            }
-
-            return false;
-        }
-
-        private function obtenerFechaVencimientoDelUsuario($idUsuario, $idProducto) {
-            return $this->suscripcionYCompraModel->fechaVencimientoDeSuscripcion($idUsuario, $idProducto);
         }
 
 

@@ -35,4 +35,21 @@
             return $this->database->query($sql);
         }
 
+        public function usuarioSuscripto($idUsuario, $idProducto) {
+            $fechaActual = date("Y-m-d");
+            $fechaVencimientoDelUsuario = $this->fechaVencimientoDeSuscripcion($idUsuario, $idProducto);
+
+            if (!empty($fechaVencimientoDelUsuario)) {
+                // [0]["fechaVencimiento] se usa aca porque sino estaria comparando la fechaActual con un array
+                $suscripcionVencida = $fechaVencimientoDelUsuario[0]["fechaVencimiento"] < $fechaActual;
+
+                if (!$suscripcionVencida) {
+                    return true;
+                }
+
+            }
+
+            return false;
+        }
+
     }
