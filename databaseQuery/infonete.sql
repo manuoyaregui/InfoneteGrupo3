@@ -148,6 +148,41 @@ INSERT INTO `medio_de_pago` (`idMedioDePago`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+                           `idUsuario` int(11) NOT NULL,
+                           `nombre` text NOT NULL,
+                           `email` varchar(40) NOT NULL,
+                           `password` text NOT NULL,
+                           `latitud` varchar(10) NOT NULL,
+                           `longitud` varchar(10) NOT NULL,
+                           `idRol` int(11) NOT NULL,
+                           `hashVerificacion` text NOT NULL,
+                           `idEstado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `password`, `latitud`, `longitud`, `idRol`, `hashVerificacion`, `idEstado`) VALUES
+                                                                                                                                       (1, 'Alan', 'alan@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, '', 2),
+                                                                                                                                       (2, 'Macarena', 'macarena@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, '', 2),
+                                                                                                                                       (3, 'Miguel', 'miguel@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, '', 2),
+                                                                                                                                       (4, 'Pedro', 'pedrito@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, '', 2),
+                                                                                                                                       (5, 'Sofia', 'admin@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 3, '', 2),
+                                                                                                                                       (6, 'Graciela', 'editor@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 4, '', 2),
+                                                                                                                                       (7, 'Fernanda', 'escritor@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 2, '', 2),
+                                                                                                                                       (8, 'Lector', 'lector@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '-34.653141', '-58.475545', 1, '', 2);
+
+--
+-- Índices para tablas volcadas
+--
+
+
+--
 -- Estructura de tabla para la tabla `producto`
 --
 
@@ -157,6 +192,7 @@ CREATE TABLE `producto` (
                             `idTipo` int(11) NOT NULL,
                             `portada` text DEFAULT NULL,
                             `precioSuscripcion` float NOT NULL,
+                            `idEscritor` int(11) NOT NULL,
                             `idEstado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -164,16 +200,16 @@ CREATE TABLE `producto` (
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`idProducto`, `nombre`, `idTipo`, `portada`, `precioSuscripcion`, `idEstado`) VALUES
-                                                                                                          (1, 'CLARIN', 2, 'clarin.jpg', 465, 2),
-                                                                                                          (2, 'LA NACION', 2, 'la-nacion.jpg', 350, 2),
-                                                                                                          (3, 'PAGINA 12', 2, 'pagina-12.jpg', 400, 2),
-                                                                                                          (4, 'LA CAPITAL ', 2, 'la-capital.jpg', 650, 3),
-                                                                                                          (5, 'EL DIA', 2, 'el-dia.jpg', 325, 2),
-                                                                                                          (6, 'LA GACETA', 2, 'la-gaceta.jpg', 500, 2),
-                                                                                                          (7, 'LA VOZ', 2, 'la-voz.jpg', 435, 2),
-                                                                                                          (8, 'OHLALA!', 1, 'ohlala.jpg', 615, 2),
-                                                                                                          (9, 'PARATI', 1, 'parati.jpg', 425, 2);
+INSERT INTO `producto` (`idProducto`, `nombre`, `idTipo`, `portada`, `precioSuscripcion`, `idEscritor`, `idEstado`) VALUES
+                                                                                                          (1, 'CLARIN', 2, 'clarin.jpg', 465, 7, 2),
+                                                                                                          (2, 'LA NACION', 2, 'la-nacion.jpg', 350, 7, 2),
+                                                                                                          (3, 'PAGINA 12', 2, 'pagina-12.jpg', 400, 7, 2),
+                                                                                                          (4, 'LA CAPITAL ', 2, 'la-capital.jpg', 650, 7, 3),
+                                                                                                          (5, 'EL DIA', 2, 'el-dia.jpg', 325, 7, 2),
+                                                                                                          (6, 'LA GACETA', 2, 'la-gaceta.jpg', 500, 7, 2),
+                                                                                                          (7, 'LA VOZ', 2, 'la-voz.jpg', 435, 7, 2),
+                                                                                                          (8, 'OHLALA!', 1, 'ohlala.jpg', 615, 7, 2),
+                                                                                                          (9, 'PARATI', 1, 'parati.jpg', 425, 7, 2);
 
 -- --------------------------------------------------------
 
@@ -257,40 +293,6 @@ INSERT INTO `tipo_producto` (`idTipo`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
---
-
-CREATE TABLE `usuario` (
-                           `idUsuario` int(11) NOT NULL,
-                           `nombre` text NOT NULL,
-                           `email` varchar(40) NOT NULL,
-                           `password` text NOT NULL,
-                           `latitud` varchar(10) NOT NULL,
-                           `longitud` varchar(10) NOT NULL,
-                           `idRol` int(11) NOT NULL,
-                           `hashVerificacion` text NOT NULL,
-                           `idEstado` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `usuario`
---
-
-INSERT INTO `usuario` (`idUsuario`, `nombre`, `email`, `password`, `latitud`, `longitud`, `idRol`, `hashVerificacion`, `idEstado`) VALUES
-                                                                                                                                       (1, 'Alan', 'alan@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, '', 2),
-                                                                                                                                       (2, 'Macarena', 'macarena@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, '', 2),
-                                                                                                                                       (3, 'Miguel', 'miguel@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, '', 2),
-                                                                                                                                       (4, 'Pedro', 'pedrito@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 1, '', 2),
-                                                                                                                                       (5, 'Sofia', 'admin@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 3, '', 2),
-                                                                                                                                       (6, 'Graciela', 'editor@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 4, '', 2),
-                                                                                                                                       (7, 'Fernanda', 'escritor@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0', '', 2, '', 2),
-                                                                                                                                       (8, 'Lector', 'lector@mail.com', '81dc9bdb52d04dc20036dbd8313ed055', '-34.653141', '-58.475545', 1, '', 2);
-
---
--- Índices para tablas volcadas
---
-
---
 -- Indices de la tabla `articulo`
 --
 ALTER TABLE `articulo`
@@ -338,6 +340,7 @@ ALTER TABLE `medio_de_pago`
 ALTER TABLE `producto`
     ADD PRIMARY KEY (`idProducto`),
     ADD KEY `idTipo` (`idTipo`),
+    ADD KEY `idEscritor` (`idEscritor`),
     ADD KEY `idEstado` (`idEstado`);
 
 --
@@ -476,7 +479,8 @@ ALTER TABLE `edicion_seccion_articulos`
 --
 ALTER TABLE `producto`
     ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`idTipo`) REFERENCES `tipo_producto` (`idTipo`),
-    ADD CONSTRAINT `producto_ibfk_2` FOREIGN KEY (`idEstado`) REFERENCES `estado` (`idEstado`);
+    ADD CONSTRAINT `producto_ibfk_2` FOREIGN KEY (`idEscritor`) REFERENCES `usuario` (`idUsuario`),
+    ADD CONSTRAINT `producto_ibfk_3` FOREIGN KEY (`idEstado`) REFERENCES `estado` (`idEstado`);
 
 --
 -- Filtros para la tabla `suscripcion`
