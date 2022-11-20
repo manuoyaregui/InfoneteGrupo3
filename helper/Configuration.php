@@ -3,7 +3,7 @@ include_once("helper/MysqlDatabase.php");
 include_once("helper/Render.php");
 include_once("helper/UrlHelper.php");
 include_once("helper/Mailer.php");
-
+include_once("helper/WeatherApi.php");
 
 include_once ("model/LoginModel.php");
 include_once ("model/RegistrarseModel.php");
@@ -24,7 +24,7 @@ include_once ("controller/AdministradorController.php");
 include_once ("controller/EdicionController.php");
 include_once ("controller/ArticuloController.php");
 
-
+include_once ('third-party/visualCrossingWeather/WeatherAPIHandler.php');
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
 
@@ -78,7 +78,7 @@ class Configuration{
 
     public function getInicioController(){
         $productoModel = $this->getproductoModel();
-        return new InicioController($productoModel,$this->getRender());
+        return new InicioController($productoModel,$this->getRender(),$this->getWeatherApi());
     }
 
 
@@ -144,9 +144,12 @@ class Configuration{
     public function getMailer() {
         return new Mailer();
     }
-
     public function getArticuloController(){
         $articuloModel = $this->getArticuloModel();
         return new ArticuloController($this->getRender(),$articuloModel);
+    }
+
+    public function getWeatherApi(){
+        return  new WeatherApi(new WeatherAPIHandler() );
     }
 }
