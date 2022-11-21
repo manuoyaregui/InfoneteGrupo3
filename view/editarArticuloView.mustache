@@ -5,7 +5,130 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
+
+                {{#mensaje}}
+                    <div class="alert alert-success alert-dismissible fade show my-3" role="alert">
+                        <h2 class="fs-4 text-white text-center">{{mensaje}}</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {{/mensaje}}
+
                 <!-- formulario -->
-                <h1>editar articulo</h1>
-            </div>
+                <div class="w-50 my-4 mx-auto">
+
+                    <h2 class="mb-4 display-4 text-center">Editar Artículo</h2>
+
+                    <form action="/escritor/editarArticulo/id={{articulo.idArticulo}}" method="post">
+
+
+
+                        <div class="mb-3">
+                            <label for="portada-titulo" class="form-label">Portada de la edicion</label>
+                            <input type="file" class="form-control" id="formFile" name="portadaArticulo">
+                            <label class="form-label mt-2">Imagen Previa</label>
+                            <img
+                                    class="w-100"
+                                    src="/public/img/portadasDeArticulos/{{articulo.portadaArticulo}}" alt="">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="articulo" class="form-label">Título del artículo</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="titulo-articulo"
+                                   name="titulo-articulo" required
+                                   value="{{articulo.titulo}}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="articulo" class="form-label">Subtítulo del artículo</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="subtitulo-articulo"
+                                   name="subtitulo-articulo" required
+                                    value="{{articulo.subtitulo}}">
+                        </div>
+
+                        <label for="descripcion-articulo">Descripción del Artículo</label>
+                        <textarea
+                                class="form-control mb-3"
+                                placeholder="Leave a comment here"
+                                id="descripcion-articulo"
+                                name="descripcion-articulo"
+                                style="height: 150px"
+                                value="{{{articulo.descripcion}}}"></textarea>
+
+                        <script>
+                            $('#descripcion-articulo').summernote({
+                                placeholder: 'Contenido del articulo',
+                                tabsize: 2,
+                                height: 200
+                            });
+                        </script>
+
+
+                        <label for="latitud" class="mt-3">Ubicación geográfica del artículo</label>
+                        <input class="form-control my-3" type="hidden" id="latitud" name="latitud" value="{{articulo.latitud}}">
+                        <input class="form-control my-3" type="hidden" id="longitud" name="longitud" value="{{articulo.longitud}}">
+
+                        <div id="map" class="m-auto rounded-3 mb-3" style="width: 100%; height: 300px;"></div>
+
+
+                        <input type="submit" class="btn btn-outline-dark" value="Crear">
+                    </form>
+                </div>
+                <h4 class="alert text-danger text-center">{{mensaje}}</h4>
+
+                <!--JQuery-->
+                <script type="text/javascript" src="/public/jQuery/jquery.js"></script>
+                <!--AJAX y custom-->
+                <script type="text/javascript">
+                    function mostrarEdiciones(producto) {
+                        console.log(producto);
+
+                        var parametros = {
+                            "producto" : producto
+                        };
+
+                        $.ajax({
+                            data:  parametros,
+                            url:   '/escritor/getEdiciones',
+                            type:  'post',
+                            beforeSend: function () {
+                                $("#ajaxEdiciones").html("Procesando, espere por favor...");
+                                console.log("en el beforeSend");
+                            },
+                            success:  function (response) {
+                                console.log(response);
+                                $("#ajaxEdiciones").html(response);
+                            }
+                        });
+                    }
+
+                    function initMap(){
+                        var coordenadas = {
+                            lat: {{articulo.latitud}},
+                            lng: {{articulo.longitud}}
+                        };
+                        var map = new google.maps.Map(document.getElementById('map'),{
+                            zoom: 15,
+                            center: coordenadas
+                        });
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: coordenadas,
+                            draggable: true
+                        });
+
+                        /* Esto salta como deprecado, pero no pude hacerlo andar con addEventListener
+                        *  (no estoy seguro si es por un problema de la api key)
+                        *  */
+                        google.maps.event.addListener(marker,'dragend',function() {
+                            document.querySelector('#latitud').value = marker.getPosition().lat();
+                            document.querySelector('#longitud').value = marker.getPosition().lng();
+                        });
+                    }
+                </script>
+                <!--API Maps-->
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=initMap"></script>
 {{>footer}}

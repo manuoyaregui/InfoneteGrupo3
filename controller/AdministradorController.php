@@ -19,7 +19,7 @@ class AdministradorController
     public function execute(){
         $rolUsuario = $_SESSION['rol']? $_SESSION['rol']['nombre'] : false;
         if($rolUsuario === 'ADMINISTRADOR')
-            echo $this->render->render("view/administradorView.mustache");
+            $this->listarUsuarios();
         else
             echo $this->render->redirect("/");
     }
@@ -68,6 +68,18 @@ class AdministradorController
             }
 
         }
+    }
+
+    public function listarArticulos(){
+        //AGREGAR CODIGO EN EL MODEL ARTICULO PARA QUE FUNCIONE LISTAR
+        $data["articulos"] = $this->articuloModel->listarTodosLosArticulos();
+
+        echo $this->render->render("view/listarArticuloView.mustache", $data);
+    }
+
+    private function isAdmin():bool{
+        return  isset( $_SESSION['rol'] ) &&
+                $_SESSION['rol']['nombre'] === 'ADMINISTRADOR';
     }
 
 }

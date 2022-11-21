@@ -21,6 +21,7 @@
                         <th scope="col">Titulo</th>
                         <th scope="col">Descripcion</th>
                         <th scope="col">???</th>
+                        <th scope="col">acciones</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -29,10 +30,21 @@
                             <th scope="row">{{idArticulo}}</th>
                             <td>{{titulo}}</td>
                             <td>{{descripcion}}</td>
-                            <td>{{???}}</td>
-                                    <a href="/escritor/llamarFormularioProducto/id={{idArticulo}}" class="btn btn-info">Editar</a>
+
+                            {{#esEscritor}}
+                            <td>{{???}}
+                                    <a href="/escritor/llamarFormularioEditarArticulo/id={{idArticulo}}" class="btn btn-info">Editar</a>
                                 <!--<a href="/escritor/eliminarProducto/id={{idArticulo}}" class="btn btn-danger">Eliminar</a>-->
                             </td>
+                            {{/esEscritor}}
+
+                            {{#esEditor}}
+                            <td>
+                                <a href="/articulo/verArticulo/articulo={{idArticulo}}" class="btn btn-info">Ver</a>
+                                <a href="" class="btn btn-success">Aprobar</a>
+                                <a href="" class="btn btn-danger">Desaprobar</a>
+                            </td>
+                            {{/esEditor}}
                         </tr>
                     {{/articulos}}
                     </tbody>
