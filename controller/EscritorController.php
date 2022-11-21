@@ -41,7 +41,7 @@ class EscritorController
 
                 $nombreEnMayuscula = mb_strtoupper($nombre, 'utf-8');
                 // TODO: modificar la base de datos
-                $resultado = $this->productoModel->crearProducto($nombreEnMayuscula, $idTipo, $portada, $precioSuscripcion, $idUsuario[0]["idUsuario"]);
+                $resultado = $this->productoModel->crearProducto($nombreEnMayuscula, $idTipo, $portada, $precioSuscripcion, $idUsuario);
 
                 if (!empty($portada)) {
 
