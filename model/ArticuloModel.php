@@ -45,4 +45,36 @@ class ArticuloModel
                 WHERE art.idArticulo = ".$idArticulo;
         return $this->database->query($sql);
     }
+
+    public function listarTodosLosArticulos(){
+        $sql = "SELECT art.titulo, art.portadaArticulo, ed.idEdicion, sec.nombre AS seccion, art.subtitulo,art.idArticulo
+                    FROM edicion_seccion_articulos esa
+                        JOIN articulo art ON art.idArticulo = esa.idArticulo
+                        JOIN edicion ed ON ed.idEdicion = esa.idEdicion
+                        JOIN producto pr ON pr.idProducto = ed.idProducto
+                        JOIN seccion sec ON sec.idSeccion = esa.idSeccion";
+        return $this->database->query($sql);
+    }
+
+    public function getTernariaPorIdArticulo($idArticulo){
+        $sql = "SELECT esa.*, art, sec
+                FROM edicion_seccion_articulos esa
+                JOIN articulo art ON art.idArticulo = esa.idArticulo
+                JOIN seccion sec ON sec.idSeccion = esa.idSeccion
+                WHERE art.idArticulo = ".$idArticulo;
+        return $this->database->query($sql);
+    }
+
+    public function editarArticulo($idArticulo,$newData = array()){
+        $sql = "
+            UPDATE articulo
+            set titulo = '".$newData['titulo']."',
+                subtitulo = '".$newData['subtitulo']."', 
+                descripcion = '". $newData['descripcion']."',
+                latitud = '".$newData['latitud']."',
+                longitud = '".$newData['longitud']."'
+            where idArticulo = '".$idArticulo."'";
+
+        return $this->database->execute($sql);
+    }
 }

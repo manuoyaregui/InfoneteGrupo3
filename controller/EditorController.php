@@ -22,4 +22,26 @@ class EditorController
             echo $this->render->redirect("/");
     }
 
+    public function listarEdiciones() {
+        //AGREGAR CODIGO EN EL MODEL EDICION PARA QUE FUNCIONE LISTAR
+        $data["ediciones"] = $this->edicionModel->listarEdiciones();
+
+        echo $this->render->render("view/listarEdicionView.mustache", $data);
+    }
+
+    public function aprobarEdicion(){
+        $idSeccion = $_GET['idSeccion'];
+
+
+
+        $this->execute();
+    }
+
+    public function listarArticulos(){
+        //AGREGAR CODIGO EN EL MODEL ARTICULO PARA QUE FUNCIONE LISTAR
+        $data["articulos"] = $this->articuloModel->listarTodosLosArticulos();
+
+        echo $this->render->render("view/listarArticuloView.mustache", $data);
+    }
+
 }
