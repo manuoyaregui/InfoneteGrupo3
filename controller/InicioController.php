@@ -11,7 +11,7 @@ class InicioController
     }
 
     public function execute(){
-        $data["producto"] = $this->productoModel->getProductos();
+        $data["producto"] = $this->productoModel->getProductosDisponibles();
         echo $this->render->render("view/catalogoView.mustache",$data);
     }
 

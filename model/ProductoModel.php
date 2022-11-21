@@ -35,6 +35,14 @@
             return $this->database->query($sql);
         }
 
+        public function getProductosDisponibles(){
+            $sql = "SELECT p.* 
+                        FROM producto p
+                            JOIN estado e ON e.idEstado = p.idEstado
+                    WHERE e.nombre = 'ACTIVO'";
+            return $this->database->query($sql);
+        }
+
         public function getProductoPorId($idRecibido){
             $consulta = "
                 select p.*,
