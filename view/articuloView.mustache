@@ -1,7 +1,7 @@
 {{>header}}
 {{>nav}}
 
-{{#usuarioSuscripto}}
+{{#usuarioPuedeVerArticulo}}
     <div class="container my-4" style="width: 73rem">
         <div class="row">
             <div class="card">
@@ -17,13 +17,14 @@
                     <div class="card-body">{{{descripcion}}}</div>
                 {{/articulo}}
             </div>
-
         </div>
 
 
     </div>
-{{/usuarioSuscripto}}
+{{/usuarioPuedeVerArticulo}}
 
-{{^usuarioSuscripto}}
-    no estas suscripto
-{{/usuarioSuscripto}}
+{{^usuarioPuedeVerArticulo}}
+    <div class="mx-auto my-3 text-center w-75">
+        <h3 class="alert bg-warning">Usted debe de estar suscripto o haber comprado la edicion para ver los articulos</h3>
+    </div>
+{{/usuarioPuedeVerArticulo}}

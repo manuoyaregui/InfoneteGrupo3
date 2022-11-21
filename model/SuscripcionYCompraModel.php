@@ -35,6 +35,13 @@
             return $this->database->query($sql);
         }
 
+        public function getIdCompraDeEdicion($idUsuario, $idEdicion) {
+            $sql = "SELECT idCompra
+                        FROM compra
+                    WHERE idUsuario = '$idUsuario' AND idEdicion = '$idEdicion'";
+            return $this->database->query($sql);
+        }
+
         public function usuarioSuscripto($idUsuario, $idProducto) {
             $fechaActual = date("Y-m-d");
             $fechaVencimientoDelUsuario = $this->fechaVencimientoDeSuscripcion($idUsuario, $idProducto);
@@ -49,6 +56,13 @@
 
             }
 
+            return false;
+        }
+
+        public function usuarioPoseeEdicion($idUsuario, $idEdicion) {
+            if (!empty($this->getIdCompraDeEdicion($idUsuario, $idEdicion))) {
+                return true;
+            }
             return false;
         }
 
