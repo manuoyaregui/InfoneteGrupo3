@@ -4,12 +4,14 @@
 
         private $productoModel;
         private $edicionModel;
+        private $suscripcionYCompraModel;
         private $render;
 
-        public function __construct($render, $productoModel, $edicionModel) {
+        public function __construct($render, $productoModel, $edicionModel, $suscripcionYCompraModel) {
             $this->render = $render;
             $this->productoModel = $productoModel;
             $this->edicionModel = $edicionModel;
+            $this->suscripcionYCompraModel = $suscripcionYCompraModel;
         }
 
         public function execute() {
@@ -21,6 +23,7 @@
             if( isset($_GET['idProducto'])  && !empty($_GET['idProducto']) ) {
                 $idProducto = $_GET['idProducto'];
                 $edicionesDelProducto = $this->edicionModel->listaDeEdicionesDeUnProducto($idProducto);
+                $metodosDePago = $this->suscripcionYCompraModel->listarMetodosDePago();
             }
             else {
                 $idProducto = 1;
@@ -34,6 +37,7 @@
                 //VP = Vista previa
                 $data["productoVP"] = $productoAMostrar;
                 $data["edicionesDisponibles"] = $edicionesDelProducto;
+                $data["metodosDePago"] = $metodosDePago;
                 echo $this->render->render("view/vistaPreviaProducto.mustache", $data);
             }
             else {
@@ -45,5 +49,6 @@
             $data["productos"] = $this->productoModel->listarProductos();
             echo $this->render->render("view/listarProductosView.mustache", $data);
         }
+
 
     }

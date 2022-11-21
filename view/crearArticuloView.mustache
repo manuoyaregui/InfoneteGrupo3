@@ -14,11 +14,11 @@
                 {{/mensaje}}
 
                 <!-- formulario -->
-                <div class="w-50 my-4 mx-auto">
+                <div class="w-75 my-4 mx-auto">
 
                     <h2 class="mb-4 display-4 text-center">Crear Artículo</h2>
 
-                    <form action="/escritor/crearArticulo" method="post">
+                    <form action="/escritor/crearArticulo" method="post" enctype="multipart/form-data">
 
                         <div class="mb-3">
                             <label for="tipo-producto" class="form-label" >Diario o revista al que pertenecerá</label>
@@ -85,15 +85,6 @@
                                 id="descripcion-articulo"
                                 name="descripcion-articulo"
                                 style="height: 150px"></textarea>
-
-                        <script>
-                            $('#descripcion-articulo').summernote({
-                                placeholder: 'Contenido del articulo',
-                                tabsize: 2,
-                                height: 200
-                            });
-                        </script>
-
 
                         <label for="latitud">Ubicación geográfica del artículo</label>
                         <input class="form-control my-3" type="hidden" id="latitud" name="latitud">

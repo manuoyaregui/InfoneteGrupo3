@@ -23,7 +23,7 @@
                     <div class="mb-3">
                         <label for="tipo-producto" class="form-label">Tipo de publicacion</label>
                         <select class="form-select" name="tipoProducto" required>
-                            <option disabled selected>{{tipoProducto}}</option>
+                            <option value="{{idTipo}}" selected>{{tipoProducto}}</option>
                             <option value="1">Revista</option>
                             <option value="2">Diario</option>
                         </select>
@@ -34,10 +34,17 @@
                         <input class="form-control" type="file" id="formFile" name="portada">
                     </div>
 
-                    <input type="submit" class="btn btn-outline-dark" value="Crear">
+                    <div class="mb-3">
+                        <label for="nombre-producto" class="form-label">Precio por suscripcion</label>
+                        <input type="number" class="form-control" id="nombre-producto" name="precioSuscripcion" value="{{precioSuscripcion}}">
+                    </div>
+
+                    <input type="submit" class="btn btn-outline-dark" value="Editar">
+
                 </form>
                 {{/producto}}
             </div>
         </div>
     </div>
+
 </div>

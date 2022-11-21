@@ -8,15 +8,16 @@
             $this->database = $database;
         }
 
-        public function crearProducto($nombre, $idTipo, $portada, $idUsuario) {
-            $sqlQuery = "INSERT INTO producto (nombre, idTipo, portada,idEscritor,idEstado) 
-                         VALUES ('".$nombre."', '".$idTipo."', '".$portada."','".$idUsuario."',1)";
+        public function crearProducto($nombre, $idTipo, $portada, $precioSuscripcion, $idUsuario) {
+            $sqlQuery = "INSERT INTO producto (nombre, idTipo, portada, precioSuscripcion, idEscritor, idEstado) 
+                         VALUES ('".$nombre."', '".$idTipo."', '".$portada."', '".$precioSuscripcion."', '".$idUsuario."', 1)";
+
             return $this->database->execute($sqlQuery);
         }
 
-        public function editarProducto($id, $nombre, $idTipo, $portada) {
+        public function editarProducto($id, $nombre, $idTipo, $portada, $precioSuscripcion) {
             $sqlQuery = "UPDATE producto 
-                            SET nombre = '".$nombre."', idTipo = '".$idTipo."', portada = '".$portada."' 
+                            SET nombre = '".$nombre."', idTipo = '".$idTipo."', portada = '".$portada."', precioSuscripcion = '".$precioSuscripcion."'
                          WHERE idProducto = '$id'";
             return $this->database->execute($sqlQuery);
         }
@@ -35,13 +36,10 @@
         }
 
         public function getProductoPorId($idRecibido){
-            $consulta = "
-                select p.*,
-                       tp.nombre as tipoProducto 
-                from producto p 
-                    join tipo_producto tp on p.idTipo=tp.idTipo
-                where idProducto = " . $idRecibido;
-
+            $consulta = "SELECT p.*, tp.nombre as tipoProducto, tp.idTipo 
+                            FROM producto p 
+                                JOIN tipo_producto tp ON p.idTipo=tp.idTipo
+                            WHERE idProducto = " . $idRecibido;
             return $this->database->query($consulta);
         }
 

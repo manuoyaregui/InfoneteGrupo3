@@ -117,3 +117,6 @@ fabric.properties
 # End of httpswww.toptal.comdevelopersgitignoreapiphpstorm
 config/config.ini
 databaseQuery/infonete.sql
+public/img/portadasDeArticulos
+public/img/portadasDeEdicion
+public/img/portadasDeProducto

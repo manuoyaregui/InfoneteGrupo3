@@ -12,6 +12,7 @@ include_once ("model/EdicionModel.php");
 include_once ("model/ArticuloModel.php");
 include_once ("model/SeccionModel.php");
 include_once ("model/UsuarioModel.php");
+include_once ("model/SuscripcionYCompraModel.php");
 
 
 include_once ("controller/LoginController.php");
@@ -22,6 +23,7 @@ include_once ("controller/EscritorController.php");
 include_once ("controller/EditorController.php");
 include_once ("controller/AdministradorController.php");
 include_once ("controller/EdicionController.php");
+include_once ("controller/UsuarioController.php");
 include_once ("controller/ArticuloController.php");
 
 include_once ('third-party/visualCrossingWeather/WeatherAPIHandler.php');
@@ -85,7 +87,8 @@ class Configuration{
     public function getProductoController() {
         $productoModel = $this->getProductoModel();
         $edicionModel = $this->getEdicionModel();
-        return new ProductoController($this->getRender(), $productoModel, $edicionModel);
+        $suscripcionYCompraModel = $this->getSuscripcionYCompraModel();
+        return new ProductoController($this->getRender(), $productoModel, $edicionModel, $suscripcionYCompraModel);
     }
 
     public function getProductoModel() {
@@ -108,6 +111,10 @@ class Configuration{
         return new UsuarioModel($this->getDatabase());
     }
 
+    public function getSuscripcionYCompraModel() {
+        return new SuscripcionYCompraModel($this->getDatabase());
+    }
+
     public function getEscritorController(){
         $productoModel = $this->getProductoModel();
         $edicionModel = $this->getEdicionModel();
@@ -124,9 +131,6 @@ class Configuration{
         return new AdministradorController($this->getRender(), $productoModel, $edicionModel, $articuloModel, $usuarioModel);
     }
 
-
-
-
     public function getEditorController(){
         $productoModel = $this->getProductoModel();
         $edicionModel = $this->getEdicionModel();
@@ -140,13 +144,22 @@ class Configuration{
 
     }
 
+    public function getUsuarioController() {
+        $productoModel = $this->getproductoModel();
+        $edicionModel = $this->getEdicionModel();
+        $suscripcionYCompraModel = $this->getSuscripcionYCompraModel();
+        return new UsuarioController($this->getRender(), $productoModel, $edicionModel, $suscripcionYCompraModel);
+    }
+
     //------------------------------------------------------------------//
     public function getMailer() {
         return new Mailer();
     }
     public function getArticuloController(){
         $articuloModel = $this->getArticuloModel();
-        return new ArticuloController($this->getRender(),$articuloModel);
+        $suscripcionYCompraModel = $this->getSuscripcionYCompraModel();
+        $productoModel = $this->getProductoModel();
+        return new ArticuloController($this->getRender(), $articuloModel, $suscripcionYCompraModel, $productoModel);
     }
 
     public function getWeatherApi(){

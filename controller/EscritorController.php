@@ -30,17 +30,18 @@ class EscritorController
 
     public function crearProducto(){
 
-        if (isset($_POST["nombre"]) && isset($_POST["tipoProducto"]) && isset($_FILES["portada"]["name"])) {
+        if (isset($_POST["nombre"], $_POST["tipoProducto"], $_FILES["portada"]["name"], $_SESSION['idUsuario'])) {
             $idUsuario = $_SESSION['idUsuario'];
             $nombre = $_POST["nombre"];
             $idTipo = $_POST["tipoProducto"];
             $portada = str_replace(" ", "-", $_FILES["portada"]["name"]);
+            $precioSuscripcion = $_POST["precioSuscripcion"];
 
             if (!empty($nombre) && !empty($idTipo)) {
 
                 $nombreEnMayuscula = mb_strtoupper($nombre, 'utf-8');
-
-                $resultado = $this->productoModel->crearProducto($nombreEnMayuscula, $idTipo, $portada, $idUsuario);
+                // TODO: modificar la base de datos
+                $resultado = $this->productoModel->crearProducto($nombreEnMayuscula, $idTipo, $portada, $precioSuscripcion, $idUsuario);
 
                 if (!empty($portada)) {
 
@@ -67,11 +68,12 @@ class EscritorController
             $nombre = $_POST["nombre"];
             $idTipo = $_POST["tipoProducto"];
             $portada = str_replace(" ", "-", $_FILES["portada"]["name"]);
+            $precioSuscripcion = $_POST["precioSuscripcion"];
 
             if (!empty($nombre) && !empty($idTipo)) {
 
                 $nombreEnMayuscula = mb_strtoupper($nombre, 'utf-8');
-                $resultado = $this->productoModel->editarProducto($id, $nombreEnMayuscula, $idTipo, $portada);
+                $resultado = $this->productoModel->editarProducto($id, $nombreEnMayuscula, $idTipo, $portada, $precioSuscripcion);
 
                 if (!empty($portada)) {
                     move_uploaded_file($_FILES["portada"]["tmp_name"], "public/img/portadasDeProducto/" . $portada);
@@ -116,12 +118,12 @@ class EscritorController
     public function crearEdicion(){
         //AGREGAR
         if ( isset( $_POST["numeroEdicion"],
-                    $_POST["portadaEdicion"],
+                    $_FILES["portadaEdicion"]["name"],
                     $_POST["precioEdicion"],
                     $_POST["idProducto"],
                     $_POST["fechaEdicion"]) ) {
 
-            $portadaEdicion = $_POST["portadaEdicion"];
+            $portadaEdicion = str_replace(" ", "-", $_FILES["portadaEdicion"]["name"]);
             $fechaEdicion = $_POST["fechaEdicion"];
             $numeroEdicion = $_POST["numeroEdicion"];
             $precioEdicion = $_POST["precioEdicion"];
@@ -129,7 +131,11 @@ class EscritorController
 
             if (!empty($numeroEdicion) && !empty($precioEdicion) && !empty($idProducto)) {
 
-                $resultado = $this->edicionModel->crearEdicion($numeroEdicion,$portadaEdicion, $precioEdicion, $idProducto,$fechaEdicion);
+                $resultado = $this->edicionModel->crearEdicion($numeroEdicion, $portadaEdicion, $precioEdicion, $idProducto, $fechaEdicion);
+
+                if (!empty($portadaEdicion)) {
+                    move_uploaded_file($_FILES["portadaEdicion"]["tmp_name"], "public/img/portadasDeEdicion/" . $portadaEdicion);
+                }
 
             }
 
@@ -145,6 +151,7 @@ class EscritorController
         }
         else{
             $data['formError'] = "Por favor rellena todos los campos.";
+            $data["productos"] = $this->productoModel->listarProductos();
             echo $this->render->render("view/crearEdicionView.mustache", $data);
         }
     }
@@ -225,7 +232,6 @@ class EscritorController
         $idProducto = $_POST["idProducto"];
         $idEdicion = $_POST["idEdicion"];
         $idSeccion = $_POST["idSeccion"];
-        $portadaArticulo = $_POST["portadaArticulo"];
         $titulo = $_POST["titulo-articulo"];
         $subtitulo = $_POST["subtitulo-articulo"];
         $contenido = $_POST["descripcion-articulo"];
@@ -237,9 +243,16 @@ class EscritorController
         $existeEdicion = $this->edicionModel->getEdicionPorId($idEdicion);
         $existeSeccion = $this->seccionModel->getSeccionById($idSeccion);
         if (!empty($existeProducto) && !empty($existeEdicion) && !empty($existeSeccion)) {
-            if (!empty($titulo) && !empty($subtitulo) && !empty($contenido) && !empty($latitud) && !empty($longitud)) {
+            if (isset($_FILES["portadaArticulo"]["name"]) && !empty($titulo) && !empty($subtitulo) && !empty($contenido) && !empty($latitud) && !empty($longitud)) {
+                $portadaArticulo = str_replace(" ", "-", $_FILES["portadaArticulo"]["name"]);
 
                 $resultado = $this->articuloModel->crearArticulo($idEdicion,$idSeccion,$portadaArticulo,$titulo,$subtitulo, $contenido, $latitud, $longitud);
+
+                if (!empty($portadaArticulo)) {
+
+                    move_uploaded_file($_FILES["portadaArticulo"]["tmp_name"], "public/img/portadasDeArticulos/" . $portadaArticulo);
+
+                }
 
                 if ($resultado) {
                     $data["mensaje"] = "Se creo el articulo " . $titulo;
@@ -252,7 +265,7 @@ class EscritorController
         }
         $data["productos"] = $this->productoModel->listarProductos();
         $data["secciones"] = $this->seccionModel->listarSecciones();
-        $data["mensaje"] = "No se pudo crear el articulo " . $titulo;
+        $data["mensajeError"] = "No se pudo crear el articulo " . $titulo;
         echo $this->render->render("view/crearArticuloView.mustache", $data);
     }
     public function llamarFormularioEditarArticulo(){
