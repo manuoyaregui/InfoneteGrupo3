@@ -3,7 +3,8 @@ include_once("helper/MysqlDatabase.php");
 include_once("helper/Render.php");
 include_once("helper/UrlHelper.php");
 include_once("helper/Mailer.php");
-include_once("helper/WeatherApi.php");
+include_once("helper/OpenWeather.php");
+
 
 include_once ("model/LoginModel.php");
 include_once ("model/RegistrarseModel.php");
@@ -26,7 +27,8 @@ include_once ("controller/EdicionController.php");
 include_once ("controller/UsuarioController.php");
 include_once ("controller/ArticuloController.php");
 
-include_once ('third-party/visualCrossingWeather/WeatherAPIHandler.php');
+include_once ('third-party/openWeatherAPI/openWeatherApiHandler.php');
+
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
 
@@ -61,7 +63,7 @@ class Configuration{
     //------------------------------------------------------------------//
     public function getLoginController(){
         $loginModel = $this->getLoginModel();
-        return new login($loginModel,$this->getRender());
+        return new login($loginModel,$this->getRender(),$this->getOpenWeather() );
     }
     public function getLoginModel(){
         $database = $this->getDatabase();
@@ -80,7 +82,7 @@ class Configuration{
 
     public function getInicioController(){
         $productoModel = $this->getproductoModel();
-        return new InicioController($productoModel,$this->getRender(),$this->getWeatherApi());
+        return new InicioController($productoModel,$this->getRender(),$this->getOpenWeather());
     }
 
 
@@ -162,7 +164,7 @@ class Configuration{
         return new ArticuloController($this->getRender(), $articuloModel, $suscripcionYCompraModel, $productoModel);
     }
 
-    public function getWeatherApi(){
-        return  new WeatherApi(new WeatherAPIHandler() );
+    public function getOpenWeather(){
+        return new OpenWeather(new openWeatherApiHandler() );
     }
 }

@@ -4,11 +4,13 @@ class login
 {
     private $render;
     private $loginModel;
+    private $openWeather;
 
-    public function __construct($loginModel,$render)
+    public function __construct($loginModel,$render,$openWeather)
     {
         $this->loginModel = $loginModel;
         $this->render = $render;
+        $this->openWeather = $openWeather;
     }
 
     public function execute()
@@ -33,6 +35,13 @@ class login
             // $_SESSION["idUsuario"] = $this->loginModel->getIdUsuarioPorEmail($email);
             $_SESSION["idUsuario"] = $this->loginModel->getUsuarioPorEmail($email)[0]["idUsuario"];
             $_SESSION["rol"]= $this->loginModel->getRolDeUsuarioPorEmail($email)[0];
+
+            $usuario = $this->loginModel->getUsuarioPorEmail($email)[0];
+            $lat = $usuario['latitud'];
+            $lon = $usuario['longitud'];
+            $this->openWeather->saveDataInSession($lat,$lon);
+
+
             header("Location:/infonete");
             exit();
         }else{

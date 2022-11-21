@@ -5,7 +5,11 @@
             <div class="container px-4 px-lg-5 my-5 bg-dark">
                 <div class="text-center text-white">
                     <h1 class="display-4 fw-bolder">Infonete</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">Acá iría la temperatura {{temperatura}}°C</p>
+
+                    {{#weatherData}}
+                    <p class="lead fw-normal text-white-50 mb-0">{{weatherData.location}} - {{weatherData.temp}}°C - {{weatherData.clima}}</p>
+                    {{/weatherData}}
+
                 </div>
             </div>
         </header>
