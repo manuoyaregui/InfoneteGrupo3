@@ -20,17 +20,20 @@ class ArticuloController
     public function verArticulo(){
         $idArticulo = $_GET["articulo"];
         $idProducto = $_GET["idProducto"];
+        $idEdicion = $_GET["idEdicion"];
         $idUsuario = $_SESSION["idUsuario"];
+
         $data["articulo"] = $this->articuloModel->getArticuloYSeccionPorId($idArticulo);
 
         $usuarioSuscripto = $this->suscripcionYCompraModel->usuarioSuscripto($idUsuario, $idProducto);
+        $usuarioPoseeLaEdicion = $this->suscripcionYCompraModel->usuarioPoseeEdicion($idUsuario, $idEdicion);
 
-        if ($usuarioSuscripto) {
-            $data["usuarioSuscripto"] = true;
+        if ($usuarioSuscripto || $usuarioPoseeLaEdicion) {
+            $data["usuarioPuedeVerArticulo"] = true;
             echo $this->render->render("view/articuloView.mustache", $data);
         } else {
-            // Poner $data["usuarioSuscripto"] = false en el else es opcional, funciona igual
-            $data["usuarioSuscripto"] = false;
+            // Poner $data["usuarioPuedeVerArticulo"] = false en el else es opcional, funciona igual
+            $data["usuarioPuedeVerArticulo"] = false;
             echo $this->render->render("view/articuloView.mustache", $data);
         }
 

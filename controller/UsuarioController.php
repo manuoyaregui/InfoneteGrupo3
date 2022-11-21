@@ -66,11 +66,18 @@
             if (isset($_SESSION["idUsuario"]) && isset($_POST["metodoDePago"])) {
                 $idUsuario = $_SESSION["idUsuario"];
                 $metodoPago = $_POST["metodoDePago"];
+                $usuarioPoseeEdicion = $this->suscripcionYCompraModel->usuarioPoseeEdicion($idUsuario, $idEdicion);
 
-                $resultado = $this->suscripcionYCompraModel->comprarEdicion($idUsuario, $idEdicion, $precio, $metodoPago);
+                if (!$usuarioPoseeEdicion) {
+                    $resultado = $this->suscripcionYCompraModel->comprarEdicion($idUsuario, $idEdicion, $precio, $metodoPago);
 
-                if ($resultado) {
-                    $data["mensajeCompra"] = "Se compro la edicion";
+                    if ($resultado) {
+                        $data["mensajeCompra"] = "Se compro la edicion";
+                        echo $this->render->render("view/catalogoView.mustache", $data);
+                    }
+
+                } else {
+                    $data["edicionYaComprada"] = "Usted ya posee esta edicion";
                     echo $this->render->render("view/catalogoView.mustache", $data);
                 }
 
@@ -79,19 +86,6 @@
                 $data["mensajeErrorCompra"] = "No se pudo comprar la edicion";
                 echo $this->render->render("view/catalogoView.mustache", $data);
             }
-        }
-
-        public function verArticuloCompleto() {
-            $idUsuario = $_SESSION["idUsuario"];
-            $idProducto = $_GET["idProducto"];
-
-            $usuarioSuscripto = $this->suscripcionYCompraModel->usuarioSuscripto($idUsuario, $idProducto);
-
-            if ($usuarioSuscripto) {
-                $data["usuarioSuscripto"] = true;
-                echo $this->render->render("view/edicionView.mustache", $data);
-            }
-
         }
 
 
