@@ -31,6 +31,26 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `articulo`
 --
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estado`
+--
+
+CREATE TABLE `estado` (
+                          `idEstado` int(11) NOT NULL,
+                          `nombre` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estado`
+--
+
+INSERT INTO `estado` (`idEstado`, `nombre`) VALUES
+                                                (1, 'INACTIVO'),
+                                                (2, 'ACTIVO'),
+                                                (3, 'BLOQUEADO');
+
 CREATE TABLE `articulo` (
                             `idArticulo` int(11) NOT NULL,
                             `titulo` text NOT NULL,
@@ -58,7 +78,7 @@ CREATE TABLE `compra` (
                           `idCompra` int(11) NOT NULL,
                           `idUsuario` int(11) DEFAULT NULL,
                           `idEdicion` int(11) DEFAULT NULL,
-                          `fecha` date DEFAULT NULL,
+                          `fecha` date NOT NULL DEFAULT current_timestamp(),
                           `precio` float DEFAULT NULL,
                           `medioDePago` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -75,15 +95,16 @@ CREATE TABLE `edicion` (
                            `portadaEdicion` text DEFAULT NULL,
                            `precio` float NOT NULL,
                            `idProducto` int(11) NOT NULL,
-                           `fechaEdicion` date NOT NULL
+                           `fechaEdicion` date NOT NULL,
+                           `idEstado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `edicion`
 --
 
-INSERT INTO `edicion` (`idEdicion`, `numero`, `portadaEdicion`, `precio`, `idProducto`, `fechaEdicion`) VALUES
-    (1, 1, 'portadaedicion1.jpg', 300, 2, '2022-11-15');
+INSERT INTO `edicion` (`idEdicion`, `numero`, `portadaEdicion`, `precio`, `idProducto`, `fechaEdicion`, `idEstado`) VALUES
+    (1, 1, 'portadaedicion1.jpg', 300, 2, '2022-11-15', 1);
 
 -- --------------------------------------------------------
 
@@ -104,25 +125,6 @@ CREATE TABLE `edicion_seccion_articulos` (
 INSERT INTO `edicion_seccion_articulos` (`idEdicion`, `idSeccion`, `idArticulo`) VALUES
     (1, 16, 1);
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `estado`
---
-
-CREATE TABLE `estado` (
-                          `idEstado` int(11) NOT NULL,
-                          `nombre` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `estado`
---
-
-INSERT INTO `estado` (`idEstado`, `nombre`) VALUES
-                                                (1, 'INACTIVO'),
-                                                (2, 'ACTIVO'),
-                                                (3, 'BLOQUEADO');
 
 -- --------------------------------------------------------
 
@@ -312,7 +314,8 @@ ALTER TABLE `compra`
 --
 ALTER TABLE `edicion`
     ADD PRIMARY KEY (`idEdicion`),
-    ADD KEY `idProducto` (`idProducto`);
+    ADD KEY `idProducto` (`idProducto`),
+    ADD KEY `idEstado` (`idEstado`);
 
 --
 -- Indices de la tabla `edicion_seccion_articulos`
