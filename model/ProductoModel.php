@@ -44,13 +44,10 @@
         }
 
         public function getProductoPorId($idRecibido){
-            $consulta = "
-                select p.*,
-                       tp.nombre as tipoProducto 
-                from producto p 
-                    join tipo_producto tp on p.idTipo=tp.idTipo
-                where idProducto = " . $idRecibido;
-
+            $consulta = "SELECT p.*, tp.nombre as tipoProducto, tp.idTipo 
+                            FROM producto p 
+                                JOIN tipo_producto tp ON p.idTipo=tp.idTipo
+                            WHERE idProducto = " . $idRecibido;
             return $this->database->query($consulta);
         }
 

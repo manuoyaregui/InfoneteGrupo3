@@ -2,11 +2,36 @@
 {{>nav2}}
 <div id="layoutSidenav">
     {{>navLatEditor}}
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid px-4">
+    <div id="layoutSidenav_content" class="bg-secondary">
+        <main >
+            <div class="">
+                <h2 class="text-center fs-1 fw-light my-3">Acciones</h2>
                 <!-- contenido -->
+                <div class="container row
+                            d-flex flex-wrap justify-content-around align-items-around
+                            text-center">
+                        <div class="bg-light shadow p-3 col-lg-5 rounded mb-4">
+                            <h5 class="h4 mb-2"><i class="fas fa-book-open me-2"></i>Productos</h5>
+                            <a href="/producto/listarProductos" class="btn btn-primary">Ver Productos</a>
 
+                        </div>
+
+
+
+                        <div class="bg-light shadow p-3 col-lg-5 rounded mb-4">
+                            <h5 class="h4 mb-2">Ediciones</h5>
+
+                            <a href="/editor/listarEdiciones" class="btn btn-primary">Aprobar y/o Editar</a>
+
+                        </div>
+
+
+                        <div class="bg-light shadow p-3 col-lg-5 rounded mb-4">
+                            <h5 class="h4 mb-2">Articulos</h5>
+                            <a href="/editor/listarArticulos" class="btn btn-primary">Listar Articulos</a>
+
+                        </div>
+                </div>
 
 
             </div>

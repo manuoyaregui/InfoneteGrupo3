@@ -16,10 +16,10 @@ class EscritorController
         $this->seccionModel = $seccionModel;
     }
 
-    public function execute(){
+    public function execute($data = array()){
         $rolUsuario = $_SESSION['rol']? $_SESSION['rol']['nombre'] : false;
         if($rolUsuario === 'ESCRITOR')
-            echo $this->render->render("view/escritorView.mustache");
+            echo $this->render->render("view/escritorView.mustache",$data);
         else
             echo $this->render->redirect("/");
     }
@@ -223,9 +223,9 @@ class EscritorController
 
     public function listarArticulos() {
         //AGREGAR CODIGO EN EL MODEL ARTICULO PARA QUE FUNCIONE LISTAR
-        $data["articulos"] = $this->articuloModel->listarArticulos();
+        $data["articulos"] = $this->articuloModel->listarTodosLosArticulos();
 
-        echo $this->render->render("view/listarArticulosView.mustache", $data);
+        echo $this->render->render("view/listarArticuloView.mustache", $data);
     }
 
     public function crearArticulo(){
@@ -268,9 +268,41 @@ class EscritorController
         $data["mensajeError"] = "No se pudo crear el articulo " . $titulo;
         echo $this->render->render("view/crearArticuloView.mustache", $data);
     }
+    public function llamarFormularioEditarArticulo(){
+        $idArticulo = $_GET['id'];
+
+        //Obtengo el articulo
+        $articuloObtenido = $this->articuloModel->getArticuloYSeccionPorId($idArticulo)[0];
+        $data['articulo'] = $articuloObtenido;
+        //$data['producto'] = $this->productoModel->getP
+        //los guardo en data
+
+
+        //Lleno los campos de la vista
+
+        //el submit que llame a 'editarArticulo'
+        echo $this->render->render("view/editarArticuloView.mustache",$data);
+
+    }
 
     public function editarArticulo(){
-        //AGREGAR CODIGO
+        $this->isEscritor();
+
+        $idArticulo = $_GET['id'];
+        $newData['titulo'] = $_POST["titulo-articulo"]?:"";
+        $newData['subtitulo'] = $_POST["subtitulo-articulo"]?:"";
+        $newData['descripcion'] = $_POST['descripcion-articulo']?:"";
+        $newData['latitud'] = $_POST['latitud']?:"";
+        $newData['longitud'] = $_POST['longitud']?:"";
+
+        if ($this->articuloModel->editarArticulo($idArticulo,$newData)){
+            $data['mensaje'] = "Artículo editado correctamente.";
+        }
+        else{
+            $data['mensaje'] = "No se pudo editar el artículo.";
+        }
+            $this->execute($data);
+
     }
 
     public function getEdiciones(){
@@ -289,6 +321,7 @@ class EscritorController
 
 
     public function llamarFormCrearSeccion(){
+        $this->isEscritor();
         echo $this->render->render("view/crearSeccionView.mustache");
     }
 
@@ -324,6 +357,8 @@ class EscritorController
     }
 
     public function llamarFormEditarSeccion(){
+        $this->isEscritor();
+
         $idSeccionAEditar = $_GET['id'];
         $data['seccionAEditar'] = $this->seccionModel->getSeccionById($idSeccionAEditar);
 
@@ -331,11 +366,23 @@ class EscritorController
     }
 
     public function editarSeccion(){
+        $this->isEscritor();
+
         $idSeccionAEditar = $_GET['id'];
         $nombreNuevo =  $_POST['nombre-seccion'];
 
         $this->seccionModel->editarSeccion($idSeccionAEditar,$nombreNuevo);
         $this->listarSecciones();
+    }
+
+    private function isEscritor(){
+        //si no tiene rol
+        //o el rol NO es ESCRITOR
+        //sacalo del sitio
+        if( ! isset( $_SESSION['rol'] ) ||
+            $_SESSION['rol']['nombre'] != 'ESCRITOR'){
+            $this->render->redirect("/");
+        }
     }
 
 }

@@ -1,5 +1,14 @@
 {{>header}}
 {{>nav}}
+    <div class="container my-4 w-75" >
+
+        {{#esEditor}}
+            <div class="d-flex justify-content-end py-2">
+                <a class="btn btn-success me-2">Aprobar</a>
+                <a class="btn btn-danger me-2">Desaprobar</a>
+                <a class="btn btn-warning text-light me-2">Bloquear</a>
+            </div>
+        {{/esEditor}}
 
 {{#usuarioPuedeVerArticulo}}
     <div class="container my-4" style="width: 73rem">

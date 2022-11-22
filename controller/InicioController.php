@@ -4,14 +4,17 @@ class InicioController
 {
     private $render;
     private $productoModel;
+    private $weather;
 
-    public function __construct($productoModel,$render){
+    public function __construct($productoModel,$render,$weather){
         $this->render = $render;
         $this->productoModel = $productoModel;
+        $this->weather = $weather;
     }
 
     public function execute(){
         $data["producto"] = $this->productoModel->getProductosDisponibles();
+        //$data["temperatura"] = $this->weather->getTempFromLocation("Buenos Aires");
         echo $this->render->render("view/catalogoView.mustache",$data);
     }
 
