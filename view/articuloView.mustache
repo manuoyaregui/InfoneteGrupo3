@@ -4,9 +4,11 @@
 
         {{#esEditor}}
             <div class="d-flex justify-content-end py-2">
-                <a class="btn btn-success me-2">Aprobar</a>
-                <a class="btn btn-danger me-2">Desaprobar</a>
-                <a class="btn btn-warning text-light me-2">Bloquear</a>
+                {{#articulo}}
+                    <a href="/editor/aprobarArticulo/idArticulo={{idArticulo}}" class="btn btn-success me-2">Aprobar</a>
+                    <a href="/editor/desaprobarArticulo/idArticulo={{idArticulo}}" class="btn btn-danger me-2">Desaprobar</a>
+                    <a href="/editor/bloquearArticulo/idArticulo={{idArticulo}}" class="btn btn-warning text-light me-2">Bloquear</a>
+                {{/articulo}}
             </div>
         {{/esEditor}}
 
