@@ -30,11 +30,21 @@ class EditorController
     }
 
     public function aprobarEdicion(){
-        $idSeccion = $_GET['idSeccion'];
+        $idEdicion = $_GET['id'];
 
+        $this->edicionModel->aprobarEdicion($idEdicion);
 
+        $data["ediciones"] = $this->edicionModel->listarEdiciones();
+        echo $this->render->render("view/listarEdicionView.mustache", $data);
+    }
 
-        $this->execute();
+    public function desaprobarEdicion(){
+        $idEdicion = $_GET['id'];
+
+        $this->edicionModel->desaprobarEdicion($idEdicion);
+
+        $data["ediciones"] = $this->edicionModel->listarEdiciones();
+        echo $this->render->render("view/listarEdicionView.mustache", $data);
     }
 
     public function listarArticulos(){
