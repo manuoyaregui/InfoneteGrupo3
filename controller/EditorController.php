@@ -54,6 +54,14 @@ class EditorController
         echo $this->render->render("view/listarArticuloView.mustache", $data);
     }
 
+    public function verArticulo() {
+        $idArticulo = $_GET["idArticulo"];
+
+        $data["usuarioPuedeVerArticulo"] = true;
+        $data["articulo"] = $this->articuloModel->getArticuloYSeccionPorId($idArticulo);
+        echo $this->render->render("view/articuloView.mustache", $data);
+    }
+
     public function aprobarArticulo() {
         $idArticulo = $_GET["idArticulo"];
 
