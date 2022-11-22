@@ -13,7 +13,6 @@
                             <h5 class="text-muted">Precio por suscripcion</h5>
                             <span class="fw-bold text-success">${{productoVP.precioSuscripcion}}</span>
                         </div>
-                        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
                         <div>
                             {{#isSuscribed}}
                                 <a class="btn btn-success disabled text-white" href="#">
@@ -24,7 +23,7 @@
                             {{/isSuscribed}}
                             {{^isSuscribed}}
                             <a class="btn btn-info text-white" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                <i class="bi-cart-fill me-1"></i>
+                                <i class="fa-solid fa-cart-shopping"></i>
                                 Suscribirse
                             </a>
                             {{/isSuscribed}}
@@ -57,7 +56,7 @@
         <!-- Related items section-->
         <section class="py-5 bg-light">
             <div class="container px-4 px-lg-5 mt-5">
-                <h2 class="fw-bolder mb-4">Ediciones Disponibles</h2>
+                <h2 class="fw-bolder my-5 text-center">Ediciones Disponibles</h2>
 
                 <div
                         id="seccion_ediciones"
@@ -81,13 +80,16 @@
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent mx-auto">
                                 <div>
-                                    <a class="btn btn-outline-dark mt-auto mb-2" href="/edicion/listarArticulos/idProducto={{idProducto}}&idEdicion={{idEdicion}}">Articulos</a>
 
                                     <div>
+                                        <a class="btn btn-outline-dark" href="/edicion/listarArticulos/idProducto={{idProducto}}&idEdicion={{idEdicion}}">
+                                            <i class="fa-solid fa-circle-info me-2"></i>Articulos
+                                        </a>
                                         <a class="btn btn-success text-white" data-bs-toggle="collapse" href="#collapse-{{idEdicion}}" role="button" aria-expanded="false" aria-controls="collapse-{{idEdicion}}">
-                                            Comprar
+                                            <i class="fa-solid fa-cart-shopping me-2"></i>Comprar
                                         </a>
                                     </div>
+
                                     <div class="collapse" id="collapse-{{idEdicion}}">
                                         <div class="card card-body">
 
