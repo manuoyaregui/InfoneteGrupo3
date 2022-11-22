@@ -22,6 +22,7 @@
                         <th scope="col">Precio</th>
                         <th scope="col">Producto Referencia</th>
                         <th scope="col">Fecha de la Edición</th>
+                        <th scope="col">Estado</th>
                         <th scope="col">Acciones</th>
                     </tr>
                     </thead>
@@ -35,6 +36,7 @@
                             <td>
                                 {{fechaEdicion}}
                             </td>
+                            <td>{{estado}}</td>
 
                             {{#esEscritor}}
                             <td>
@@ -47,7 +49,7 @@
                                 <td>
                                     <a href="/escritor/llamarFormularioEdicion/id={{idEdicion}}" class="btn btn-info">Editar</a>
                                     <a href="/editor/aprobarEdicion/id={{idEdicion}}" class="btn btn-success">Aprobar</a>
-                                    <a href="/editor/aprobarEdicion/id={{idEdicion}}" class="btn btn-danger">Desaprobar</a>
+                                    <a href="/editor/desaprobarEdicion/id={{idEdicion}}" class="btn btn-danger">Desaprobar</a>
                                 </td>
                             {{/esEditor}}
 
