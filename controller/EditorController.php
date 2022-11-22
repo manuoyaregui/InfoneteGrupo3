@@ -15,15 +15,11 @@ class EditorController
     }
 
     public function execute(){
-        $rolUsuario = $_SESSION['rol']? $_SESSION['rol']['nombre'] : false;
-        if($rolUsuario === 'EDITOR')
-            echo $this->render->render("view/editorView.mustache");
-        else
-            echo $this->render->redirect("/");
+        $this->isEditor();
+        echo $this->render->render("view/editorView.mustache");
     }
 
     public function listarEdiciones() {
-        //AGREGAR CODIGO EN EL MODEL EDICION PARA QUE FUNCIONE LISTAR
         $data["ediciones"] = $this->edicionModel->listarEdiciones();
 
         echo $this->render->render("view/listarEdicionView.mustache", $data);
@@ -44,4 +40,10 @@ class EditorController
         echo $this->render->render("view/listarArticuloView.mustache", $data);
     }
 
+    private function isEditor(){
+        if( ! isset( $_SESSION['rol'] ) ||
+            $_SESSION['rol']['nombre'] != 'EDITOR'){
+            $this->render->redirect("/");
+        }
+    }
 }

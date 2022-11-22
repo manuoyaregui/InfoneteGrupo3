@@ -35,6 +35,11 @@
             }
             if( !empty($productoAMostrar) ) {
                 //VP = Vista previa
+                if(isset($_SESSION['idUsuario']) &&
+                    $this->suscripcionYCompraModel->isSuscribedTo($_SESSION['idUsuario'] , $idProducto)){
+
+                    $data['isSuscribed'] = true;
+                }
                 $data["productoVP"] = $productoAMostrar;
                 $data["edicionesDisponibles"] = $edicionesDelProducto;
                 $data["metodosDePago"] = $metodosDePago;

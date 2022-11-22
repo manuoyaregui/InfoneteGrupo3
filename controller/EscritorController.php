@@ -376,9 +376,6 @@ class EscritorController
     }
 
     private function isEscritor(){
-        //si no tiene rol
-        //o el rol NO es ESCRITOR
-        //sacalo del sitio
         if( ! isset( $_SESSION['rol'] ) ||
             $_SESSION['rol']['nombre'] != 'ESCRITOR'){
             $this->render->redirect("/");

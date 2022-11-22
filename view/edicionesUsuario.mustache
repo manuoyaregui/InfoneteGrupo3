@@ -1,0 +1,24 @@
+{{>header}}
+{{>nav}}
+<h1 class="text-center my-4 fw-light">Mis Ediciones</h1>
+<main class="container d-flex justify-content-around mb-5">
+    {{#ediciones}}
+        <article class="shadow p-3 rounded col-lg-5 my-3
+                        d-flex justify-content-center flex-wrap" style="background-color: #d0d0d0">
+            <h4 class="w-100 text-center mb-1">{{prodNombre}}</h4>
+            <h5 class="w-100 text-center mb-3 fw-light">
+                Edicion nro.{{edNumero}}
+            </h5>
+            <div>
+                <p>Importe pagado: <strong>{{precio}}</strong></p>
+                <p>Fecha de Compra: <strong>{{fecha}}</strong></p>
+                <a class="btn btn-info w-100" href="/edicion/listarArticulos/idProducto={{prodId}}&idEdicion={{idEdicion}}">Ver</a>
+            </div>
+        </article>
+    {{/ediciones}}
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

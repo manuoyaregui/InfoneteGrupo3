@@ -15,10 +15,19 @@
                         </div>
                         <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
                         <div>
+                            {{#isSuscribed}}
+                                <a class="btn btn-success disabled text-white" href="#">
+
+                                    <i class="fa-solid fa-check me-2"></i>
+                                    Ya estás suscripto a este producto
+                                </a>
+                            {{/isSuscribed}}
+                            {{^isSuscribed}}
                             <a class="btn btn-info text-white" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                                 <i class="bi-cart-fill me-1"></i>
                                 Suscribirse
                             </a>
+                            {{/isSuscribed}}
                         </div>
                         <div class="collapse" id="collapseExample">
                             <div class="card card-body">

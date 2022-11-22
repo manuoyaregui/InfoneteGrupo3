@@ -7,26 +7,54 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Inicio</a></li>
             </ul>
-            <div class="d-flex align-items-center">
+            <ul class="navbar-nav d-flex align-items-center">
 
                 {{#esEscritor}}
-                    <a class="btn btn-danger mx-2" aria-current="page" href="/escritor">Vista Escritor</a>
+                    <li class="nav-item">
+                        <a class="btn btn-warning text-light mx-2" aria-current="page" href="/escritor">Vista Escritor</a>
+                    </li>
                 {{/esEscritor}}
                 {{#esEditor}}
-                    <a class="btn btn-danger ms-2 m-2" aria-current="page" href="/editor">Vista Editor</a>
+                    <li class="nav-item">
+                        <a class="btn btn-warning text-light ms-2 m-2" aria-current="page" href="/editor">Vista Editor</a>
+                        
+                    </li>
                 {{/esEditor}}
                 {{#esAdmin}}
-                    <a class="btn btn-danger ms-2 m-2" aria-current="page" href="/administrador">Vista Admin</a>
+                    <li class="nav-item">
+                        <a class="btn btn-warning text-light ms-2 m-2" aria-current="page" href="/administrador">
+                            <i class="fa-solid fa-screwdriver-wrench me-2"></i>Vista Admin
+                        </a>
+                    </li>
                 {{/esAdmin}}
                 {{#isLogged}}
-                    <a class="btn btn-outline-dark" aria-current="page" href="/login/logout">Log out</a>
-                {{/isLogged}}
-                {{^isLogged}}
-                    <a class="btn btn-outline-dark me-1" aria-current="page" href="/login">Login</a>
-                    <a class="btn btn-outline-dark" aria-current="page" href="/registrarse">Registrarse</a>
+                    <li class nav-item>
+                        <a class="btn btn-danger me-2" aria-current="page" href="/login/logout">
+                            <i class="fa-solid fa-right-from-bracket me-2"></i>Log out
+                        </a>
+
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="btn mb-2" href="/usuario/misSuscripciones/">Mis Suscripciones</a></li>
+                            <li><a class="btn" href="/usuario/misEdiciones">Mis Ediciones</a></li>
+                        </ul>
+                    </li>
                 {{/isLogged}}
 
-            </div>
+                {{^isLogged}}
+                    <a class="btn btn-success me-1" aria-current="page" href="/login">
+                        <i class="fa-solid fa-right-to-bracket me-2"></i>Login
+                    </a>
+                    <a class="btn btn-info text-white" aria-current="page" href="/registrarse">
+                        <i class="fa-solid fa-user-plus me-2"></i>Registrarse
+                    </a>
+                {{/isLogged}}
+
+            </ul>
         </div>
     </div>
 </nav>
