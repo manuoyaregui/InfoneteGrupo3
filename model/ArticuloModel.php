@@ -9,8 +9,8 @@ class ArticuloModel
     }
 
     public function crearArticulo($idEdicion,$idSeccion,$portadaArticulo,$titulo,$subtitulo, $contenido, $latitud, $longitud) {
-        $sql = "INSERT INTO articulo (idArticulo,titulo,portadaArticulo,subtitulo, descripcion, latitud, longitud)
-                    VALUES (null,'".$titulo."','$portadaArticulo','".$subtitulo."', '".$contenido."', '".$latitud."', '".$longitud."')";
+        $sql = "INSERT INTO articulo (idArticulo,titulo,portadaArticulo,subtitulo, descripcion, latitud, longitud, idEstado)
+                    VALUES (null,'".$titulo."','$portadaArticulo','".$subtitulo."', '".$contenido."', '".$latitud."', '".$longitud."', 1)";
         $result = $this->database->execute($sql);
 
         if($result){
@@ -33,7 +33,8 @@ class ArticuloModel
                         JOIN edicion ed ON ed.idEdicion = esa.idEdicion
                         JOIN producto pr ON pr.idProducto = ed.idProducto
                         JOIN seccion sec ON sec.idSeccion = esa.idSeccion
-                    WHERE pr.idProducto = '$idProducto' AND ed.idEdicion = '$idEdicion'";
+                        JOIN estado es ON es.idEstado = art.idEstado
+                    WHERE pr.idProducto = '$idProducto' AND ed.idEdicion = '$idEdicion' AND es.nombre = 'ACTIVO'";
         return $this->database->query($sql);
     }
 
@@ -47,12 +48,13 @@ class ArticuloModel
     }
 
     public function listarTodosLosArticulos(){
-        $sql = "SELECT art.titulo, art.portadaArticulo, ed.idEdicion, sec.nombre AS seccion, art.subtitulo,art.idArticulo
+        $sql = "SELECT art.titulo, art.portadaArticulo, art.subtitulo, art.idArticulo, ed.idEdicion, sec.nombre AS seccion, es.nombre AS estado
                     FROM edicion_seccion_articulos esa
                         JOIN articulo art ON art.idArticulo = esa.idArticulo
                         JOIN edicion ed ON ed.idEdicion = esa.idEdicion
                         JOIN producto pr ON pr.idProducto = ed.idProducto
-                        JOIN seccion sec ON sec.idSeccion = esa.idSeccion";
+                        JOIN seccion sec ON sec.idSeccion = esa.idSeccion
+                        JOIN estado es ON es.idEstado = art.idEstado";
         return $this->database->query($sql);
     }
 
@@ -77,4 +79,19 @@ class ArticuloModel
 
         return $this->database->execute($sql);
     }
+
+    public function aprobarArticulo($idArticulo) {
+        $sql = "UPDATE articulo
+                    SET idEstado = 2
+                WHERE idArticulo = '$idArticulo'";
+        return $this->database->execute($sql);
+    }
+
+    public function desaprobarArticulo($idArticulo) {
+        $sql = "UPDATE articulo
+                    SET idEstado = 1
+                WHERE idArticulo = '$idArticulo'";
+        return $this->database->execute($sql);
+    }
+
 }

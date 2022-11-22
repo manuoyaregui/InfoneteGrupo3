@@ -13,8 +13,9 @@ class InicioController
     }
 
     public function execute(){
-        $data["producto"] = $this->productoModel->getProductos();
         $data['weatherData']=$this->getWeatherData();
+        $data["producto"] = $this->productoModel->getProductosDisponibles();
+        //$data["temperatura"] = $this->weather->getTempFromLocation("Buenos Aires");
         echo $this->render->render("view/catalogoView.mustache",$data);
     }
 

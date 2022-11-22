@@ -26,11 +26,21 @@ class EditorController
     }
 
     public function aprobarEdicion(){
-        $idSeccion = $_GET['idSeccion'];
+        $idEdicion = $_GET['id'];
 
+        $this->edicionModel->aprobarEdicion($idEdicion);
 
+        $data["ediciones"] = $this->edicionModel->listarEdiciones();
+        echo $this->render->render("view/listarEdicionView.mustache", $data);
+    }
 
-        $this->execute();
+    public function desaprobarEdicion(){
+        $idEdicion = $_GET['id'];
+
+        $this->edicionModel->desaprobarEdicion($idEdicion);
+
+        $data["ediciones"] = $this->edicionModel->listarEdiciones();
+        echo $this->render->render("view/listarEdicionView.mustache", $data);
     }
 
     public function listarArticulos(){
@@ -40,6 +50,31 @@ class EditorController
         echo $this->render->render("view/listarArticuloView.mustache", $data);
     }
 
+    public function verArticulo() {
+        $idArticulo = $_GET["idArticulo"];
+
+        $data["usuarioPuedeVerArticulo"] = true;
+        $data["articulo"] = $this->articuloModel->getArticuloYSeccionPorId($idArticulo);
+        echo $this->render->render("view/articuloView.mustache", $data);
+    }
+
+    public function aprobarArticulo() {
+        $idArticulo = $_GET["idArticulo"];
+
+        $this->articuloModel->aprobarArticulo($idArticulo);
+
+        $data["articulos"] = $this->articuloModel->listarTodosLosArticulos();
+        echo $this->render->render("view/listarArticuloView.mustache", $data);
+    }
+
+    public function desaprobarArticulo() {
+        $idArticulo = $_GET["idArticulo"];
+
+        $this->articuloModel->desaprobarArticulo($idArticulo);
+
+        $data["articulos"] = $this->articuloModel->listarTodosLosArticulos();
+        echo $this->render->render("view/listarArticuloView.mustache", $data);
+    }
     private function isEditor(){
         if( ! isset( $_SESSION['rol'] ) ||
             $_SESSION['rol']['nombre'] != 'EDITOR'){

@@ -20,9 +20,9 @@
 
 
         public function vistaPreviaProducto(){
-            if( isset($_GET['idProducto'])  && !empty($_GET['idProducto']) ) {
+            if( isset($_GET['idProducto']) && !empty($_GET['idProducto']) ) {
                 $idProducto = $_GET['idProducto'];
-                $edicionesDelProducto = $this->edicionModel->listaDeEdicionesDeUnProducto($idProducto);
+                $edicionesDelProducto = $this->edicionModel->listarEdicionesDisponibles($idProducto);
                 $metodosDePago = $this->suscripcionYCompraModel->listarMetodosDePago();
             }
             else {
