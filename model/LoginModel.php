@@ -18,7 +18,7 @@ class LoginModel
             $usuario = $this->getUsuarioPorEmailYPassword($email,$password);
             if($usuario != null){
                 $estadoDeVerificacion = $usuario[0]['idEstado'] == 3 ? ("el usuario está bloqueado") :
-                                        ($usuario[0]['idEstado'] == 1 ? ("el usuario está inactivo"):'ok');
+                                        ($usuario[0]['idEstado'] == 1 ? ("el usuario está inactivo, verifique su correo electronico"):'ok');
             }
 
         }
