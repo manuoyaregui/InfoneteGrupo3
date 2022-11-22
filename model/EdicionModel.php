@@ -11,8 +11,8 @@ class EdicionModel
     public function crearEdicion($numeroEdicion,$portadaEdicion, $precioEdicion, $idProducto, $fechaEdicion){
         if($this->buscarEdicionPorNroDeProductoYNroDeEdicion($idProducto, $numeroEdicion) == null){
             $sqlQuery = "
-                INSERT INTO edicion (idEdicion,numero,portadaEdicion, precio, idProducto, fechaEdicion) 
-                VALUES (null,'".$numeroEdicion."','".$portadaEdicion."', '".$precioEdicion."', '".$idProducto."', '".$fechaEdicion."')";
+                INSERT INTO edicion (idEdicion,numero,portadaEdicion, precio, idProducto, fechaEdicion, idEstado) 
+                VALUES (null,'".$numeroEdicion."','".$portadaEdicion."', '".$precioEdicion."', '".$idProducto."', '".$fechaEdicion."', 1)";
             return $this->database->execute($sqlQuery);
         }
     }
@@ -42,9 +42,34 @@ class EdicionModel
         return $this->database->query($consulta);
     }
 
+    public function listarEdicionesDisponibles($idProducto) {
+        $sql = "SELECT ed.*
+                    FROM edicion ed
+                        JOIN estado es ON es.idEstado = ed.idEstado
+                    WHERE ed.idProducto = '$idProducto' AND es.nombre = 'ACTIVO'";
+        return $this->database->query($sql);
+    }
+
     public function listarEdiciones(){
-        $consulta = "select e.*, p.portada AS portadaProducto 
-                       FROM edicion e JOIN producto p ON e.idProducto = p.idProducto";
+        $consulta = "SELECT ed.*, p.portada AS portadaProducto, es.nombre AS estado
+                       FROM edicion ed 
+                           JOIN producto p ON ed.idProducto = p.idProducto
+                           JOIN estado es ON es.idEstado = ed.idEstado";
         return $this->database->query($consulta);
     }
+
+    public function aprobarEdicion($idEdicion) {
+        $sql = "UPDATE edicion
+                    SET idEstado = 2
+                WHERE idEdicion = '$idEdicion'";
+        return $this->database->execute($sql);
+    }
+
+    public function desaprobarEdicion($idEdicion) {
+        $sql = "UPDATE edicion
+                    SET idEstado = 1
+                WHERE idEdicion = '$idEdicion'";
+        return $this->database->execute($sql);
+    }
+
 }
