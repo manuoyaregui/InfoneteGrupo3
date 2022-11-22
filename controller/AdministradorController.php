@@ -7,13 +7,17 @@ class AdministradorController
     private $edicionModel;
     private $articuloModel;
     private $usuarioModel;
+    private $mailer;
+    private $registrarseModel;
 
-    public function __construct($render, $productoModel, $edicionModel, $articuloModel, $usuarioModel){
+    public function __construct($render, $productoModel, $edicionModel, $articuloModel, $usuarioModel, $mailer, $registrarseModel){
         $this->render = $render;
         $this->productoModel = $productoModel;
         $this->edicionModel = $edicionModel;
         $this->articuloModel = $articuloModel;
         $this->usuarioModel = $usuarioModel;
+        $this->mailer = $mailer;
+        $this->registrarseModel = $registrarseModel;
     }
 
     public function execute(){
@@ -80,6 +84,36 @@ class AdministradorController
     private function isAdmin():bool{
         return  isset( $_SESSION['rol'] ) &&
                 $_SESSION['rol']['nombre'] === 'ADMINISTRADOR';
+    }
+
+    public function llamarFormCrearUsuario(){
+        echo $this->render->render("view/formUsuarioAdmin.mustache");
+    }
+
+    public function crearUsuarios()
+    {
+        $nombre = $_POST["nombre"];
+        $email = $_POST["email"];
+        $passwordMD5 = md5($_POST["password"]);
+        $rol = $_POST["rol"];
+        $hash = md5(time());
+
+        if (!empty($nombre) && !empty($email) && !empty($passwordMD5) && !empty($rol)) {
+            $resultado = $this->registrarseModel->procesarFormularioRegistro($nombre, $email, $passwordMD5, $rol, $hash);
+
+            if ($resultado) {
+                $data["mensajeActivacion"] = "Se envio un enlace de activacion al mail " . $email;
+
+                $mensajeActivacion = "<h1>Haz clic en el siguiente enlace para activar tu cuenta</h1>
+                                      <a href='http://localhost/registrarse/activarUsuario/email=$email&hash=$hash'>Activar cuenta</a>";
+                $this->mailer->enviarMail($email, "Activacion de cuenta en Infonete", $mensajeActivacion);
+
+                echo $this->render->render("view/formUsuarioAdmin.mustache", $data);
+            } else {
+                $data["mensaje"] = "Ese mail ya esta registrado";
+                echo $this->render->render("view/formUsuarioAdmin.mustache", $data);
+            }
+        }
     }
 
 }

@@ -1,0 +1,27 @@
+{{>header}}
+{{>nav}}
+
+<h1 class="text-center my-4 fw-light">Mis Suscripciones</h1>
+<section class="container d-flex justify-content-around mb-5 flex-wrap">
+    {{#suscripciones}}
+        <article class="shadow p-3 rounded col-lg-5 my-3
+                        d-flex justify-content-center flex-wrap"
+                 style="background-color: #d0d0d0">
+
+            <h4 class="w-100 text-center mb-1">{{prNombre}}</h4>
+            <h5 class="w-100 text-center mb-3 fw-light">
+                Desde <strong>{{fechaInicio}}</strong> <br> hasta <strong>{{fechaVencimiento}}</strong>
+            </h5>
+            <div>
+                <p>Importe pagado: <strong>{{precio}}</strong></p>
+                <a class="btn btn-info w-100" href="/producto/vistaPreviaProducto/idProducto={{idProducto}}">Ver</a>
+            </div>
+        </article>
+    {{/suscripciones}}
+</section>
+
+{{>footer}}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

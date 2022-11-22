@@ -130,7 +130,10 @@ class Configuration{
         $edicionModel = $this->getEdicionModel();
         $articuloModel = $this->getArticuloModel();
         $usuarioModel = $this->getUsuarioModel();
-        return new AdministradorController($this->getRender(), $productoModel, $edicionModel, $articuloModel, $usuarioModel);
+        $mailer = $this->getMailer();
+        $registrarseModel = $this->getRegistrarseModel();
+        return new AdministradorController($this->getRender(), $productoModel, $edicionModel, $articuloModel,
+                                            $usuarioModel, $mailer, $registrarseModel);
     }
 
     public function getEditorController(){

@@ -14,8 +14,9 @@
             $this->suscripcionYCompraModel = $suscripcionYCompraModel;
         }
 
-        public function execute() {
+        public function execute($extraData = array() ) {
             $data["producto"] = $this->productoModel->getProductos();
+            $data = array_merge($data,$extraData);
             echo $this->render->render("view/catalogoView.mustache", $data);
         }
 
@@ -42,19 +43,23 @@
 
                     if ($resultado) {
                         $data["mensajeSuscripto"] = "Suscripto con exito hasta el " . $fechaVencimientoCalculada;
-                        echo $this->render->render("view/catalogoView.mustache", $data);
+                        $this->execute($data);
+                        //echo $this->render->render("view/catalogoView.mustache", $data);
                     }
 
                 } else {
                     $fechaDeVencimiento = $this->suscripcionYCompraModel->fechaVencimientoDeSuscripcion($idUsuario, $idProducto)[0]["fechaVencimiento"];
                     $data["mensajeYaSuscripto"] = "Tu suscripcion sigue vigente hasta el " . $fechaDeVencimiento;
-                    echo $this->render->render("view/catalogoView.mustache", $data);
+                    $this->execute($data);
+                    //echo $this->render->render("view/catalogoView.mustache", $data);
                 }
 
             } else {
-                $data["producto"] = $this->productoModel->getProductos();
+                //$data["producto"] = $this->productoModel->getProductos();
+
                 $data["mensajeErrorSuscripcion"] = "No se pudo suscribir";
-                echo $this->render->render("view/catalogoView.mustache", $data);
+                $this->execute($data);
+                //echo $this->render->render("view/catalogoView.mustache", $data);
             }
 
         }
@@ -73,19 +78,44 @@
 
                     if ($resultado) {
                         $data["mensajeCompra"] = "Se compro la edicion";
-                        echo $this->render->render("view/catalogoView.mustache", $data);
+                        $this->execute($data);
+                        //echo $this->render->render("view/catalogoView.mustache", $data);
                     }
 
                 } else {
                     $data["edicionYaComprada"] = "Usted ya posee esta edicion";
-                    echo $this->render->render("view/catalogoView.mustache", $data);
+                    $this->execute($data);
+                    //echo $this->render->render("view/catalogoView.mustache", $data);
                 }
 
             } else {
-                $data["producto"] = $this->productoModel->getProductos();
+                //$data["producto"] = $this->productoModel->getProductos();
                 $data["mensajeErrorCompra"] = "No se pudo comprar la edicion";
-                echo $this->render->render("view/catalogoView.mustache", $data);
+                $this->execute($data);
+                //echo $this->render->render("view/catalogoView.mustache", $data);
             }
+        }
+
+        public function misSuscripciones(){
+            $this->isLogged();
+            $idUsuario = $_SESSION['idUsuario'];
+
+            $data['suscripciones'] = $this->suscripcionYCompraModel->getSuscripcionesDeUsuarioPorIdUsuario($idUsuario);
+
+            echo $this->render->render("view/suscripcionesUsuario.mustache", $data);
+        }
+
+        public function misEdiciones(){
+            $this->isLogged();
+            $idUsuario = $_SESSION['idUsuario'];
+
+            $data['ediciones'] = $this->suscripcionYCompraModel->getEdicionesDeUsuarioPorIdUsuario($idUsuario);
+            echo $this->render->render("view/edicionesUsuario.mustache", $data);
+        }
+
+        private function isLogged(){
+            if( ! isset( $_SESSION['idUsuario'] ) )
+                $this->render->redirect("/");
         }
 
 

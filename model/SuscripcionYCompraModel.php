@@ -66,4 +66,35 @@
             return false;
         }
 
+        public function getSuscripcionesDeUsuarioPorIdUsuario($idUsuario){
+            $sql = "
+                select  sus.*, pr.nombre as prNombre
+                from  suscripcion sus 
+                    join producto pr on pr.idProducto = sus.idProducto
+                where sus.idUsuario = ".$idUsuario;
+            return $this->database->query($sql);
+        }
+        public function getEdicionesDeUsuarioPorIdUsuario($idUsuario){
+            //compra --> ternaria -->edicion,producto
+
+            $sql = "
+                select  compra.*, ed.numero as edNumero, pr.nombre as prodNombre, pr.idProducto as prodId
+                from  compra
+                    join edicion_seccion_articulos ter on ter.idEdicion = compra.idEdicion
+                    join edicion ed on ed.idEdicion = ter.idEdicion
+                    join producto pr on pr.idProducto = ed.idProducto
+                where compra.idUsuario = ".$idUsuario;
+            return $this->database->query($sql);
+        }
+
+        public function isSuscribedTo($idUsuario,$idProducto){
+            $sql = "
+                select *
+                from suscripcion
+                where idProducto = {$idProducto} and idUsuario = {$idUsuario}
+            ";
+
+            return $this->database->query($sql) != false;
+        }
+
     }

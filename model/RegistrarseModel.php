@@ -16,6 +16,15 @@ class RegistrarseModel
 
     }
 
+    public function procesarFormularioRegistro($nombre, $email, $password, $rol, $hash){
+        if ($this->getUsuarioPorEmail($email)==null || !$this->getUsuarioPorEmail($email)){
+            $resultado = $this->crearUsuario($nombre, $email, $password, null, null, $rol, $hash);
+
+            return $resultado;
+        }
+
+    }
+
     public function getUsuarioPorEmail($email){
         $sql = "SELECT * FROM usuario WHERE email ='".$email."'" ;
         return $this->database->query($sql);

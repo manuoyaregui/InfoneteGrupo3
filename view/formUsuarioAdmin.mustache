@@ -1,0 +1,43 @@
+{{>header}}
+{{>nav2}}
+<div id="layoutSidenav">
+{{>navLatAdmin}}
+<div id="layoutSidenav_content">
+
+    <main>
+        <div class="container-fluid px-4">
+
+            {{#mensajeActivacion}}
+                <div class="alert alert-success alert-dismissible fade show my-3" role="alert">
+                    <h2 class="fs-4 text-white text-center">{{mensajeActivacion}}</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {{/mensajeActivacion}}
+
+            <h2 class="display-4 text-center my-3">Registrar Usuario</h2>
+
+            <form action="/administrador/crearUsuarios" method="POST">
+
+                <input class="form-control my-3" type="text" name="nombre" placeholder="Ingrese su nombre" required>
+                <input class="form-control my-3" type="email" name="email" placeholder="Ingrese su email" required>
+
+                <div class="input-group my-3">
+                    <input class="form-control" type="password" name="password" id="campoPassword" placeholder="Ingrese su contraseña" required>
+                    <a href="#" class="input-group-text" id="btnMostrarPassword"><i class="fa-solid fa-eye"></i></a>
+                </div>
+
+                <select name="rol" id="rol" required>
+                    <option value="2">ESCRITOR</option>
+                    <option value="4">EDITOR</option>
+                    <option value="3">ADMINISTRADOR</option>
+                </select>
+                <br>
+                <input class="btn btn-primary mt-3" type="submit" value="Registrar">
+
+            </form>
+
+            <h4 class="alert text-danger text-center">{{mensaje}}</h4>
+
+        </div>
+
+{{>footer}}
