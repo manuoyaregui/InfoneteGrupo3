@@ -19,9 +19,8 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Titulo</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">???</th>
-                        <th scope="col">acciones</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -29,10 +28,10 @@
                         <tr>
                             <th scope="row">{{idArticulo}}</th>
                             <td>{{titulo}}</td>
-                            <td>{{descripcion}}</td>
+                            <td>{{estado}}</td>
 
                             {{#esEscritor}}
-                            <td>{{???}}
+                            <td>
                                     <a href="/escritor/llamarFormularioEditarArticulo/id={{idArticulo}}" class="btn btn-info">Editar</a>
                                 <!--<a href="/escritor/eliminarProducto/id={{idArticulo}}" class="btn btn-danger">Eliminar</a>-->
                             </td>
@@ -41,8 +40,8 @@
                             {{#esEditor}}
                             <td>
                                 <a href="/articulo/verArticulo/articulo={{idArticulo}}" class="btn btn-info">Ver</a>
-                                <a href="" class="btn btn-success">Aprobar</a>
-                                <a href="" class="btn btn-danger">Desaprobar</a>
+                                <a href="/editor/aprobarArticulo/idArticulo={{idArticulo}}" class="btn btn-success">Aprobar</a>
+                                <a href="/editor/desaprobarArticulo/idArticulo={{idArticulo}}" class="btn btn-danger">Desaprobar</a>
                             </td>
                             {{/esEditor}}
                         </tr>

@@ -54,4 +54,22 @@ class EditorController
         echo $this->render->render("view/listarArticuloView.mustache", $data);
     }
 
+    public function aprobarArticulo() {
+        $idArticulo = $_GET["idArticulo"];
+
+        $this->articuloModel->aprobarArticulo($idArticulo);
+
+        $data["articulos"] = $this->articuloModel->listarTodosLosArticulos();
+        echo $this->render->render("view/listarArticuloView.mustache", $data);
+    }
+
+    public function desaprobarArticulo() {
+        $idArticulo = $_GET["idArticulo"];
+
+        $this->articuloModel->desaprobarArticulo($idArticulo);
+
+        $data["articulos"] = $this->articuloModel->listarTodosLosArticulos();
+        echo $this->render->render("view/listarArticuloView.mustache", $data);
+    }
+
 }
