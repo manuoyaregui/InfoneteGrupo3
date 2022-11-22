@@ -115,5 +115,5 @@ fabric.properties
 .ideaazureSettings.xml
 
 # End of httpswww.toptal.comdevelopersgitignoreapiphpstorm
-config/config.ini
-databaseQuery/infonete.sql
+ config/config.ini
+# databaseQuery/infonete.sql

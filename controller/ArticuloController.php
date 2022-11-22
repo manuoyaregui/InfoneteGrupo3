@@ -28,8 +28,13 @@ class ArticuloController
             $usuarioSuscripto = $this->suscripcionYCompraModel->usuarioSuscripto($idUsuario, $idProducto);
             $usuarioPoseeLaEdicion = $this->suscripcionYCompraModel->usuarioPoseeEdicion($idUsuario, $idEdicion);
 
-            if ($usuarioSuscripto || $usuarioPoseeLaEdicion) {
+            if ($usuarioSuscripto || $usuarioPoseeLaEdicion || $this->tienePermisos()) {
                 $data["usuarioPuedeVerArticulo"] = true;
+                echo $this->render->render("view/articuloView.mustache", $data);
+            }
+            else {
+                // Poner $data["usuarioPuedeVerArticulo"] = false en el else es opcional, funciona igual
+                $data["usuarioPuedeVerArticulo"] = false;
                 echo $this->render->render("view/articuloView.mustache", $data);
             }
         }else {
@@ -37,6 +42,17 @@ class ArticuloController
             $data["usuarioPuedeVerArticulo"] = false;
             echo $this->render->render("view/articuloView.mustache", $data);
         }
+
     }
 
+    private function tienePermisos(){
+        $validacion = false;
+
+        if(isset($_SESSION['rol']) &&
+            $_SESSION['rol'] != 'LECTOR'){
+            $validacion = true;
+        }
+
+        return $validacion;
+    }
 }
