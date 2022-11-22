@@ -11,21 +11,33 @@ class LoginModel
 
     public function procesarFormularioLogin($email,$password): string
     {
-        if ($this->validarUsuarioPorEmailYPassword($email,$password)){
-            return "ok";
-        }
-        return "error";
-    }
+        $estadoDeVerificacion = "usuario y/o contraseña incorrectos";
 
-    private function validarUsuarioPorEmailYPassword($email,$password){
         $usu = $this->getUsuarioPorEmail($email);
         if ($usu != null){
-            $pass = $this->getUsuarioPorEmailYPassword($email,$password);
-            if($pass != null)
-                return true;
+            $usuario = $this->getUsuarioPorEmailYPassword($email,$password);
+            if($usuario != null){
+                $estadoDeVerificacion = $usuario[0]['idEstado'] == 3 ? ("el usuario está bloqueado") :
+                                        ($usuario[0]['idEstado'] == 1 ? ("el usuario está inactivo"):'ok');
+            }
+
+        }
+        return $estadoDeVerificacion;
+    }
+
+    /*private function validarUsuarioPorEmailYPassword($email,$password){
+        $usu = $this->getUsuarioPorEmail($email);
+        if ($usu != null){
+            $usuario = $this->getUsuarioPorEmailYPassword($email,$password);
+            if($usuario != null){
+                if($usuario['idEstado'] != 3)
+                    return "ok";
+                else
+                    return "el usuario está bloqueado";
+            }
         }
         return false;
-    }
+    }*/
 
     public function getUsuarioPorEmail($email){
         $sql = "SELECT * FROM usuario WHERE email='".$email."'" ;
