@@ -87,6 +87,30 @@
             return $this->database->query($sql);
         }
 
+        public function cantidadSuscripcionesTotales() {
+            $sql = "SELECT COUNT(sus.idSuscripcion) AS cantSuscripcionesTotales
+                        FROM suscripcion sus
+                            JOIN producto pr ON pr.idProducto = sus.idProducto";
+            return $this->database->query($sql);
+        }
+
+        public function cantidadSuscripcionesPorProducto() {
+            $sql = "SELECT pr.nombre AS producto, COUNT(sus.idSuscripcion) AS cantSuscripciones
+                        FROM suscripcion sus
+                            JOIN producto pr ON pr.idProducto = sus.idProducto
+                    GROUP BY pr.nombre";
+            return $this->database->query($sql);
+        }
+
+        public function cantidadComprasPorEdicion() {
+            $sql = "SELECT ed.numero AS edicion, pr.nombre AS producto, COUNT(c.idCompra) AS cantCompras
+                        FROM compra c
+                            JOIN edicion ed ON ed.idEdicion = c.idEdicion
+                            JOIN producto pr ON pr.idProducto = ed.idProducto
+                    GROUP BY pr.idProducto";
+            return $this->database->query($sql);
+        }
+
         public function isSuscribedTo($idUsuario,$idProducto){
             $sql = "
                 select *
