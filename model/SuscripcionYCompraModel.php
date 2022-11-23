@@ -67,11 +67,12 @@
         }
 
         public function getSuscripcionesDeUsuarioPorIdUsuario($idUsuario){
-            $sql = "
-                select  sus.*, pr.nombre as prNombre
-                from  suscripcion sus 
-                    join producto pr on pr.idProducto = sus.idProducto
-                where sus.idUsuario = ".$idUsuario;
+            $fechaActual = date('Y-m-d');
+
+            $sql = "SELECT sus.*, pr.nombre AS prNombre
+                FROM suscripcion sus 
+                    JOIN producto pr ON pr.idProducto = sus.idProducto
+                WHERE sus.idUsuario = '$idUsuario' AND fechaVencimiento >= '$fechaActual'";
             return $this->database->query($sql);
         }
         public function getEdicionesDeUsuarioPorIdUsuario($idUsuario){
