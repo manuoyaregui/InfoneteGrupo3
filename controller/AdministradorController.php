@@ -9,8 +9,9 @@ class AdministradorController
     private $usuarioModel;
     private $mailer;
     private $registrarseModel;
+    private $suscripcionYCompraModel;
 
-    public function __construct($render, $productoModel, $edicionModel, $articuloModel, $usuarioModel, $mailer, $registrarseModel){
+    public function __construct($render, $productoModel, $edicionModel, $articuloModel, $usuarioModel, $mailer, $registrarseModel, $suscripcionYCompraModel){
         $this->render = $render;
         $this->productoModel = $productoModel;
         $this->edicionModel = $edicionModel;
@@ -18,6 +19,7 @@ class AdministradorController
         $this->usuarioModel = $usuarioModel;
         $this->mailer = $mailer;
         $this->registrarseModel = $registrarseModel;
+        $this->suscripcionYCompraModel = $suscripcionYCompraModel;
     }
 
     public function execute(){
@@ -114,6 +116,14 @@ class AdministradorController
                 echo $this->render->render("view/formUsuarioAdmin.mustache", $data);
             }
         }
+    }
+
+    public function verReportes() {
+        $data["productos"] = $this->suscripcionYCompraModel->cantidadSuscripcionesPorProducto();
+        $data["suscripciones"] = $this->suscripcionYCompraModel->cantidadSuscripcionesTotales();
+        $data["ediciones"] = $this->suscripcionYCompraModel->cantidadComprasPorEdicion();
+
+        echo $this->render->render("view/reportes.mustache", $data);
     }
 
 }
