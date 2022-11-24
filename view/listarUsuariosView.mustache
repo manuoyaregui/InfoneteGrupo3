@@ -1,0 +1,46 @@
+{{>header}}
+{{>nav2}}
+<div id="layoutSidenav">
+    {{>navLatAdmin}}
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <!-- contenido -->
+<!--                <div class="d-flex justify-content-center mt-3">-->
+<!--                    <p class="bg-info rounded p-4 d-inline">-- <strong>Acá irían los gráficos(?</strong> -- </p>-->
+
+<!--                </div>-->
+
+
+                <table class="table w-100 text-center">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#usuarios}}
+                        <tr>
+                            <th scope="row">{{idUsuario}}</th>
+                            <td>{{nombre}}</td>
+                            <td>{{email}}</td>
+                            <td>{{rol}}</td>
+                            <td>{{estado}}</td>
+                            <td>
+                                <a href="/administrador/llamarFormEditarUsuario/id={{idUsuario}}" class="btn btn-info">Editar</a>
+                            </td>
+                        </tr>
+
+                    {{/usuarios}}
+                    </tbody>
+                </table>
+
+            </div>
+
+
+{{>footer}}

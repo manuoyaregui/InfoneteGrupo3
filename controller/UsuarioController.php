@@ -101,7 +101,9 @@
             $idUsuario = $_SESSION['idUsuario'];
 
             $data['suscripciones'] = $this->suscripcionYCompraModel->getSuscripcionesDeUsuarioPorIdUsuario($idUsuario);
-
+            if(count($data['suscripciones']) == 0){
+                $data['noEstaSuscriptoANada'] = true;
+            }
             echo $this->render->render("view/suscripcionesUsuario.mustache", $data);
         }
 
@@ -110,6 +112,9 @@
             $idUsuario = $_SESSION['idUsuario'];
 
             $data['ediciones'] = $this->suscripcionYCompraModel->getEdicionesDeUsuarioPorIdUsuario($idUsuario);
+            if(count($data['ediciones']) == 0){
+                $data['noTieneEdiciones'] = true;
+            }
             echo $this->render->render("view/edicionesUsuario.mustache", $data);
         }
 

@@ -2,45 +2,72 @@
 {{>nav2}}
 <div id="layoutSidenav">
     {{>navLatAdmin}}
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid px-4">
+    <div id="layoutSidenav_content" class="bg-light">
+        <main >
+            <div class="">
+                <h2 class="text-center fs-1 fw-light my-3">Acciones</h2>
                 <!-- contenido -->
-<!--                <div class="d-flex justify-content-center mt-3">-->
-<!--                    <p class="bg-info rounded p-4 d-inline">-- <strong>Acá irían los gráficos(?</strong> -- </p>-->
+                <div class="container row
+                            d-flex flex-wrap justify-content-around align-items-center
+                            text-center">
 
-<!--                </div>-->
+                    <!--PRODUCTOS-->
+                    <div class="shadow p-3 col-lg-5 rounded mb-4 container row">
+                        <div class="col-6 d-flex justify-content-center align-items-center flex-wrap">
+                            <i class="fas fa-book-open fs-1 w-100"></i>
+                            <h5 class="h4 mb-2 w-100">Productos</h5>
+                        </div>
+                        <div class="col-6 container row d-flex align-items-center justify-content-center">
+                            <a href="/producto/listarProductos" class="btn btn-primary">Ver y/o Habilitar</a>
+                        </div>
 
+                    </div>
+                    <!--Ediciones-->
+                    <div class="shadow p-3 col-lg-5 rounded mb-4 container row">
+                        <div class="col-6 d-flex justify-content-center align-items-center flex-wrap">
+                            <i class="fa-solid fa-code-branch fs-1 w-100"></i>
+                            <h5 class="h4 mb-2 w-100">Ediciones</h5>
 
-                <table class="table w-100 text-center">
-                    <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Rol</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {{#usuarios}}
-                        <tr>
-                            <th scope="row">{{idUsuario}}</th>
-                            <td>{{nombre}}</td>
-                            <td>{{email}}</td>
-                            <td>{{rol}}</td>
-                            <td>{{estado}}</td>
-                            <td>
-                                <a href="/administrador/llamarFormEditarUsuario/id={{idUsuario}}" class="btn btn-info">Editar</a>
-                            </td>
-                        </tr>
+                        </div>
+                        <div class="col-6
+                                    d-flex container row justify-content-center align-items-center">
+                            <a href="/administrador/listarEdiciones" class="btn btn-primary">Aprobar y/o Editar</a>
 
-                    {{/usuarios}}
-                    </tbody>
-                </table>
+                        </div>
 
+                    </div>
+
+                    <!--ARTICULOS-->
+                    <div class="shadow p-3 col-lg-5 rounded mb-4 container row">
+                        <div class="col-6 d-flex justify-content-center align-items-center flex-wrap">
+                            <i class="fa-solid fa-newspaper fs-1 w-100"></i>
+                            <h5 class="h4 mb-2">Articulos</h5>
+                        </div>
+                        <div class="col-6 container row d-flex justify-content-center align-items-center">
+                            <a href="/administrador/listarArticulos" class="btn btn-primary">Aprobar y/o ver</a>
+
+                        </div>
+
+                    </div>
+
+                    <!--USUARIOS-->
+                    <div class="shadow p-3 col-lg-5 rounded mb-4 container row">
+                        <div class="col-6 d-flex justify-content-center align-items-center flex-wrap">
+                            <i class="fa-solid fa-user fs-1 w-100"></i>
+                            <h5 class="h4 mb-2">Usuarios</h5>
+                        </div>
+                        <div class="col-6 container row d-flex justify-content-center align-items-center">
+                            <a href="/administrador/listarUsuarios" class="btn btn-primary mb-2">Listar</a>
+                            <a href="/administrador/llamarFormCrearUsuario" class="btn btn-primary">Crear</a>
+
+                        </div>
+
+                    </div>
+                </div>
             </div>
+
+        </main>
+    </div>
 
 
 {{>footer}}

@@ -21,11 +21,10 @@ class AdministradorController
     }
 
     public function execute(){
-        $rolUsuario = $_SESSION['rol']? $_SESSION['rol']['nombre'] : false;
-        if($rolUsuario === 'ADMINISTRADOR')
-            $this->listarUsuarios();
-        else
-            echo $this->render->redirect("/");
+        if( !$this->isAdmin() ) $this->render->redirect('/');
+        echo $this->render->render('view/administradorView.mustache');
+        //listarAccionesQuePuedeHacer
+
     }
 
 
@@ -48,7 +47,7 @@ class AdministradorController
     public function listarUsuarios() {
         $data["usuarios"] = $this->usuarioModel->listarUsuarios();
 
-        echo $this->render->render("view/administradorView.mustache", $data);
+        echo $this->render->render("view/listarUsuariosView.mustache", $data);
     }
 
     public function llamarFormEditarUsuario() {
