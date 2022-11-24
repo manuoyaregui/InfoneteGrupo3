@@ -24,6 +24,11 @@ class EscritorController
             echo $this->render->redirect("/");
     }
 
+    public function listarProductos(){
+        $data['productos'] = $this->productoModel->listarProductos();
+        echo $this->render->render("view/listarProductosView.mustache",$data);
+    }
+
     public function llamarFormCrearProducto(){
         echo $this->render->render("view/crearProductoView.mustache");
     }

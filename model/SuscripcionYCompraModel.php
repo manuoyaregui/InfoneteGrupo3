@@ -68,7 +68,7 @@
 
         public function getSuscripcionesDeUsuarioPorIdUsuario($idUsuario){
             $sql = "
-                select  sus.*, pr.nombre as prNombre
+                select  sus.*, pr.nombre as prNombre, pr.portada as prPortada
                 from  suscripcion sus 
                     join producto pr on pr.idProducto = sus.idProducto
                 where sus.idUsuario = ".$idUsuario;
@@ -78,7 +78,7 @@
             //compra --> ternaria -->edicion,producto
 
             $sql = "
-                select  compra.*, ed.numero as edNumero, pr.nombre as prodNombre, pr.idProducto as prodId
+                select  compra.*, ed.numero as edNumero, pr.nombre as prodNombre, pr.idProducto as prodId, ed.portadaEdicion as edPortada
                 from  compra
                     join edicion_seccion_articulos ter on ter.idEdicion = compra.idEdicion
                     join edicion ed on ed.idEdicion = ter.idEdicion

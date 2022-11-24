@@ -2,16 +2,77 @@
 {{>nav2}}
 <div id="layoutSidenav">
     {{>navLatEscritor}}
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid px-4">
+    <div id="layoutSidenav_content" class="bg-light">
+        <main >
+            <div class="">
+                <h2 class="text-center fs-1 fw-light my-3">Acciones</h2>
                 <!-- contenido -->
-                <h1 class="text-center mt-3 fw-lighter">Inicio</h1>
+                <div class="container row
+                            d-flex flex-wrap justify-content-around align-items-center
+                            text-center">
 
-                {{#mensaje}}
-                <p class="text-center bg-success w-100 text-light p-2">{{mensaje}}</p>
-                {{/mensaje}}
+                    <!--PRODUCTOS-->
+                    <div class="shadow p-3 col-lg-5 rounded mb-4 container row">
+                        <div class="col-6 d-flex justify-content-center align-items-center flex-wrap">
+                            <i class="fas fa-book-open fs-1 w-100"></i>
+                            <h5 class="h4 mb-2 w-100">Productos</h5>
+                        </div>
+
+                        <div class="col-6 container row d-flex align-items-center justify-content-center">
+                            <a href="/escritor/llamarFormCrearProducto" class="btn btn-primary mb-2">Crear</a>
+                            <a href="/escritor/listarProductos" class="btn btn-primary">Listar</a>
+                        </div>
+
+                    </div>
+                    <!--Ediciones-->
+                    <div class="shadow p-3 col-lg-5 rounded mb-4 container row">
+                        <div class="col-6 d-flex justify-content-center align-items-center flex-wrap">
+                            <i class="fa-solid fa-code-branch fs-1 w-100"></i>
+                            <h5 class="h4 mb-2 w-100">Ediciones</h5>
+
+                        </div>
+                        <div class="col-6
+                                    d-flex container row justify-content-center align-items-center">
+                            <a href="/escritor/llamarFormCrearEdicion" class="btn btn-primary mb-2">Crear</a>
+                            <a href="/escritor/listarEdiciones" class="btn btn-primary">Listar y/o Editar</a>
+
+                        </div>
+
+                    </div>
+
+                    <!--USUARIOS-->
+                    <div class="shadow p-3 col-lg-5 rounded mb-4 container row">
+                        <div class="col-6 d-flex justify-content-center align-items-center flex-wrap">
+                            <i class="fa-solid fa-pen-to-square fs-1 w-100"></i>
+                            <h5 class="h4 mb-2">Secciones</h5>
+                        </div>
+                        <div class="col-6 container row d-flex justify-content-center align-items-center">
+                            <a href="/escritor/listarSecciones" class="btn btn-primary mb-2">Listar</a>
+                            <a href="/escritor/llamarFormCrearSeccion" class="btn btn-primary">Crear</a>
+
+                        </div>
+
+                    </div>
+
+                    <!--ARTICULOS-->
+                    <div class="shadow p-3 col-lg-5 rounded mb-4 container row">
+                        <div class="col-6 d-flex justify-content-center align-items-center flex-wrap">
+                            <i class="fa-solid fa-newspaper fs-1 w-100"></i>
+                            <h5 class="h4 mb-2">Articulos</h5>
+                        </div>
+                        <div class="col-6 container row d-flex justify-content-center align-items-center">
+                            <a href="/escritor/listarArticulos" class="btn btn-primary">Aprobar y/o ver</a>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
             </div>
+
+        </main>
+    </div>
 
 
 {{>footer}}

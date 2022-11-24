@@ -21,6 +21,7 @@ class ArticuloController
         $idArticulo = $_GET["articulo"];
         $idProducto = $_GET["idProducto"];
         $idEdicion = $_GET["idEdicion"];
+
         if (isset( $_SESSION["idUsuario"])) {
             $idUsuario = $_SESSION["idUsuario"];
             $data["articulo"] = $this->articuloModel->getArticuloYSeccionPorId($idArticulo);
@@ -46,12 +47,9 @@ class ArticuloController
     }
 
     private function tienePermisos(){
-        $validacion = false;
 
-        if(isset($_SESSION['rol']) &&
-            $_SESSION['rol'] != 'LECTOR'){
-            $validacion = true;
-        }
+        $validacion = isset($_SESSION['rol']) &&
+            ($_SESSION['rol'] == 'ADMINISTRADOR' || $_SESSION['rol'] == 'ESCRITOR' || $_SESSION['rol'] == 'EDITOR');
 
         return $validacion;
     }

@@ -2,17 +2,24 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-                <div class="sb-sidenav-menu-heading">Core</div>
+                <div class="sb-sidenav-menu-heading">Vistas</div>
+                <a class="btn btn-primary mx-2 mb-2 d-flex justify-content-around" href="/administrador/">
+                    <div class="sb-nav-link-icon "><i class="fa-solid fa-house"></i></div>
+                    Menú Principal
+                </a>
                 <a class="btn btn-warning mx-2 d-flex justify-content-around" href="/">
                     <div class="sb-nav-link-icon "><i class="fas fa-book-open"></i></div>
                     Vista de Lector
                 </a>
-                <div class="sb-sidenav-menu-heading">Interface</div>
+                <div class="sb-sidenav-menu-heading">Acciones</div>
 
                 <div class="nav-link  nav">
                     <nav class="nav ">
 
-                        <h5 class="nav-link disabled"><i class="fas fa-book-open m-2"></i>Productos</h5>
+                        <h5 class="nav-link disabled pb-0 px-0 mb-0">
+                            <i class="fas fa-book-open me-2"></i>
+                            Productos
+                        </h5>
 
                         <div aria-labelledby="headingOne" >
 
@@ -20,29 +27,39 @@
 
                         </div>
 
-                        <h5 class="nav-link disabled">Ediciones</h5>
+                        <h5 class="nav-link disabled pb-0 px-0 mb-0">
+                            <i class="fa-solid fa-code-branch me-2"></i>
+                            Ediciones
+                        </h5>
 
                         <div  aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
 
-                            <a href="/escritor/listarEdiciones" class="nav-link">Listar Ediciones</a>
+                            <a href="/escritor/listarEdiciones" class="nav-link">Listar</a>
 
                         </div>
-
-                        <h5 class="nav-link disabled">Articulos</h5>
+                        <!------------------------------------->
+                        <h5 class="nav-link disabled pb-0 px-0 mb-0">
+                            <i class="fa-solid fa-newspaper me-2"></i>
+                            Articulos
+                        </h5>
 
                         <div aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
 
                             <a href="/administrador/listarArticulos" class="nav-link">Listar Articulos</a>
 
                         </div>
+                        <!---->
+                        <h5 class="nav-link disabled pb-0 px-0 mb-0">
+                            <i class="fa-solid fa-user me-2"></i>
+                            Usuarios
+                        </h5>
 
-                        <h5 class="nav-link disabled">Usuarios</h5>
+                        <div aria-labelledby="headingOne"
+                             data-bs-parent="#sidenavAccordionPages">
 
-                        <div aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                            <a href="/administrador/listarUsuarios" class="nav-link pb-0">Listar Usuario</a>
 
-                            <a href="/administrador/listarUsuarios" class="nav-link">Listar Usuario</a>
-                            <a href="/administrador/llamarFormCrearUsuario" class="nav-link">Crear Usuario</a>
-
+                            <a href="/administrador/llamarFormCrearUsuario" class="nav-link pt-2">Crear Usuario</a>
                         </div>
 
                     </nav>
