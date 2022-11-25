@@ -38,6 +38,11 @@
 
         </article>
     {{/suscripciones}}
+    {{^suscripciones}}
+        <div class="alert bg-warning">
+            <h3>No estas suscripto a ninguna revista</h3>
+        </div>
+    {{/suscripciones}}
 </section>
 
 {{>footer}}
