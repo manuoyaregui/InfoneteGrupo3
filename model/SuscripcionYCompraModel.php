@@ -67,7 +67,7 @@
         }
 
         public function getSuscripcionesDeUsuarioPorIdUsuario($idUsuario){
-            $sql = "SELECT sus.*, pr.nombre AS prNombre
+            $sql = "SELECT sus.*, pr.nombre AS prNombre, pr.portada AS prPortada
                 FROM suscripcion sus 
                     JOIN producto pr ON pr.idProducto = sus.idProducto
                 WHERE sus.idUsuario = '$idUsuario'";
