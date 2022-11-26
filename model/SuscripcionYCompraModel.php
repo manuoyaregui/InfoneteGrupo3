@@ -86,10 +86,11 @@
             return $this->database->query($sql);
         }
 
-        public function cantidadSuscripcionesTotales() {
-            $sql = "SELECT COUNT(sus.idSuscripcion) AS cantSuscripcionesTotales
+        public function cantidadSuscripcionesPorDia() {
+            $sql = "SELECT COUNT(sus.idSuscripcion) AS cantSuscripcionesTotales, sus.fechaInicio
                         FROM suscripcion sus
-                            JOIN producto pr ON pr.idProducto = sus.idProducto";
+                            JOIN producto pr ON pr.idProducto = sus.idProducto
+                    GROUP BY sus.fechaInicio";
             return $this->database->query($sql);
         }
 

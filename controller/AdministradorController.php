@@ -120,7 +120,7 @@ class AdministradorController
 
     public function verReportes() {
         $data["productos"] = $this->suscripcionYCompraModel->cantidadSuscripcionesPorProducto();
-        $data["suscripciones"] = $this->suscripcionYCompraModel->cantidadSuscripcionesTotales();
+        $data["suscripciones"] = $this->suscripcionYCompraModel->cantidadSuscripcionesPorDia();
         $data["ediciones"] = $this->suscripcionYCompraModel->cantidadComprasPorEdicion();
 
         echo $this->render->render("view/reportes.mustache", $data);
