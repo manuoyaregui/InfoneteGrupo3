@@ -4,6 +4,7 @@ include_once("helper/Render.php");
 include_once("helper/UrlHelper.php");
 include_once("helper/Mailer.php");
 include_once("helper/OpenWeather.php");
+include_once ("helper/DomP.php");
 
 
 include_once ("model/LoginModel.php");
@@ -28,7 +29,7 @@ include_once ("controller/UsuarioController.php");
 include_once ("controller/ArticuloController.php");
 
 include_once ('third-party/openWeatherAPI/openWeatherApiHandler.php');
-
+include_once ('third-party/dompdf/autoload.inc.php');
 include_once('third-party/mustache/src/Mustache/Autoloader.php');
 include_once("Router.php");
 
@@ -164,11 +165,15 @@ class Configuration{
     public function getArticuloController(){
         $articuloModel = $this->getArticuloModel();
         $suscripcionYCompraModel = $this->getSuscripcionYCompraModel();
-        $productoModel = $this->getProductoModel();
-        return new ArticuloController($this->getRender(), $articuloModel, $suscripcionYCompraModel, $productoModel);
+        $dompdf = $this->getDomPdf();
+        return new ArticuloController($this->getRender(), $articuloModel, $suscripcionYCompraModel, $dompdf);
     }
 
     public function getOpenWeather(){
         return new OpenWeather(new openWeatherApiHandler() );
+    }
+
+    public function getDomPdf(){
+        return new Domp();
     }
 }
