@@ -11,7 +11,10 @@
         </div>
         <div class="my-3">
             <h4 class="text-center">Suscripciones totales por dia</h4>
-            <div id="chart_2"></div>
+            <div id="dashboard_div">
+                <div id="filter_div"></div>
+                <div id="chart_2"></div>
+            </div>
         </div>
         <div class="my-3">
             <h4 class="text-center">Ediciones vendidas</h4>
@@ -25,7 +28,7 @@
 <script type="text/javascript">
 
     // Load the Visualization API and the corechart package.
-    google.charts.load('current', {'packages':['corechart']});
+    google.charts.load('current', {'packages':['corechart', 'controls']});
 
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawChart);
@@ -36,23 +39,46 @@
     function drawChart() {
 
         var dataSusPorProducto = new google.visualization.DataTable();
-        dataSusPorProducto.addColumn('string', 'Topping');
-        dataSusPorProducto.addColumn('number', 'Slices');
+        dataSusPorProducto.addColumn('string', 'Producto');
+        dataSusPorProducto.addColumn('number', 'Cantidad suscripciones');
         dataSusPorProducto.addRows([
             {{#productos}}
                 ['{{producto}}', {{cantSuscripciones}}],
             {{/productos}}
         ]);
 
-        var dataSusPorProducto2 = google.visualization.arrayToDataTable([
-            ['Element', 'Density', { role: 'style' }],
+        var dataSusPorDia = new google.visualization.DataTable();
+        dataSusPorDia.addColumn('date', 'Fecha');
+        dataSusPorDia.addColumn('number', 'Suscripciones por dia');
+        dataSusPorDia.addRows([
             {{#suscripciones}}
-                ['Suscripciones', {{cantSuscripcionesTotales}}, '#1da2e2'],
+                [new Date('{{fechaInicio}}T12:00'), {{cantSuscripcionesTotales}}],
             {{/suscripciones}}
         ]);
 
-        var dataSusPorProducto3 = google.visualization.arrayToDataTable([
-            ['Element', 'Density', { role: 'style' }],
+        // Create a dashboard.
+        var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
+        // Create a range slider, passing some options
+        var rangoFechaSlider = new google.visualization.ControlWrapper({
+            'controlType': 'DateRangeFilter',
+            'containerId': 'filter_div',
+            'options': {
+                'filterColumnLabel': 'Fecha'
+            }
+        });
+        // Create a pie chart, passing some options
+        var barChart = new google.visualization.ChartWrapper({
+            'chartType': 'ColumnChart',
+            'containerId': 'chart_2',
+            'options': {
+                'width': 400,
+                'height': 300,
+                'legend': 'none'
+            }
+        });
+
+        var dataEdicionesVendidas = google.visualization.arrayToDataTable([
+            ['Producto', 'Ediciones', { role: 'style' }],
             {{#ediciones}}
                 ['{{producto}} - Ed: {{edicion}}', {{cantCompras}}, '#228c0e'],
             {{/ediciones}}
@@ -60,16 +86,21 @@
 
         var options = {
             'width': 400,
-            'height': 300,
+            'height': 300
         };
 
         // Instantiate and draw our chart, passing in some options.
         var chart1 = new google.visualization.PieChart(document.getElementById('chart_1'));
-        var chart2 = new google.visualization.BarChart(document.getElementById('chart_2'));
-        var chart3 = new google.visualization.BarChart(document.getElementById('chart_3'));
         chart1.draw(dataSusPorProducto, options);
-        chart2.draw(dataSusPorProducto2, options);
-        chart3.draw(dataSusPorProducto3, options);
+        // Establish dependencies, declaring that 'filter' drives 'barChart',
+        // so that the pie chart will only display entries that are let through
+        // given the chosen slider range.
+        dashboard.bind(rangoFechaSlider, barChart);
+        // Draw the dashboard.
+        dashboard.draw(dataSusPorDia);
+
+        var chart3 = new google.visualization.BarChart(document.getElementById('chart_3'));
+        chart3.draw(dataEdicionesVendidas, {'width': 400,'height': 300,'legend': 'none'});
     }
 </script>
 
