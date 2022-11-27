@@ -10,8 +10,9 @@ class AdministradorController
     private $mailer;
     private $registrarseModel;
     private $suscripcionYCompraModel;
+    private $domPDF;
 
-    public function __construct($render, $productoModel, $edicionModel, $articuloModel, $usuarioModel, $mailer, $registrarseModel, $suscripcionYCompraModel){
+    public function __construct($render, $productoModel, $edicionModel, $articuloModel, $usuarioModel, $mailer, $registrarseModel, $suscripcionYCompraModel, $domPDF){
         $this->render = $render;
         $this->productoModel = $productoModel;
         $this->edicionModel = $edicionModel;
@@ -20,6 +21,7 @@ class AdministradorController
         $this->mailer = $mailer;
         $this->registrarseModel = $registrarseModel;
         $this->suscripcionYCompraModel = $suscripcionYCompraModel;
+        $this->domPDF = $domPDF;
     }
 
     public function execute(){
@@ -123,6 +125,14 @@ class AdministradorController
         $data["ediciones"] = $this->suscripcionYCompraModel->cantidadComprasPorEdicion();
 
         echo $this->render->render("view/reportes.mustache", $data);
+    }
+
+    public function imprimirContenidistas() {
+        $data["contenidistas"] = $this->usuarioModel->listarContenidistas();
+
+        $html = $this->render->render("view/reporteContenidistas.mustache", $data);
+
+        $this->domPDF->imp($html);
     }
 
 }

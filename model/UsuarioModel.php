@@ -31,7 +31,14 @@
             return $this->database->execute($sql);
         }
 
+        public function listarContenidistas() {
+            $sql = "SELECT u.*, e.nombre AS estado
+                        FROM usuario u
+                            JOIN rol r ON u.idRol = r.idRol
+                            JOIN estado e on u.idEstado = e.idEstado
+                    WHERE r.nombre = 'ESCRITOR'";
 
-
+            return $this->database->query($sql);
+        }
 
     }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td,
+        #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #2345b6;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 style="text-align: center; font-family: sans-serif">Reporte contenidistas</h1>
+
+    <table id="customers">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Ubicacion</th>
+            <th>Estado</th>
+        </tr>
+        {{#contenidistas}}
+        <tr>
+            <td>{{idUsuario}}</td>
+            <td>{{nombre}}</td>
+            <td>{{email}}</td>
+            <td>Lat: {{latitud}} Lng: {{longitud}}</td>
+            <td>{{estado}}</td>
+        </tr>
+        {{/contenidistas}}
+    </table>
+
+</body>
+</html>

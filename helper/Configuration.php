@@ -134,8 +134,9 @@ class Configuration{
         $mailer = $this->getMailer();
         $registrarseModel = $this->getRegistrarseModel();
         $suscripcionYCompraModel = $this->getSuscripcionYCompraModel();
+        $domPDF = $this->getDomPdf();
         return new AdministradorController($this->getRender(), $productoModel, $edicionModel, $articuloModel,
-                                            $usuarioModel, $mailer, $registrarseModel, $suscripcionYCompraModel);
+                                            $usuarioModel, $mailer, $registrarseModel, $suscripcionYCompraModel, $domPDF);
     }
 
     public function getEditorController(){
