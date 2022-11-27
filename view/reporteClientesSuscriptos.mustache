@@ -34,26 +34,26 @@
 
 <body>
 
-    <h1 style="text-align: center; font-family: sans-serif">Reporte contenidistas</h1>
+<h1 style="text-align: center; font-family: sans-serif">Reporte clientes suscriptos</h1>
 
-    <table id="tabla">
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Ubicacion</th>
-            <th>Estado</th>
-        </tr>
-        {{#contenidistas}}
+<table id="tabla">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Ubicacion</th>
+        <th>Suscripto a</th>
+    </tr>
+    {{#clientesSuscriptos}}
         <tr>
             <td>{{idUsuario}}</td>
             <td>{{nombre}}</td>
             <td>{{email}}</td>
             <td>Lat: {{latitud}} Lng: {{longitud}}</td>
-            <td>{{estado}}</td>
+            <td>{{producto}}</td>
         </tr>
-        {{/contenidistas}}
-    </table>
+    {{/clientesSuscriptos}}
+</table>
 
 </body>
 </html>

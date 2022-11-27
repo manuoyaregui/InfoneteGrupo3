@@ -34,26 +34,28 @@
 
 <body>
 
-    <h1 style="text-align: center; font-family: sans-serif">Reporte contenidistas</h1>
+<h1 style="text-align: center; font-family: sans-serif">Reporte ediciones vendidas</h1>
 
-    <table id="tabla">
+<table id="tabla">
+    <tr>
+        <th>ID</th>
+        <th>Numero</th>
+        <th>Creada el</th>
+        <th>Precio</th>
+        <th>Producto Perteneciente</th>
+        <th>Cantidad de Ventas</th>
+    </tr>
+    {{#edicionesVendidas}}
         <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Ubicacion</th>
-            <th>Estado</th>
+            <td>{{idEdicion}}</td>
+            <td>{{numero}}</td>
+            <td>{{fechaEdicion}}</td>
+            <td>${{precio}}</td>
+            <td>{{producto}}</td>
+            <td>{{vecesComprada}}</td>
         </tr>
-        {{#contenidistas}}
-        <tr>
-            <td>{{idUsuario}}</td>
-            <td>{{nombre}}</td>
-            <td>{{email}}</td>
-            <td>Lat: {{latitud}} Lng: {{longitud}}</td>
-            <td>{{estado}}</td>
-        </tr>
-        {{/contenidistas}}
-    </table>
+    {{/edicionesVendidas}}
+</table>
 
 </body>
 </html>

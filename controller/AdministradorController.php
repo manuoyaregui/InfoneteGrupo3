@@ -119,12 +119,12 @@ class AdministradorController
         }
     }
 
-    public function verReportes() {
+    public function verGraficas() {
         $data["productos"] = $this->suscripcionYCompraModel->cantidadSuscripcionesPorProducto();
         $data["suscripciones"] = $this->suscripcionYCompraModel->cantidadSuscripcionesPorDia();
         $data["ediciones"] = $this->suscripcionYCompraModel->cantidadComprasPorEdicion();
 
-        echo $this->render->render("view/reportes.mustache", $data);
+        echo $this->render->render("view/graficas.mustache", $data);
     }
 
     public function imprimirContenidistas() {
@@ -134,5 +134,30 @@ class AdministradorController
 
         $this->domPDF->imp($html);
     }
+
+    public function imprimirClientesSuscriptos() {
+        $data["clientesSuscriptos"] = $this->suscripcionYCompraModel->listarClientesSuscriptos();
+
+        $html = $this->render->render("view/reporteClientesSuscriptos.mustache", $data);
+
+        $this->domPDF->imp($html);
+    }
+
+    public function imprimirSuscripcionesDeProductos() {
+        $data["suscripciones"] = $this->suscripcionYCompraModel->listarSuscripciones();
+
+        $html = $this->render->render("view/reporteSuscripciones.mustache", $data);
+
+        $this->domPDF->imp($html);
+    }
+
+    public function imprimirEdicionesVendidas() {
+        $data["edicionesVendidas"] = $this->suscripcionYCompraModel->listarEdicionesVendidas();
+
+        $html = $this->render->render("view/reporteEdicionesVendidas.mustache", $data);
+
+        $this->domPDF->imp($html);
+    }
+
 
 }

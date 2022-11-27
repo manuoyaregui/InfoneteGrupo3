@@ -34,26 +34,28 @@
 
 <body>
 
-    <h1 style="text-align: center; font-family: sans-serif">Reporte contenidistas</h1>
+<h1 style="text-align: center; font-family: sans-serif">Reporte suscripciones</h1>
 
-    <table id="tabla">
+<table id="tabla">
+    <tr>
+        <th>ID</th>
+        <th>Producto</th>
+        <th>Precio Suscripcion</th>
+        <th>Cantidad Suscripciones</th>
+        <th>ID Escritor</th>
+        <th>Creado por</th>
+    </tr>
+    {{#suscripciones}}
         <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Ubicacion</th>
-            <th>Estado</th>
-        </tr>
-        {{#contenidistas}}
-        <tr>
-            <td>{{idUsuario}}</td>
+            <td>{{idProducto}}</td>
             <td>{{nombre}}</td>
-            <td>{{email}}</td>
-            <td>Lat: {{latitud}} Lng: {{longitud}}</td>
-            <td>{{estado}}</td>
+            <td>${{precioSuscripcion}}</td>
+            <td>{{cantSuscripciones}}</td>
+            <td>{{idEscritor}}</td>
+            <td>{{escritor}}</td>
         </tr>
-        {{/contenidistas}}
-    </table>
+    {{/suscripciones}}
+</table>
 
 </body>
 </html>

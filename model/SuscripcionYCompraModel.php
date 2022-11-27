@@ -121,4 +121,31 @@
             return $this->database->query($sql) != false;
         }
 
+        public function listarClientesSuscriptos() {
+            $sql = "SELECT u.*, pr.nombre AS producto
+      	                FROM suscripcion sus
+                            JOIN compra c ON c.idUsuario = sus.idUsuario
+                            JOIN usuario u ON u.idUsuario = sus.idUsuario
+                            JOIN producto pr ON pr.idProducto = sus.idProducto";
+            return $this->database->query($sql);
+        }
+
+        public function listarSuscripciones() {
+            $sql = "SELECT pr.*, u.nombre AS escritor, COUNT(sus.idSuscripcion) AS cantSuscripciones
+                        FROM suscripcion sus
+                            JOIN producto pr ON pr.idProducto = sus.idProducto
+                            JOIN usuario u on pr.idEscritor = u.idUsuario
+                    GROUP BY sus.idProducto";
+            return $this->database->query($sql);
+        }
+
+        public function listarEdicionesVendidas() {
+            $sql = "SELECT ed.*, p.nombre AS producto, COUNT(c.idCompra) AS vecesComprada
+                        FROM compra c
+                            JOIN edicion ed ON ed.idEdicion = c.idEdicion
+                            JOIN producto p on ed.idProducto = p.idProducto
+                    GROUP BY c.idEdicion";
+            return $this->database->query($sql);
+        }
+
     }
