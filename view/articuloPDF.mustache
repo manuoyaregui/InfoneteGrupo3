@@ -1,0 +1,19 @@
+{{>header}}
+<div class="container my-4">
+    <div class="row">
+        <div class="card">
+            {{#articulo}}
+                <div class="card-header">
+                    <h6 class="text-muted">{{nombreSeccion}}</h6>
+                </div>
+                <br>
+                <h4 class="card-subtitle">{{subtitulo}}</h4>
+                <h1 class="card-title" style="color: #0089C1;font-weight: 800;">{{titulo}}</h1>
+                <div class="card-body">{{{descripcion}}}</div>
+
+            {{/articulo}}
+        </div>
+    </div>
+
+
+</div>

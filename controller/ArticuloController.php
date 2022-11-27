@@ -77,7 +77,8 @@ class ArticuloController
                 $data["usuarioPuedeVerArticulo"] = true;
                 $data["idProducto"]= $idProducto;
                 $data["idEdicion"]= $idEdicion;
-                return $this->render->render("view/articuloView.mustache", $data);
+//                return $this->render->render("view/articuloView.mustache", $data);
+                return $this->render->render("view/articuloPDF.mustache", $data);
             }
         }
     }
