@@ -264,14 +264,15 @@ class EscritorController
                     $data["productos"] = $this->productoModel->listarProductos();
                     $data["secciones"] = $this->seccionModel->listarSecciones();
                     echo $this->render->render("view/crearArticuloView.mustache", $data);
+                }else{
+                    $data["productos"] = $this->productoModel->listarProductos();
+                    $data["secciones"] = $this->seccionModel->listarSecciones();
+                    $data["mensajeError"] = "No se pudo crear el articulo " . $titulo;
+                    echo $this->render->render("view/crearArticuloView.mustache", $data);
                 }
 
             }
         }
-        $data["productos"] = $this->productoModel->listarProductos();
-        $data["secciones"] = $this->seccionModel->listarSecciones();
-        $data["mensajeError"] = "No se pudo crear el articulo " . $titulo;
-        echo $this->render->render("view/crearArticuloView.mustache", $data);
     }
     public function llamarFormularioEditarArticulo(){
         $idArticulo = $_GET['id'];
@@ -296,6 +297,7 @@ class EscritorController
         $idArticulo = $_GET['id'];
         $newData['titulo'] = $_POST["titulo-articulo"]?:"";
         $newData['subtitulo'] = $_POST["subtitulo-articulo"]?:"";
+        $newData['portadaArticulo'] = $_POST["portadaArticulo"]?:"";
         $newData['descripcion'] = $_POST['descripcion-articulo']?:"";
         $newData['latitud'] = $_POST['latitud']?:"";
         $newData['longitud'] = $_POST['longitud']?:"";

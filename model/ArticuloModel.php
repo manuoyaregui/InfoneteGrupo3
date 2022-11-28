@@ -10,7 +10,7 @@ class ArticuloModel
 
     public function crearArticulo($idEdicion,$idSeccion,$portadaArticulo,$titulo,$subtitulo, $contenido, $latitud, $longitud) {
         $sql = "INSERT INTO articulo (idArticulo,titulo,portadaArticulo,subtitulo, descripcion, latitud, longitud, idEstado)
-                    VALUES (null,'".$titulo."','$portadaArticulo','".$subtitulo."', '".$contenido."', '".$latitud."', '".$longitud."', 1)";
+                    VALUES (null,'".$titulo."','$portadaArticulo','".$subtitulo."', '".$contenido."', '".$latitud."', '".$longitud."', 4)";
         $result = $this->database->execute($sql);
 
         if($result){
@@ -59,7 +59,7 @@ class ArticuloModel
     }
 
     public function getTernariaPorIdArticulo($idArticulo){
-        $sql = "SELECT esa.*, art, sec
+        $sql = "SELECT esa.*, art.*, sec.*
                 FROM edicion_seccion_articulos esa
                 JOIN articulo art ON art.idArticulo = esa.idArticulo
                 JOIN seccion sec ON sec.idSeccion = esa.idSeccion
@@ -72,24 +72,25 @@ class ArticuloModel
             UPDATE articulo
             set titulo = '".$newData['titulo']."',
                 subtitulo = '".$newData['subtitulo']."', 
+                portadaArticulo = '".$newData['portadaArticulo']."',
                 descripcion = '". $newData['descripcion']."',
                 latitud = '".$newData['latitud']."',
-                longitud = '".$newData['longitud']."'
+                longitud = '".$newData['longitud']."',
+                idEstado = 4
             where idArticulo = '".$idArticulo."'";
-
         return $this->database->execute($sql);
     }
 
     public function aprobarArticulo($idArticulo) {
         $sql = "UPDATE articulo
-                    SET idEstado = 2
+                    SET idEstado = 2        /*2 = ACTIVO*/
                 WHERE idArticulo = '$idArticulo'";
         return $this->database->execute($sql);
     }
 
     public function desaprobarArticulo($idArticulo) {
         $sql = "UPDATE articulo
-                    SET idEstado = 1
+                    SET idEstado = 5        /*5 = dDESAPROBADO*/
                 WHERE idArticulo = '$idArticulo'";
         return $this->database->execute($sql);
     }

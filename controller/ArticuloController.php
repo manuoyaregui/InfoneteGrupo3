@@ -86,9 +86,6 @@ class ArticuloController
 
     private function tienePermisos(){
 
-        $validacion = isset($_SESSION['rol']) &&
-            ($_SESSION['rol'] == 'ADMINISTRADOR' || $_SESSION['rol'] == 'ESCRITOR' || $_SESSION['rol'] == 'EDITOR');
-
-        return $validacion;
+        return isset($_SESSION['rol']) && ($_SESSION['rol'] != 'LECTOR');
     }
 }

@@ -10,14 +10,14 @@
 
         public function crearProducto($nombre, $idTipo, $portada, $precioSuscripcion, $idUsuario) {
             $sqlQuery = "INSERT INTO producto (nombre, idTipo, portada, precioSuscripcion, idEscritor, idEstado) 
-                         VALUES ('".$nombre."', '".$idTipo."', '".$portada."', '".$precioSuscripcion."', '".$idUsuario."', 1)";
+                         VALUES ('".$nombre."', '".$idTipo."', '".$portada."', '".$precioSuscripcion."', '".$idUsuario."', 4)";
 
             return $this->database->execute($sqlQuery);
         }
 
         public function editarProducto($id, $nombre, $idTipo, $portada, $precioSuscripcion) {
             $sqlQuery = "UPDATE producto 
-                            SET nombre = '".$nombre."', idTipo = '".$idTipo."', portada = '".$portada."', precioSuscripcion = '".$precioSuscripcion."'
+                            SET nombre = '".$nombre."', idTipo = '".$idTipo."', portada = '".$portada."', precioSuscripcion = '".$precioSuscripcion."',idEstado = 4
                          WHERE idProducto = '$id'";
             return $this->database->execute($sqlQuery);
         }
@@ -91,7 +91,7 @@
 
         public function bloquearProducto($id){
             $sqlQuery = "UPDATE producto 
-                            SET idEstado = 3 
+                            SET idEstado = 5 
                          WHERE idProducto = '$id'";
             return $this->database->execute($sqlQuery);
         }

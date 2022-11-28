@@ -1,10 +1,11 @@
 {{>header}}
 {{>nav}}
 
-<div class="container my-3">
-    <div class="row d-flex justify-content-around">
-        <div class="card" style="width: 30rem;" >
-            {{#articulosDeLaEdicion}}
+<div class="container my-3 border-0">
+    <div class="row d-flex border-0">
+        {{#articulosDeLaEdicion}}
+        <div class="card border-0" style="width: 28rem;" >
+
                 <a href="/articulo/verArticulo/articulo={{idArticulo}}&idProducto={{idProducto}}&idEdicion={{idEdicion}}" style="color: black;text-decoration: none">
                     <img src="/public/img/portadasDeArticulos/{{portadaArticulo}}" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -13,8 +14,9 @@
                         <h5 class="card-subtitle">{{subtitulo}}</h5>
                     </div>
                 </a>
-            {{/articulosDeLaEdicion}}
+
         </div>
+        {{/articulosDeLaEdicion}}
     </div>
 </div>
 

@@ -12,14 +12,14 @@ class EdicionModel
         if($this->buscarEdicionPorNroDeProductoYNroDeEdicion($idProducto, $numeroEdicion) == null){
             $sqlQuery = "
                 INSERT INTO edicion (idEdicion,numero,portadaEdicion, precio, idProducto, fechaEdicion, idEstado) 
-                VALUES (null,'".$numeroEdicion."','".$portadaEdicion."', '".$precioEdicion."', '".$idProducto."', '".$fechaEdicion."', 1)";
+                VALUES (null,'".$numeroEdicion."','".$portadaEdicion."', '".$precioEdicion."', '".$idProducto."', '".$fechaEdicion."', 4)";
             return $this->database->execute($sqlQuery);
         }
     }
 
     public function editarEdicion($id, $numeroEdicion, $precioEdicion, $idProducto){
         $consulta = "UPDATE edicion 
-                        SET numero = '".$numeroEdicion."', precio = '".$precioEdicion."', idProducto = '".$idProducto."'
+                        SET numero = '".$numeroEdicion."', precio = '".$precioEdicion."', idProducto = '".$idProducto."',idEstado = 4
                             WHERE idEdicion = '$id'";
         return $this->database->execute($consulta);
     }
@@ -67,7 +67,7 @@ class EdicionModel
 
     public function desaprobarEdicion($idEdicion) {
         $sql = "UPDATE edicion
-                    SET idEstado = 1
+                    SET idEstado = 5
                 WHERE idEdicion = '$idEdicion'";
         return $this->database->execute($sql);
     }
