@@ -74,15 +74,11 @@
             return $this->database->query($sql);
         }
         public function getEdicionesDeUsuarioPorIdUsuario($idUsuario){
-            //compra --> ternaria -->edicion,producto
-
-            $sql = "
-                select  compra.*, ed.numero as edNumero, pr.nombre as prodNombre, pr.idProducto as prodId, ed.portadaEdicion as edPortada
-                from  compra
-                    join edicion_seccion_articulos ter on ter.idEdicion = compra.idEdicion
-                    join edicion ed on ed.idEdicion = ter.idEdicion
-                    join producto pr on pr.idProducto = ed.idProducto
-                where compra.idUsuario = ".$idUsuario;
+            $sql = "SELECT ed.idEdicion, ed.numero AS edNumero, pr.nombre AS prodNombre, pr.idProducto AS prodId, ed.portadaEdicion AS edPortada, c.precio AS precio, c.fecha AS fecha
+                        FROM compra c
+                            JOIN edicion ed ON ed.idEdicion = c.idEdicion
+                            JOIN producto pr ON pr.idProducto = ed.idProducto
+                        WHERE c.idUsuario = '$idUsuario'";
             return $this->database->query($sql);
         }
 

@@ -86,6 +86,9 @@ class ArticuloController
 
     private function tienePermisos(){
 
-        return isset($_SESSION['rol']) && ($_SESSION['rol'] != 'LECTOR');
+        return isset($_SESSION['rol']) && 
+                    ($_SESSION['rol'] != 'ADMINISTRADOR' ||
+                     $_SESSION['rol'] != 'ESCRITOR' ||
+                     $_SESSION['rol'] != 'EDITOR');
     }
 }
